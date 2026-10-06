@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Integrated Quantum Photonics | Krish Patel</title>
+<meta name="description" content="Krish Patel's undergraduate research in the Shcherbakov Nanophotonics Lab at UC Irvine: on-chip waveguides, grating couplers and electro-optic modulators that deliver laser light to trapped-ion qubits, and the lab's next directions in quantum and datacenter photonics.">
+<meta name="author" content="Krish Patel">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem("kp-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="Krish Patel, home">
+      <span class="chip-logo" aria-hidden="true"><i></i>KP</span>
+      <span><span class="brand-name">Krish Patel</span><span class="brand-sub">Electrical Engineering · UCI</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links"><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#research" aria-current="page">Research</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+    <div class="nav-tools">
+      <a class="btn btn-sm btn-ghost btn-resume" href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Résumé</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" data-menu aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <header class="pj-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html#research">Research</a><span>/</span><span>quantum-photonics</span></nav>
+    <span class="net">Shcherbakov Nanophotonics Lab · UC Irvine</span>
+    <h1>Integrated Quantum Photonics</h1>
+    <p class="pj-lede">Trapped-ion quantum computers are controlled with laser light, and today that light usually reaches the ions through a table full of free-space optics. My research looks at moving those optics onto the chip itself, with waveguides, grating couplers, and modulators that deliver light straight to each ion.</p>
+    <dl class="info">
+      <div><dt>Lab</dt><dd>Shcherbakov Nanophotonics Lab, UC Irvine</dd></div>
+      <div><dt>My role</dt><dd>Undergraduate researcher</dd></div>
+      <div><dt>Status</dt><dd>Current · wrapping up</dd></div>
+      <div><dt>Qubit platform</dt><dd>Trapped ions</dd></div>
+      <div><dt>Focus</dt><dd>On-chip light delivery</dd></div>
+    </dl>
+    <div class="btn-row">
+      <a class="btn btn-wire" href="https://shcherbakov.eng.uci.edu/" target="_blank" rel="noopener">Lab website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      <a class="btn btn-ghost" href="#next">What's next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </header>
+</div>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">1</span>Why put the optics on a chip</h2>
+    <div class="cols-2">
+      <div class="box"><span class="k">Today: free-space optics</span><p>Each trapped ion is a qubit, and lasers cool it, set its state, run gates on it, and read it out. In most labs those beams reach the ions through lenses, mirrors, and modulators spread across an optical table. The setups are large, drift out of alignment, and get harder to manage with every ion you add.</p></div>
+      <div class="box"><span class="k">The goal: integrated photonics</span><p>Build the optics into the microfabricated trap. Waveguides carry the light across the chip and grating couplers send it up to each ion. Because fabrication fixes the light paths, they stay aligned, and one chip can carry many beams to many ions. The result is more compact, more stable qubit control that can scale.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">2</span>How light reaches the ion</h2>
+    <div class="diagram">
+      <div class="diagram-title"><span><b>FIG 2-1</b> Trap chip cross-section</span><span>Concept sketch · not to scale</span></div>
+      <div class="xsec-wrap">
+        <svg class="xsec" viewBox="0 0 720 360" role="img" aria-labelledby="xsec-title xsec-desc">
+          <title id="xsec-title">Cross-section of an ion-trap chip with integrated photonics</title>
+          <desc id="xsec-desc">Laser light enters a waveguide buried in the chip, passes through an electro-optic modulator, and reaches a grating coupler under an opening in the trap electrodes. The grating emits a focused beam upward to a trapped ion held above the chip surface.</desc>
+          <rect class="x-sub" x="84" y="240" width="616" height="56"/>
+          <rect class="x-clad" x="84" y="196" width="616" height="44"/>
+          <rect class="x-core" x="84" y="214" width="406" height="8"/>
+          <g class="x-core">
+            <rect x="420" y="208" width="5" height="6"/><rect x="430" y="208" width="5" height="6"/><rect x="440" y="208" width="5" height="6"/>
+            <rect x="450" y="208" width="5" height="6"/><rect x="460" y="208" width="5" height="6"/><rect x="470" y="208" width="5" height="6"/>
+            <rect x="480" y="208" width="5" height="6"/>
+          </g>
+          <rect class="x-eom" x="200" y="203" width="110" height="30" rx="3"/>
+          <rect class="x-metal" x="84" y="186" width="316" height="10"/>
+          <rect class="x-metal" x="510" y="186" width="190" height="10"/>
+          <polygon class="x-beam" points="420,196 490,196 523,70 517,70"/>
+          <circle class="x-halo" cx="520" cy="64" r="20"/>
+          <circle class="x-ion" cx="520" cy="64" r="8"/>
+          <path class="x-arrow" d="M8 218 H68"/>
+          <polygon class="x-head" points="68,211 82,218 68,225"/>
+          <text x="6" y="204">Laser in</text>
+          <text class="x-strong" x="548" y="60">Trapped ion</text>
+          <text x="548" y="78">(the qubit)</text>
+          <path class="x-lead" d="M508 140 H560"/>
+          <text x="566" y="144">Focused beam</text>
+          <text x="90" y="178">Trap electrodes</text>
+          <text x="690" y="276" text-anchor="end">Substrate</text>
+          <path class="x-lead" d="M120 222 V316"/>
+          <text x="120" y="334" text-anchor="middle">Waveguide</text>
+          <path class="x-lead" d="M255 233 V316"/>
+          <text x="255" y="334" text-anchor="middle">Electro-optic modulator</text>
+          <path class="x-lead" d="M455 214 V316"/>
+          <text x="455" y="334" text-anchor="middle">Grating coupler</text>
+          <text class="x-note" x="690" y="352" text-anchor="end">Illustration of the concept, not a lab design</text>
+        </svg>
+      </div>
+      <ol class="flow">
+        <li><div class="node io"><span class="nm">Laser in</span><span class="ds">Light is coupled onto the chip</span></div></li>
+        <li><div class="node"><span class="part">Waveguide</span><span class="nm">Route</span><span class="ds">Carries light across the trap chip</span></div></li>
+        <li><div class="node"><span class="part">EO modulator</span><span class="nm">Control</span><span class="ds">Switches and modulates the light on chip</span></div></li>
+        <li><div class="node"><span class="part">Grating coupler</span><span class="nm">Emit</span><span class="ds">Sends the light up out of the surface</span></div></li>
+        <li><div class="node end"><span class="part">Qubit</span><span class="nm">Trapped ion</span><span class="ds">Held above the chip by the electrodes</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">3</span>Components I worked with</h2>
+    <div class="blocks">
+      <div class="block"><span class="k">Route</span>
+        <div class="node"><span class="part">On-chip waveguide</span><span class="nm">Waveguide</span><span class="ds">A narrow strip of higher-index material that confines light and guides it across the chip, the way a wire carries current.</span></div>
+      </div>
+      <div class="block"><span class="k">Control</span>
+        <div class="node"><span class="part">EOM</span><span class="nm">Electro-optic modulator</span><span class="ds">Uses an applied voltage to change how light passes through, so beams can be switched and modulated on the chip instead of on the optical table.</span></div>
+      </div>
+      <div class="block"><span class="k">Deliver</span>
+        <div class="node"><span class="part">Grating coupler</span><span class="nm">Grating coupler</span><span class="ds">A row of fine teeth etched into the waveguide that scatters the guided light up out of the chip as a beam aimed at the ion.</span></div>
+      </div>
+      <div class="block"><span class="k">Hold</span>
+        <div class="node end"><span class="part">Microfabricated trap</span><span class="nm">Surface ion trap</span><span class="ds">Electrodes on the chip surface create the fields that hold each ion in place above the chip.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">4</span>What I analyzed</h2>
+    <p class="prose" style="margin-bottom:1.25rem">I analyzed how well grating couplers and waveguide structures deliver photons to trapped-ion qubits, judged on three parameters.</p>
+    <div class="cols-3">
+      <div class="box"><span class="k">Parameter 1</span><h3>Coupling efficiency</h3><p>How much of the light in the waveguide actually leaves the grating in the intended beam. Light lost here is wasted laser power, and stray light can reach ions it wasn't meant for.</p></div>
+      <div class="box"><span class="k">Parameter 2</span><h3>Mode overlap</h3><p>How closely the shape of the emitted beam matches the beam profile needed at the ion. Better overlap means a cleaner, better-focused spot on the qubit.</p></div>
+      <div class="box"><span class="k">Parameter 3</span><h3>Fabrication compatibility</h3><p>Whether the photonic layers can be made in the same process as the trap's electrodes, without one fabrication step damaging the other.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section" id="next">
+  <div class="wrap">
+    <h2><span class="no">5</span>What's next</h2>
+    <p class="prose" style="margin-bottom:1.25rem">This project is wrapping up, so the lab is choosing its next direction. I'm helping by reading papers and finding new ideas to explore in two areas: photonic chips for quantum computing, and photonics for AI datacenters.</p>
+    <p class="callout" style="margin-bottom:1.5rem"><strong>Two families of quantum computers.</strong> Gate-based machines run logic gates on physical qubits, such as superconducting circuits, trapped ions, and neutral atoms. Measurement-based or fusion-based machines instead compute by measuring large entangled states, and photonic versions build those states from photons made by sources such as SPDC and SFWM. Each approach has its own strengths and limits, and photonic integrated circuits (PICs) matter to both.</p>
+    <div class="cols-2">
+      <div>
+        <h3>Quantum computing</h3>
+        <ol class="topics">
+          <li><span class="nm">PICs for neutral atoms</span><span class="ds">Photonic circuits that deliver light to arrays of neutral atoms, another leading qubit platform.</span><span class="rel">Google is working on this platform · Starting paper: <a href="https://arxiv.org/abs/2606.07800" target="_blank" rel="noopener">arXiv:2606.07800</a></span></li>
+          <li><span class="nm">PICs for trapped ions</span><span class="ds">On-chip light delivery for trapped-ion qubits, the area my current project sits in.</span><span class="rel">IonQ, Quantinuum · <a href="https://www.nature.com/articles/s44310-025-00102-4" target="_blank" rel="noopener">Related publication from a lab colleague</a></span></li>
+          <li><span class="nm">SPDC-based PICs</span><span class="ds">Photon-pair sources based on spontaneous parametric down-conversion, where one pump photon splits into two.</span><span class="rel"><a href="https://www.xanadu.ai/" target="_blank" rel="noopener">Xanadu</a></span></li>
+          <li><span class="nm">SFWM-based PICs</span><span class="ds">Photon-pair sources based on spontaneous four-wave mixing, where two pump photons turn into a new pair.</span><span class="rel"><a href="https://www.psiquantum.com/" target="_blank" rel="noopener">PsiQuantum</a></span></li>
+          <li><span class="nm">Integrated quantum photonics</span><span class="ds">The wider field of generating, routing, and measuring quantum states of light on a chip.</span></li>
+        </ol>
+      </div>
+      <div>
+        <h3>AI &amp; datacenter</h3>
+        <ol class="topics">
+          <li><span class="nm">Optical interconnect</span><span class="ds">Moving data between chips, boards, and racks with light instead of copper.</span></li>
+          <li><span class="nm">PICs for LPO</span><span class="ds">Linear Pluggable Optics: pluggable transceivers that drop the power-hungry DSP and drive the optics directly.</span></li>
+          <li><span class="nm">PICs for NPO</span><span class="ds">Near-Packaged Optics: optical engines mounted on the board right next to the switch or processor.</span></li>
+          <li><span class="nm">PICs for CPO</span><span class="ds">Co-Packaged Optics: optical engines inside the same package as the switch or processor, for the shortest electrical path.</span></li>
+          <li><span class="nm">Photonic AI accelerators</span><span class="ds">Chips that use light to do the matrix math behind neural networks.</span></li>
+        </ol>
+        <div class="companies"><span>Companies in this space</span><ul><li>Nvidia</li><li>Meta</li><li>Marvell</li><li>Lumentum</li><li>Coherent</li><li>Lightmatter</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">6</span>Key terms</h2>
+    <ul class="chips">
+      <li>Trapped-ion qubits</li><li>Microfabricated ion traps</li><li>Photonic integrated circuits (PICs)</li><li>On-chip waveguides</li><li>Grating couplers</li><li>Electro-optic modulators</li><li>Coupling efficiency</li><li>Mode overlap</li><li>Free-space optics</li><li>SPDC</li><li>SFWM</li><li>Co-packaged optics</li>
+    </ul>
+  </div>
+</section>
+
+<nav class="wrap pager" aria-label="More work">
+  <a href="../index.html#research"><span class="k">← Back to</span><b>All research</b></a>
+  <a class="next" href="../projects/oscilloscope.html"><span class="k">See a project →</span><b>General-Purpose Digital Oscilloscope</b></a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <span>© 2026 Krish Patel · Electrical Engineering, UC Irvine</span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Résumé</a></span>
+  </div>
+</footer>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>
