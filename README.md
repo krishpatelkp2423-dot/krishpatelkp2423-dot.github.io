@@ -12,7 +12,8 @@ projects/*.html                  One page per project (flowcharts, video, photos
 research/quantum-photonics.html  Integrated quantum photonics research (Shcherbakov Nanophotonics Lab)
 assets/css/style.css             All styles (light + dark theme)
 assets/js/main.js                Theme toggle, menu, lightbox, oscilloscope simulations
-assets/img/                      Project images and headshot
+assets/img/                      Project images, research photos and posters, and headshot
+assets/research/                 High school research papers (PDF) linked from the Research section
 assets/video/                    Demo videos (H.264 MP4) and poster frames
 assets/Krish_Patel_Resume.pdf    Résumé linked across the site
 .nojekyll                        Tells GitHub Pages to serve the files as-is
