@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Autonomous Mobile Rover | Krish Patel</title>
+<meta name="description" content="An autonomous SEDS UC Irvine rover that navigates simulated extraterrestrial terrain, finds a target rock with a Pixy2 camera, and collects it; mission flowchart, electrical block diagram and wiring.">
+<meta name="author" content="Krish Patel">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem("kp-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="Krish Patel, home">
+      <span class="chip-logo" aria-hidden="true"><i></i>KP</span>
+      <span><span class="brand-name">Krish Patel</span><span class="brand-sub">Electrical Engineering · UCI</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links"><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#research">Research</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+    <div class="nav-tools">
+      <a class="btn btn-sm btn-ghost btn-resume" href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Résumé</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" data-menu aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <header class="pj-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html#projects">Projects</a><span>/</span><span>rover</span></nav>
+    <span class="net">SEDS UC Irvine · Team project</span>
+    <h1>Autonomous Mobile Rover</h1>
+    <p class="pj-lede">A rover built to cross simulated extraterrestrial terrain, find a designated target rock, pick it up, and store it on board, all without a human at the controls. I designed the control electronics and helped integrate every subsystem.</p>
+    <dl class="info">
+      <div><dt>Team</dt><dd>Students for the Exploration and Development of Space (SEDS), UC Irvine</dd></div>
+      <div><dt>Dates</dt><dd>Aug 2025 – May 2026</dd></div>
+      <div><dt>My role</dt><dd>Electrical &amp; circuit design, system integration</dd></div>
+      <div><dt>Controller</dt><dd>Arduino + motor shield</dd></div>
+      <div><dt>Vision</dt><dd>Pixy2 camera</dd></div>
+    </dl>
+  </header>
+</div>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">1</span>The mission</h2>
+    <div class="cols-2">
+      <div class="prose">
+        <p>Planetary missions need robots that can work in unknown, unstructured terrain on their own. The challenge was a rover that could reliably cross uneven ground, find a target object, and run a coordinated mechanical pickup, all on limited computing power and a battery.</p>
+        <p>Our team combined mechanical design, electronics, and embedded software. An Arduino coordinates the drive motors, servos, and sensors, and the chassis and collection mechanism were designed in CAD to balance durability, weight, and maneuverability.</p>
+      </div>
+      <div class="diagram">
+        <div class="diagram-title"><span><b>FIG 1-1</b> Autonomous run</span><span>No driver input</span></div>
+        <div class="dt">
+          <div class="c1 node io"><span class="nm">Start</span><span class="ds">Placed in the terrain</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 ad plain" aria-hidden="true"><span></span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 node"><span class="part">DC motors · steering servo · IR sensors</span><span class="nm">Navigate the terrain</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 ad plain" aria-hidden="true"><span></span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 decision"><div><span class="part">Pixy2 camera</span><span class="q">Target rock in view?</span></div></div>
+          <div class="c2 ar"><span>no</span></div>
+          <div class="c3 out node"><span class="nm">Keep searching</span><span class="ds">Back to navigating</span></div>
+          <div class="c1 ad"><span>yes</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 node"><span class="nm">Align with the target</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 ad plain" aria-hidden="true"><span></span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 node"><span class="part">Two claw servos</span><span class="nm">Collect the rock</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 ad plain" aria-hidden="true"><span></span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 node end"><span class="nm">Store it on board</span></div><div class="c2"></div><div class="c3 blank"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">2</span>Electrical system</h2>
+    <p class="prose" style="margin-bottom:1.25rem">I drew the full wiring for the Arduino-based control system: drive motors, motor driver, servos, sensors, and power distribution. The block diagram below is a simplified view of that wiring.</p>
+    <div class="diagram">
+      <div class="diagram-title"><span><b>FIG 2-1</b> Block diagram</span><span>Simplified from the wiring diagram</span></div>
+      <ol class="flow">
+        <li><div class="node io"><span class="part">Battery 1</span><span class="nm">Battery</span></div></li>
+        <li><div class="node"><span class="nm">Power switch</span></div></li>
+        <li><div class="node"><span class="nm">Split into two supplies</span><span class="ds">Motor shield for the drive motors, buck converter for the servos</span></div></li>
+      </ol>
+      <div class="blocks">
+        <div class="block"><span class="k">Control</span>
+          <div class="node end"><span class="part">Arduino</span><span class="nm">Microcontroller</span><span class="ds">Runs the autonomy code</span></div>
+          <div class="node"><span class="part">Stacked on the Arduino</span><span class="nm">Motor shield</span><span class="ds">Drives the DC motors from battery power</span></div>
+        </div>
+        <div class="block"><span class="k">Drive &amp; steering</span>
+          <div class="node"><span class="part">M1 · M2</span><span class="nm">Motor 1, Motor 2</span><span class="ds">DC drive motors</span></div>
+          <div class="node"><span class="part">Servo 1 · pin 9</span><span class="nm">Steering servo</span></div>
+        </div>
+        <div class="block"><span class="k">Collection</span>
+          <div class="node"><span class="part">Servos 2 · 3</span><span class="nm">Claw servos</span></div>
+          <div class="node"><span class="part">Mini servos 1 · 2</span><span class="nm">Right and left mini servos</span></div>
+          <div class="node"><span class="part">Buck converter</span><span class="nm">Servo supply</span><span class="ds">Stepped-down power for every servo</span></div>
+        </div>
+        <div class="block"><span class="k">Sensing</span>
+          <div class="node"><span class="part">Front · Left</span><span class="nm">IR sensors</span><span class="ds">Distance and detection sensing</span></div>
+          <div class="node"><span class="part">ICSP</span><span class="nm">Pixy2 camera</span><span class="ds">Finds the target rock</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery" style="margin-top:1.5rem">
+      <figure class="media wide"><button type="button" data-full="../assets/img/rover-wiring.png" data-caption="Full rover wiring diagram."><img width="1800" height="1382" style="--ar: 1800 / 1382" src="../assets/img/rover-wiring.png" alt="Wiring diagram connecting the battery, switch, buck converter, Arduino, motor shield, two DC motors, five servos, two IR sensors and a Pixy2 camera" loading="lazy"></button><figcaption><b>WIRING</b>Full wiring diagram: battery and switch, buck converter, Arduino with motor shield, two DC motors, steering and claw servos, two mini servos, front and left IR sensors, and the Pixy2 camera. Red lines are power.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">3</span>What I did</h2>
+    <div class="cols-2">
+      <div class="box"><span class="k">Electrical &amp; circuit design</span><p>Developed the circuit schematics for the Arduino-based control system, integrating DC motors, motor drivers, sensors, and power management so the rover runs safely and reliably.</p></div>
+      <div class="box"><span class="k">System integration</span><p>Worked with the mechanical, electrical, and software subteams to bring every subsystem together into a working autonomous rover, troubleshooting mechanical-electrical interface problems and improving overall reliability.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">4</span>Technologies</h2>
+    <ul class="chips">
+      <li>Arduino (embedded C/C++)</li><li>Motor shield</li><li>DC motors</li><li>Servos</li><li>Buck converter</li><li>IR sensors</li><li>Pixy2 camera</li><li>Power distribution &amp; wiring</li><li>CAD</li>
+    </ul>
+  </div>
+</section>
+
+<nav class="wrap pager" aria-label="More projects">
+  <a href="temperature.html"><span class="k">← Previous project</span><b>Temperature Sensing & Visualization</b></a>
+  <a class="next" href="oscilloscope.html"><span class="k">Next project →</span><b>General-Purpose Digital Oscilloscope</b></a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <span>© 2026 Krish Patel · Electrical Engineering, UC Irvine</span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Résumé</a></span>
+  </div>
+</footer>
+<dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+  <button class="close" type="button" aria-label="Close">×</button>
+  <img src="data:," alt="">
+  <p></p>
+</dialog>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>
