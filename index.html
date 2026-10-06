@@ -169,7 +169,7 @@
     <div class="section-head">
       <span class="net">Research</span>
       <h2>Research</h2>
-      <p>Undergraduate research in integrated quantum photonics at UC Irvine, and before that, two years of microbiology research in the Discovery magnet program at Spring Valley High School, presented at state and regional conferences.</p>
+      <p>Undergraduate research in integrated quantum photonics at UC Irvine, and before that, two years of microbiology and environmental science research in the Discovery magnet program at Spring Valley High School, presented at state and regional science conferences.</p>
     </div>
     <div class="research">
       <article class="rs rs-now">
@@ -203,39 +203,69 @@
       <article class="rs">
         <div class="rs-year"><b>2023–24</b>Aug 2023 – May 2024</div>
         <div>
-          <h3>Investigating microbes for combating pathogenic fungi</h3>
-          <p class="org">Discovery Magnet Program · Columbia, SC</p>
+          <h3>Using bacteria to control a root-rot fungus</h3>
+          <p class="org">Discovery Magnet Program · Spring Valley High School · Columbia, SC</p>
           <ul>
-            <li>Designed and ran a quantitative degradation study using common bacteria at several concentrations against a pathogenic fungus.</li>
-            <li>Built a MATLAB image-processing pipeline that measured fungal degradation from before-and-after plate photos across 120+ samples, then ran statistical analysis on the results.</li>
+            <li>Tested whether the soil bacterium <em>Pseudomonas fluorescens</em> can act as a biocontrol agent against <em>Armillaria mellea</em>, a fungus that causes root rot in trees, shrubs, and grapevines.</li>
+            <li>Grew the fungus on 90 agar plates and treated them with 0 µL (control), 100 µL, or 200 µL of bacterial solution, with 30 plates per group.</li>
+            <li>Built a MATLAB image-analysis pipeline that measured fungal coverage in before-and-after photos of every plate, taken with a fixed camera setup to avoid glare.</li>
+            <li>Found that only the 200 µL group shrank significantly at every image threshold (Kruskal–Wallis and Wilcoxon signed-rank tests), which supported my hypothesis. However, the untreated control plates also shrank, by even more on average, and the final colony sizes of the three groups were not significantly different, so more trials are needed to confirm the effect.</li>
             <li>Presented at the 2024 South Carolina Junior Academy of Science conference and the 2024 University of South Carolina Region II Science Fair.</li>
           </ul>
           <div class="diagram" style="margin-top:1rem">
-            <div class="diagram-title"><span><b>FIG R-1</b> MATLAB analysis pipeline</span><span>120+ samples</span></div>
+            <div class="diagram-title"><span><b>FIG R-1</b> MATLAB analysis pipeline</span><span>90 plates · 180 photos</span></div>
             <ol class="flow">
               <li><div class="node io"><span class="nm">Plate photos</span><span class="ds">Before and after treatment</span></div></li>
-              <li><div class="node"><span class="nm">8-bit grayscale</span><span class="ds">Convert each image</span></div></li>
-              <li><div class="node"><span class="nm">Pixel intensity</span><span class="ds">Quantify fungal coverage</span></div></li>
-              <li><div class="node"><span class="nm">Degradation</span><span class="ds">Before vs. after, per sample</span></div></li>
-              <li><div class="node end"><span class="nm">Statistics</span><span class="ds">Compare concentrations</span></div></li>
+              <li><div class="node"><span class="nm">8-bit grayscale</span><span class="ds">Gray values scaled 0 to 1</span></div></li>
+              <li><div class="node"><span class="nm">5 thresholds</span><span class="ds">0.30 to 0.50, count pixels above each</span></div></li>
+              <li><div class="node"><span class="nm">Fungal area</span><span class="ds">Pixel count, before vs. after</span></div></li>
+              <li><div class="node end"><span class="nm">Statistics</span><span class="ds">Kruskal–Wallis, Wilcoxon</span></div></li>
             </ol>
           </div>
+          <div class="gallery rs-gallery">
+            <figure class="media photo"><button type="button" data-full="assets/img/rs24-streaking.jpg" data-caption="Streaking the bacterial solution onto the fungal plates."><img width="1400" height="1046" src="assets/img/rs24-streaking.jpg" alt="Gloved hands streaking bacterial solution onto agar plates next to a Bunsen burner" loading="lazy"></button><figcaption><b>LAB</b>Streaking the bacterial solution onto the plates.</figcaption></figure>
+            <figure class="media photo"><button type="button" data-full="assets/img/rs24-plates.jpg" data-caption="Fungal plates on the day the bacterial solution was added."><img width="1400" height="1050" src="assets/img/rs24-plates.jpg" alt="Labeled petri dishes with fungal growth and freshly added bacterial solution on a lab bench" loading="lazy"></button><figcaption><b>PLATES</b>Plates on the day the bacteria were added.</figcaption></figure>
+            <figure class="media"><button type="button" data-full="assets/img/rs24-matlab-threshold.jpg" data-caption="MATLAB output: each plate photo next to its thresholded image at T = 0.30."><img width="1167" height="875" src="assets/img/rs24-matlab-threshold.jpg" alt="Grid of plate photos with black-and-white thresholded versions produced by MATLAB" loading="lazy"></button><figcaption><b>MATLAB</b>Plate photos and their thresholded images.</figcaption></figure>
+            <figure class="media"><button type="button" data-full="assets/img/rs24-poster.jpg" data-caption="Science fair poster, 2024."><img width="2400" height="1800" src="assets/img/rs24-poster.jpg" alt="Science fair poster: The Effects of Pseudomonas fluorescens, a Biocontrol Agent, on a Pathogenic Fungus" loading="lazy"></button><figcaption><b>POSTER</b>Science fair poster. Click to enlarge.</figcaption></figure>
+          </div>
           <div class="awards"><span class="award"><b>Honorable Mention</b> 2024 USC Region II Science Fair</span></div>
+          <div class="btn-row" style="margin-top:1rem">
+            <a class="btn btn-sm btn-wire" href="assets/research/patel-2024-pseudomonas-armillaria.pdf" target="_blank" rel="noopener">Read the paper (PDF) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></a>
+          </div>
         </div>
       </article>
       <article class="rs">
         <div class="rs-year"><b>2022–23</b>Aug 2022 – May 2023</div>
         <div>
-          <h3>Purifying bacterially contaminated water with fungal colonies</h3>
-          <p class="org">Discovery Magnet Program · Columbia, SC</p>
+          <h3>Cleaning <em>E. coli</em> from water with oyster mushrooms</h3>
+          <p class="org">Discovery Magnet Program · Spring Valley High School · Columbia, SC</p>
           <ul>
-            <li>Designed a controlled bioremediation study testing how well a fungus reduces bacterial contamination in water when grown on coffee grounds, sawdust, and wheat straw.</li>
-            <li>Ran more than 120 trials and wrote a full research paper on the results.</li>
-            <li>Presented at the 2023 South Carolina Junior Academy of Science conference and the 2023 University of South Carolina Region II Science Fair.</li>
+            <li>Tested how well oyster mushroom (<em>Pleurotus ostreatus</em>) mycelium removes <em>E. coli</em> from contaminated water when the fungus is grown on coffee grounds, pine sawdust, or wheat straw.</li>
+            <li>Ran 120 trials (30 per substrate plus a control group): the mycelium grew for three weeks, then sat in <em>E. coli</em> broth for 15 days before I measured the surviving bacteria with serial dilutions and colony counts.</li>
+            <li>Found that coffee grounds and sawdust cut <em>E. coli</em> colonies by about 39% and 33% compared with the control, while wheat straw made no significant difference (one-way ANOVA, F(3, 116) = 45.28, p &lt; 0.0001, with a Tukey post hoc test). This contradicted my hypothesis that wheat straw would work best.</li>
+            <li>Wrote a full research paper and presented it at the 2023 South Carolina Junior Academy of Science conference and the 2023 University of South Carolina Region II Science Fair.</li>
           </ul>
+          <div class="diagram" style="margin-top:1rem">
+            <div class="diagram-title"><span><b>FIG R-2</b> Average <em style="text-transform:none">E. coli</em> colonies by substrate</span><span>30 trials each · lower is better</span></div>
+            <ol class="bars">
+              <li><span class="lbl">Coffee grounds</span><span class="bar"><span style="--w: 60.1%"></span></span><span class="val">722</span></li>
+              <li><span class="lbl">Pine sawdust</span><span class="bar"><span style="--w: 65.2%"></span></span><span class="val">782</span></li>
+              <li><span class="lbl">Wheat straw</span><span class="bar"><span style="--w: 95.8%"></span></span><span class="val">1,150</span></li>
+              <li class="base"><span class="lbl">Control (no substrate)</span><span class="bar"><span style="--w: 97.9%"></span></span><span class="val">1,175</span></li>
+            </ol>
+            <p class="diagram-note">Mean colony count after 15 days. Coffee and sawdust were both significantly lower than wheat straw and the control, and were not significantly different from each other.</p>
+          </div>
+          <div class="gallery rs-gallery">
+            <figure class="media photo"><button type="button" data-full="assets/img/rs23-cups.jpg" data-caption="Prepared trial cups of wheat straw (left) and pine sawdust (right)."><img width="1085" height="770" src="assets/img/rs23-cups.jpg" alt="Stacks of lidded deli cups, some filled with wheat straw and some with pine sawdust" loading="lazy"></button><figcaption><b>CUPS</b>Trial cups of wheat straw (left) and pine sawdust (right).</figcaption></figure>
+            <figure class="media photo"><button type="button" data-full="assets/img/rs23-bench.jpg" data-caption="Substrate cups, the E. coli solution, and graduated cylinders for measuring it into each cup."><img width="1275" height="666" style="object-position: 72% 50%" src="assets/img/rs23-bench.jpg" alt="Lab bench with substrate cups, a flask of E. coli solution and graduated cylinders" loading="lazy"></button><figcaption><b>LAB</b>Substrate cups and the <em>E. coli</em> broth on the bench.</figcaption></figure>
+            <figure class="media"><button type="button" data-full="assets/img/rs23-poster.jpg" data-caption="Science fair poster, 2023."><img width="2400" height="1801" src="assets/img/rs23-poster.jpg" alt="Science fair poster: The Effect of Pleurotus ostreatus in Bioremediation of Escherichia coli Contaminated Water Grown on Various Substrates" loading="lazy"></button><figcaption><b>POSTER</b>Science fair poster. Click to enlarge.</figcaption></figure>
+          </div>
           <div class="awards">
             <span class="award"><b>2023 Stockholm Junior Water Prize</b> Water Environment Federation</span>
             <span class="award"><b>Third Place</b> 2023 USC Region II Science Fair</span>
+          </div>
+          <div class="btn-row" style="margin-top:1rem">
+            <a class="btn btn-sm btn-wire" href="assets/research/patel-2023-pleurotus-ecoli.pdf" target="_blank" rel="noopener">Read the paper (PDF) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></a>
           </div>
         </div>
       </article>
@@ -283,7 +313,7 @@
       </div>
       <div class="prose">
         <p>I'm a <strong>junior</strong> studying electrical engineering in UC Irvine's <strong>Henry Samueli School of Engineering</strong>, graduating in <strong>June 2028</strong>. My projects sit where analog circuits meet firmware: level-shifting front ends, PCBs I lay out in KiCad and solder by hand, ESP32 and Arduino firmware, and Python tools that plot what the hardware measures.</p>
-        <p>On <strong>UCI CubeSat</strong> I work on systems integration and power, and I'm in charge of the FlatSat test bench. In the <strong>Shcherbakov Nanophotonics Lab</strong> I research integrated photonics for trapped-ion quantum computing. Before UCI, I spent two years doing microbiology research in the Discovery magnet program at Spring Valley High School in Columbia, South Carolina.</p>
+        <p>On <strong>UCI CubeSat</strong> I work on systems integration and power, and I'm in charge of the FlatSat test bench. In the <strong>Shcherbakov Nanophotonics Lab</strong> I research integrated photonics for trapped-ion quantum computing. Before UCI, I spent two years doing microbiology and environmental science research in the Discovery magnet program at Spring Valley High School in Columbia, South Carolina.</p>
       </div>
       <div class="goals">
         <span class="k">What I'm working toward</span>
