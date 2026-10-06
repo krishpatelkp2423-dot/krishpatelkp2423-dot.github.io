@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MedSync Smart Medication Dispenser | Krish Patel</title>
+<meta name="description" content="MedSync, a smart medication dispenser built for LIFETank 2026: ESP32-S3 firmware, stepper-driven pill carousel, camera-based dose checking with OpenCV, and a caregiver iOS app over BLE.">
+<meta name="author" content="Krish Patel">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem("kp-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="Krish Patel, home">
+      <span class="chip-logo" aria-hidden="true"><i></i>KP</span>
+      <span><span class="brand-name">Krish Patel</span><span class="brand-sub">Electrical Engineering · UCI</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links"><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#research">Research</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+    <div class="nav-tools">
+      <a class="btn btn-sm btn-ghost btn-resume" href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Résumé</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" data-menu aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <header class="pj-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html#projects">Projects</a><span>/</span><span>medsync</span></nav>
+    <span class="net">LIFETank 2026 · Team project</span>
+    <h1>MedSync Smart Medication Dispenser</h1>
+    <p class="pj-lede">A smart pill dispenser that keeps the familiar 7-day organizer and adds motor-driven dispensing, a camera that checks whether the pills were taken, and a caregiver app, without asking the patient to change their routine.</p>
+    <dl class="info">
+      <div><dt>Event</dt><dd>LIFETank 2026, UCI Engineering Student Council</dd></div>
+      <div><dt>Dates</dt><dd>Jan – May 2026</dd></div>
+      <div><dt>Team</dt><dd>Amogh Thiagarajan, Shashank Sanigepalli, Harsha Ganta, Soham Belgal &amp; me</dd></div>
+      <div><dt>My role</dt><dd>ESP32-S3 firmware &amp; system integration</dd></div>
+      <div><dt>Hardware cost</dt><dd>Under $55 BOM</dd></div>
+      <div><dt>Status</dt><dd>Working prototype</dd></div>
+    </dl>
+    <div class="btn-row">
+      <a class="btn btn-wire" href="https://github.com/am0ghh/MedSync" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>Team GitHub repository</a>
+    </div>
+  </header>
+</div>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">1</span>Demo</h2>
+    <figure class="media">
+      <video controls playsinline preload="metadata" poster="../assets/video/medsync-poster.jpg">
+        <source src="../assets/video/medsync-demo.mp4" type="video/mp4">
+        Your browser can't play this video. <a href="../assets/video/medsync-demo.mp4">Download it instead.</a>
+      </video>
+      <figcaption><b>VIDEO</b>The caregiver app connects to the dispenser over Bluetooth and sends a dispense command. The carousel turns from MON–TUE–WED to TUE–WED–THU, the device screen shows PENDING, and the app's Fill Photo shows the pills sitting in the collection cup.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">2</span>Why it exists</h2>
+    <div class="cols-2">
+      <div class="box"><span class="k">Problem</span><p>Medication non-adherence costs the US healthcare system an estimated $300 billion a year and contributes to about 125,000 preventable deaths. The options today are a plain plastic organizer or a $150–$450 clinical device with no visual confirmation and no remote caregiver control.</p></div>
+      <div class="box"><span class="k">Solution</span><p>MedSync automates the organizer people already use. A caregiver triggers dispensing from an iOS app, the device turns to the right day's compartment, photographs the collection cup, and checks whether the pills were taken. Missed doses send the caregiver a push notification.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">3</span>How a dose moves through the system</h2>
+    <div class="diagram">
+      <div class="diagram-title"><span><b>FIG 3-1</b> One dispense cycle</span><span>App → device → cloud → caregiver</span></div>
+      <ol class="flow">
+        <li><div class="node io"><span class="part">iOS app</span><span class="nm">Caregiver taps Dispense</span></div></li>
+        <li><div class="node"><span class="part">BLE</span><span class="nm">Command to device</span></div></li>
+        <li><div class="node"><span class="part">ESP32-S3 · NTP time</span><span class="nm">Pick today's slot</span></div></li>
+        <li><div class="node"><span class="part">28BYJ-48 stepper</span><span class="nm">Turn the carousel</span><span class="ds">8 slots: 7 days + loading</span></div></li>
+        <li><div class="node"><span class="nm">Pills drop into cup</span></div></li>
+      </ol>
+      <span class="merge-arrow">↓ continues</span>
+      <ol class="flow">
+        <li><div class="node"><span class="part">OV2640 camera</span><span class="nm">Photograph the cup</span></div></li>
+        <li><div class="node"><span class="part">Upload</span><span class="nm">Photo to Supabase</span><span class="ds">Shown in the app's photo feed</span></div></li>
+        <li><div class="node"><span class="part">OpenCV (Python)</span><span class="nm">Detect pills</span><span class="ds">Color segmentation + blob detection</span></div></li>
+      </ol>
+      <span class="merge-arrow">↓ continues</span>
+      <div class="dt">
+        <div class="c1 decision"><div><span class="part">Detection result</span><span class="q">Pills still in the cup?</span></div></div>
+        <div class="c2 ar"><span>yes</span></div>
+        <div class="c3 out node fault"><span class="nm">Missed dose</span><span class="ds">Push notification to the caregiver</span></div>
+        <div class="c1 ad"><span>no</span></div><div class="c2"></div><div class="c3 blank"></div>
+        <div class="c1 node end"><span class="nm">Dose taken</span><span class="ds">Recorded in the weekly adherence log</span></div><div class="c2"></div><div class="c3 blank"></div>
+      </div>
+    </div>
+
+    <div class="pj-sub">
+      <h3>System blocks</h3>
+      <div class="blocks">
+        <div class="block"><span class="k">On the device</span>
+          <div class="node"><span class="part">ESP32-S3</span><span class="nm">Controller</span><span class="ds">Firmware: stepper, NTP time, BLE, camera, loading mode</span></div>
+          <div class="node"><span class="part">28BYJ-48</span><span class="nm">Stepper motor</span><span class="ds">Rotates the 8-slot carousel</span></div>
+          <div class="node"><span class="part">OV2640</span><span class="nm">Camera</span><span class="ds">Images the collection cup</span></div>
+          <div class="node"><span class="nm">Status screen</span><span class="ds">Shows dose state on the device</span></div>
+        </div>
+        <div class="block"><span class="k">Cloud</span>
+          <div class="node"><span class="part">Supabase</span><span class="nm">Backend</span><span class="ds">Photo feed, missed-dose alerts, battery status</span></div>
+          <div class="node"><span class="part">Python · OpenCV</span><span class="nm">Pill detection</span><span class="ds">Decides whether the dose was taken</span></div>
+        </div>
+        <div class="block"><span class="k">Caregiver</span>
+          <div class="node"><span class="part">Swift · CoreBluetooth</span><span class="nm">iOS app</span><span class="ds">Dispense, slot navigation, loading mode, weekly adherence log</span></div>
+        </div>
+      </div>
+      <p class="callout"><strong>Loading mode:</strong> the carousel's 8th slot is blocked. Turning it over the dispensing hole physically seals the hole, so the organizer can be refilled without pills falling through.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">4</span>What I did</h2>
+    <div class="cols-2">
+      <div class="box"><span class="k">Electrical &amp; firmware design</span><p>Wrote the ESP32-S3 firmware: stepper motor control, NTP timekeeping, BLE communication with the app, image capture and upload, and the loading-mode state machine.</p></div>
+      <div class="box"><span class="k">System integration</span><p>Tied the firmware, the OpenCV backend, the Supabase pipeline, and the iOS app into one working end-to-end system.</p></div>
+    </div>
+    <p class="callout" style="margin-top:1.25rem"><strong>Team credit:</strong> MedSync was a five-person team project. I built it with <strong>Amogh Thiagarajan</strong>, <strong>Shashank Sanigepalli</strong>, <strong>Harsha Ganta</strong>, and <strong>Soham Belgal</strong>. See the team's <a href="https://github.com/am0ghh/MedSync" target="_blank" rel="noopener">GitHub repository</a>.</p>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">5</span>Design &amp; prototype</h2>
+    <div class="gallery fit">
+      <figure class="media photo"><button type="button" data-full="../assets/img/medsync-cad.jpg" data-caption="Fusion 360 CAD of the dispenser."><img width="519" height="501" style="--ar: 519 / 501" src="../assets/img/medsync-cad.jpg" alt="CAD render of the octagonal day carousel on top of the dispenser base with a collection cup" loading="lazy"></button><figcaption><b>CAD</b>Fusion 360 model: octagonal day carousel with a LOAD position, base with screen, and collection cup.</figcaption></figure>
+      <figure class="media photo"><button type="button" data-full="../assets/img/medsync-prototype.jpg" data-caption="3D-printed prototype with the caregiver app."><img width="519" height="421" style="--ar: 519 / 421" src="../assets/img/medsync-prototype.jpg" alt="3D-printed MedSync prototype beside an iPhone showing the dose log" loading="lazy"></button><figcaption><b>BUILD</b>3D-printed prototype next to the caregiver app's dose log.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">6</span>Technologies</h2>
+    <ul class="chips">
+      <li>ESP32-S3</li><li>28BYJ-48 stepper</li><li>OV2640 camera</li><li>BLE / CoreBluetooth</li><li>Swift / iOS</li><li>OpenCV (Python)</li><li>Supabase</li><li>NTP timekeeping</li><li>KiCad</li><li>Fusion 360</li><li>FDM 3D printing</li>
+    </ul>
+  </div>
+</section>
+
+<nav class="wrap pager" aria-label="More projects">
+  <a href="cubesat.html"><span class="k">← Previous project</span><b>UCI CubeSat</b></a>
+  <a class="next" href="chess.html"><span class="k">Next project →</span><b>Modified Chess with Reinforcement Learning</b></a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <span>© 2026 Krish Patel · Electrical Engineering, UC Irvine</span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Résumé</a></span>
+  </div>
+</footer>
+<dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+  <button class="close" type="button" aria-label="Close">×</button>
+  <img src="data:," alt="">
+  <p></p>
+</dialog>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

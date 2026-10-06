@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UCI CubeSat | Krish Patel</title>
+<meta name="description" content="Systems and power work on UC Irvine's 2U CubeSat: FlatSat test bench lead, power integration across subteams, an in-house aerospace-grade battery, CONOPS, ICDs and STK orbit analysis.">
+<meta name="author" content="Krish Patel">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem("kp-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="Krish Patel, home">
+      <span class="chip-logo" aria-hidden="true"><i></i>KP</span>
+      <span><span class="brand-name">Krish Patel</span><span class="brand-sub">Electrical Engineering · UCI</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links"><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#research">Research</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+    <div class="nav-tools">
+      <a class="btn btn-sm btn-ghost btn-resume" href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Résumé</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" data-menu aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <header class="pj-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html#projects">Projects</a><span>/</span><span>cubesat</span></nav>
+    <span class="net">UCI CubeSat · Systems subteam</span>
+    <h1>UCI CubeSat: Systems &amp; Power</h1>
+    <p class="pj-lede">I'm on the Systems subteam for UC Irvine's 2U CubeSat. My job is keeping the subsystems working together: I'm in charge of the FlatSat test bench, I make sure every subteam gets the power it needs, and I'm in the lab with the power team helping develop an in-house, aerospace-grade battery.</p>
+    <dl class="info">
+      <div><dt>Team</dt><dd>UCI CubeSat · Systems</dd></div>
+      <div><dt>Dates</dt><dd>Aug 2026 – present</dd></div>
+      <div><dt>Spacecraft</dt><dd>2U CubeSat</dd></div>
+      <div><dt>My role</dt><dd>FlatSat lead, power integration, systems docs</dd></div>
+      <div><dt>Status</dt><dd><span class="status live">In progress</span></dd></div>
+    </dl>
+  </header>
+</div>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">1</span>Where I fit</h2>
+    <p class="prose" style="margin-bottom:1.25rem">The Systems team makes sure every subsystem works together and meets mission requirements across the whole satellite lifecycle. My work runs along three tracks that all meet on the FlatSat.</p>
+    <div class="diagram">
+      <div class="diagram-title"><span><b>FIG 1-1</b> My three tracks on the team</span><span>All three feed the FlatSat</span></div>
+      <div class="lanes">
+        <div class="lane">
+          <div class="lane-label"><span class="tag">Track A</span><b>Power subteam</b><span>In-house, aerospace-grade battery</span></div>
+          <ol class="flow">
+            <li><div class="node"><span class="nm">Battery requirements</span><span class="ds">What the mission needs it to meet</span></div></li>
+            <li><div class="node"><span class="nm">Design in the lab</span><span class="ds">Working alongside the power team</span></div></li>
+            <li><div class="node"><span class="nm">Build &amp; test</span><span class="ds">Prove it out on the bench</span></div></li>
+            <li><div class="node end"><span class="nm">Meets every requirement</span><span class="ds">Then it joins the FlatSat</span></div></li>
+          </ol>
+        </div>
+        <div class="lane">
+          <div class="lane-label"><span class="tag">Track B</span><b>Every other subteam</b><span>Avionics, communications, VED payload</span></div>
+          <ol class="flow">
+            <li><div class="node"><span class="nm">Gather needs</span><span class="ds">Power and other interface requirements from each subteam</span></div></li>
+            <li><div class="node"><span class="nm">Budgets &amp; ICDs</span><span class="ds">Track power, mass, and link budgets; document interfaces</span></div></li>
+            <li><div class="node end"><span class="nm">Each subteam is supplied</span><span class="ds">Enough power, agreed interfaces</span></div></li>
+          </ol>
+        </div>
+        <div class="lane">
+          <div class="lane-label"><span class="tag">Track C</span><b>FlatSat</b><span>The satellite, laid flat on a rack</span></div>
+          <ol class="flow">
+            <li><div class="node"><span class="nm">Receive hardware</span><span class="ds">Boards and parts from each subteam</span></div></li>
+            <li><div class="node"><span class="nm">Mount &amp; wire</span><span class="ds">Power wiring and board-to-board connections</span></div></li>
+            <li><div class="node"><span class="nm">Watch current draw</span><span class="ds">Measure every subsystem under power</span></div></li>
+            <li><div class="node end"><span class="nm">Enough for everyone?</span><span class="ds">Check against the power budget</span></div></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">2</span>The FlatSat</h2>
+    <div class="cols-2" style="margin-bottom:1.5rem">
+      <div class="prose">
+        <p>A <strong>FlatSat</strong> is every piece of hardware on our satellite, mounted flat on a rack instead of stacked inside the 2U structure. With everything spread out, every board can be probed, rewired, and swapped while we integrate and test.</p>
+        <p>I'm in charge of ours. When a subteam hands me hardware, I integrate it onto the rack and connect it to the rest of the system, especially the power wiring. Then I watch the current draws to make sure the power system can supply every subteam at once.</p>
+      </div>
+      <div class="box">
+        <span class="k">What I check on every integration</span>
+        <ul class="ticks">
+          <li>Power wiring matches the interface documents</li>
+          <li>Each subsystem's current draw under power</li>
+          <li>Total draw stays inside the power budget</li>
+          <li>Hardware-software interfaces behave as specified</li>
+        </ul>
+      </div>
+    </div>
+    <div class="diagram">
+      <div class="diagram-title"><span><b>FIG 2-1</b> FlatSat power distribution (simplified)</span><span>Power flows left → right</span></div>
+      <div class="rack">
+        <div class="rack-rail"><span>Rack · flat layout</span><span>Instead of the 2U stack</span></div>
+        <div class="rack-row">
+          <div class="node"><span class="part">Power subteam</span><span class="nm">Battery</span><span class="ds">In-house, aerospace-grade, in development</span></div>
+          <div class="node"><span class="part">Power board</span><span class="nm">Protection &amp; regulation</span><span class="ds">E-fuse, 5 V and 3.3 V regulators, rail current monitor</span></div>
+          <div class="rack-loads bus">
+            <div class="node"><span class="part">Load</span><span class="nm">Avionics</span><span class="meter"><i></i>current logged</span></div>
+            <div class="node"><span class="part">Load</span><span class="nm">Communications</span><span class="meter"><i></i>current logged</span></div>
+            <div class="node"><span class="part">Load</span><span class="nm">VED payload</span><span class="meter"><i></i>current logged</span></div>
+          </div>
+        </div>
+      </div>
+      <ol class="flow">
+        <li><div class="node io"><span class="nm">Hardware arrives</span><span class="ds">From a subteam</span></div></li>
+        <li><div class="node"><span class="nm">Mount on rack</span></div></li>
+        <li><div class="node"><span class="nm">Wire power &amp; connect</span></div></li>
+        <li><div class="node"><span class="nm">Power up, watch current</span></div></li>
+        <li><div class="node"><span class="nm">Compare to power budget</span></div></li>
+        <li><div class="node end"><span class="nm">Integration tests</span><span class="ds">Hardware-software verification</span></div></li>
+      </ol>
+      <p class="diagram-note">The rail list comes from the power board's 3.3 V regulation sheet shown below. Subsystem names follow the team's risk table.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">3</span>Building our own battery</h2>
+    <div class="cols-2">
+      <div class="prose">
+        <p>This year the power subteam is developing an <strong>in-house, aerospace-grade battery</strong>. I'm in the lab with them, helping design it and checking it against every requirement it has to meet before it can fly.</p>
+        <p>The loop is simple to describe and slow to finish: every requirement the battery misses sends the design back to the bench.</p>
+      </div>
+      <div class="diagram">
+        <div class="diagram-title"><span><b>FIG 3-1</b> Battery development loop</span></div>
+        <div class="dt">
+          <div class="c1 node io"><span class="nm">Battery requirements</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 ad plain" aria-hidden="true"><span></span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 node"><span class="nm">Design &amp; build in the lab</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 ad plain" aria-hidden="true"><span></span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 decision"><div><span class="q">Meets every requirement?</span></div></div>
+          <div class="c2 ar"><span>no</span></div>
+          <div class="c3 out node fault"><span class="nm">Back to design</span><span class="ds">Fix what fell short</span></div>
+          <div class="c1 ad"><span>yes</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 node end"><span class="nm">Integrate on the FlatSat</span></div><div class="c2"></div><div class="c3 blank"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">4</span>Systems engineering: the V-model</h2>
+    <p class="prose" style="margin-bottom:1.25rem">The team runs the satellite lifecycle on the systems-engineering V-model: define requirements down the left side, build at the bottom, and verify back up the right side, where each test answers to the requirement across from it. The highlighted steps are the ones I work on.</p>
+    <div class="diagram">
+      <div class="diagram-title"><span><b>FIG 4-1</b> V-model with my contributions</span><span class="mine-tag">My work</span></div>
+      <div class="vm-legend"><span class="vm-label">Define ↘</span><span class="vm-label">↗ Verify</span></div>
+      <div class="vmodel">
+        <div class="node mine vm-l1"><span class="mine-tag">CONOPS</span><span class="nm">Mission requirements &amp; CONOPS</span><span class="ds">Concept of operations diagrams</span></div>
+        <div class="node mine vm-l2"><span class="mine-tag">STK · budgets</span><span class="nm">System requirements &amp; orbit analysis</span><span class="ds">STK scenarios; mass, power, link budgets</span></div>
+        <div class="node mine vm-l3"><span class="mine-tag">ICDs</span><span class="nm">Subsystem design &amp; ICDs</span><span class="ds">Interfaces between subteams</span></div>
+        <div class="node io vm-b"><span class="nm">Subteams build hardware</span><span class="ds">Avionics, comms, power, payload</span></div>
+        <div class="node vm-r3"><span class="nm">Subsystem tests</span><span class="ds">Each subteam on its own</span></div>
+        <div class="node mine vm-r2"><span class="mine-tag">FlatSat</span><span class="nm">FlatSat integration &amp; test</span><span class="ds">Integration test plans, current checks</span></div>
+        <div class="node mine vm-r1"><span class="mine-tag">Verification</span><span class="nm">System verification &amp; flight readiness</span><span class="ds">Dispenser and safety requirements</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">5</span>What I do</h2>
+    <div class="cols-2">
+      <div class="box"><span class="k">FlatSat &amp; integration</span><p>In charge of the FlatSat. I integrate the hardware each subteam gives me, handle the power wiring between boards, watch current draws, and run the system integration test plans that check hardware-software interfaces against program-level dispenser and safety requirements.</p></div>
+      <div class="box"><span class="k">Power</span><p>Work with the power subteam in the lab on an in-house, aerospace-grade battery, making sure it meets its requirements, and work with every other subteam to make sure each one gets the power it needs.</p></div>
+      <div class="box"><span class="k">Architecture &amp; documentation</span><p>Develop and maintain CONOPS diagrams, Interface Control Documents, and software topology requirements so every subteam builds to the same interfaces.</p></div>
+      <div class="box"><span class="k">Mission planning &amp; risk</span><p>Model orbital data and simulate mission stages in Systems Tool Kit (STK) to validate orbits and communication windows. Track mass, power, and link budgets, and mission risks through FMEA.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">6</span>From the project</h2>
+    <div class="gallery fit">
+      <figure class="media wide"><button type="button" data-full="../assets/img/cubesat-stk.jpg" data-caption="Orbit simulation in Systems Tool Kit (STK)."><img width="1160" height="510" style="--ar: 1160 / 510" src="../assets/img/cubesat-stk.jpg" alt="STK 3D globe and 2D ground-track views of the satellite's orbit" loading="lazy"></button><figcaption><b>STK</b>Orbit simulation in Systems Tool Kit: 3D view and ground track, used to validate orbital paths and communication windows.</figcaption></figure>
+      <figure class="media wide"><button type="button" data-full="../assets/img/cubesat-power-3v3.png" data-caption="Power board: 3.3 V regulation sheet."><img width="1800" height="1000" style="--ar: 1800 / 1000" src="../assets/img/cubesat-power-3v3.png" alt="Schematic of the 3.3 V switching buck regulator, rail current monitor, and output decoupling" loading="lazy"></button><figcaption><b>PWR</b>Power board, 3.3 V regulation sheet: a TPS54531 buck regulator fed from the e-fuse output, an INA180 current-sense amplifier on the 3.3 V rail reporting to the STM32, and output decoupling with a status LED.</figcaption></figure>
+      <figure class="media"><button type="button" data-full="../assets/img/cubesat-fmea.png" data-caption="Risk table (FMEA) for the satellite."><img width="677" height="623" style="--ar: 677 / 623" src="../assets/img/cubesat-fmea.png" alt="FMEA risk table scoring failure modes by probability and severity for each subsystem" loading="lazy"></button><figcaption><b>FMEA</b>Risk table: each subsystem's failure modes scored by probability and severity, with a mitigation plan.</figcaption></figure>
+      <figure class="media"><button type="button" data-full="../assets/img/cubesat-tnc.png" data-caption="Software topology of the software TNC modem."><img width="611" height="840" style="--ar: 611 / 840" src="../assets/img/cubesat-tnc.png" alt="Layered block diagram of the software TNC modem from application layer to sound card" loading="lazy"></button><figcaption><b>COMMS</b>Software topology of the software TNC modem, from the host and AX.25 / KISS data-link layers down to the sound-card physical layer.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">7</span>Methods &amp; tools</h2>
+    <ul class="chips">
+      <li>Systems-engineering V-model</li><li>FlatSat test bench</li><li>Systems Tool Kit (STK)</li><li>FMEA</li><li>Interface Control Documents</li><li>CONOPS</li><li>Mass / power / link budgets</li><li>Requirements V&amp;V</li><li>Power wiring &amp; current measurement</li>
+    </ul>
+  </div>
+</section>
+
+<nav class="wrap pager" aria-label="More projects">
+  <a href="oscilloscope.html"><span class="k">← Previous project</span><b>General-Purpose Digital Oscilloscope</b></a>
+  <a class="next" href="medsync.html"><span class="k">Next project →</span><b>MedSync Smart Medication Dispenser</b></a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <span>© 2026 Krish Patel · Electrical Engineering, UC Irvine</span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Résumé</a></span>
+  </div>
+</footer>
+<dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+  <button class="close" type="button" aria-label="Close">×</button>
+  <img src="data:," alt="">
+  <p></p>
+</dialog>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>
