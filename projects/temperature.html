@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Temperature Sensing & Visualization | Krish Patel</title>
+<meta name="description" content="An Arduino thermistor temperature monitor with an LCD, buzzer alerts, three operating modes, and a Python Matplotlib live plot with CSV logging.">
+<meta name="author" content="Krish Patel">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem("kp-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="Krish Patel, home">
+      <span class="chip-logo" aria-hidden="true"><i></i>KP</span>
+      <span><span class="brand-name">Krish Patel</span><span class="brand-sub">Electrical Engineering · UCI</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links"><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#research">Research</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+    <div class="nav-tools">
+      <a class="btn btn-sm btn-ghost btn-resume" href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Résumé</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" data-menu aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <header class="pj-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html#projects">Projects</a><span>/</span><span>temperature</span></nav>
+    <span class="net">Personal project</span>
+    <h1>Temperature Sensing &amp; Visualization System</h1>
+    <p class="pj-lede">An Arduino temperature monitor that reads a thermistor, shows the temperature on an LCD, sounds a buzzer past a threshold, and streams data to a Python live plot that logs every reading to CSV.</p>
+    <dl class="info">
+      <div><dt>Type</dt><dd>Personal project</dd></div>
+      <div><dt>Dates</dt><dd>Nov 2025 – Jan 2026</dd></div>
+      <div><dt>Controller</dt><dd>Arduino Uno</dd></div>
+      <div><dt>Sensor</dt><dd>Thermistor (analog)</dd></div>
+      <div><dt>Software</dt><dd>Embedded C/C++, Python, Matplotlib</dd></div>
+    </dl>
+    <div class="btn-row">
+      <a class="btn btn-wire" href="https://github.com/krishpatelkp2423-dot/Temperature-Sensing-System" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>GitHub repository</a>
+    </div>
+  </header>
+</div>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">1</span>Demo</h2>
+    <div class="video-split">
+      <figure class="media">
+        <video controls playsinline preload="metadata" poster="../assets/video/temperature-poster.jpg">
+          <source src="../assets/video/temperature-demo.mp4" type="video/mp4">
+          Your browser can't play this video. <a href="../assets/video/temperature-demo.mp4">Download it instead.</a>
+        </video>
+        <figcaption><b>VIDEO</b>Starting the Python script, choosing a mode, and watching the reading climb as the thermistor warms.</figcaption>
+      </figure>
+      <div class="prose">
+        <p>In the demo I run the Python script on my laptop. It prints the three modes and asks <code>Enter Mode:</code>, then sends my choice to the Arduino over USB serial.</p>
+        <p>The LCD shows the live reading: <strong>74.00 °F</strong> at room temperature. When I hold the thermistor, the reading climbs to <strong>80.15 °F</strong>.</p>      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">2</span>Three operating modes</h2>
+    <div class="diagram">
+      <div class="diagram-title"><span><b>FIG 2-1</b> Mode selection and what each mode does</span><span>Python ⇄ Arduino over serial</span></div>
+      <div class="merge">
+        <div class="node io"><span class="part">Python</span><span class="nm">"Enter Mode:" prompt</span><span class="ds">1, 2, or 3</span></div>
+        <span class="merge-arrow">→</span>
+        <div class="node"><span class="part">USB serial</span><span class="nm">Mode sent to the Arduino</span></div>
+        <span class="merge-arrow">↓ branches by mode</span>
+      </div>
+      <div class="lanes">
+        <div class="lane">
+          <div class="lane-label"><span class="tag">Mode 1</span><b>Sensing &amp; display</b><span>Standalone monitor</span></div>
+          <ol class="flow">
+            <li><div class="node"><span class="nm">Read thermistor</span></div></li>
+            <li><div class="node"><span class="nm">Convert to °F</span><span class="ds">Calibration equation</span></div></li>
+            <li><div class="node"><span class="nm">Show on LCD</span></div></li>
+            <li><div class="node end"><span class="nm">Over threshold?</span><span class="ds">Yes → buzzer sounds</span></div></li>
+          </ol>
+        </div>
+        <div class="lane">
+          <div class="lane-label"><span class="tag">Mode 2</span><b>Constant alert</b><span>Testing or emergency alert</span></div>
+          <ol class="flow">
+            <li><div class="node end"><span class="nm">Buzzer held on</span><span class="ds">Forced active regardless of temperature</span></div></li>
+          </ol>
+        </div>
+        <div class="lane">
+          <div class="lane-label"><span class="tag">Mode 3</span><b>Data collection</b><span>Mode 1 plus streaming</span></div>
+          <ol class="flow">
+            <li><div class="node"><span class="nm">Sense, display, alert</span><span class="ds">Same as Mode 1</span></div></li>
+            <li><div class="node"><span class="nm">Stream over serial</span><span class="ds">Temperature + alert state</span></div></li>
+            <li><div class="node"><span class="part">Matplotlib</span><span class="nm">Live plot</span></div></li>
+            <li><div class="node end"><span class="part">CSV</span><span class="nm">Log every reading</span></div></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="pj-sub">
+      <h3>From heat to a number</h3>
+      <div class="diagram">
+        <div class="diagram-title"><span><b>FIG 2-2</b> Sensing signal chain</span></div>
+        <ol class="flow">
+          <li><div class="node io"><span class="nm">Thermistor</span><span class="ds">Resistance changes with temperature</span></div></li>
+          <li><div class="node"><span class="nm">Sensing circuit</span><span class="ds">Turns resistance into a voltage</span></div></li>
+          <li><div class="node"><span class="part">Arduino Uno</span><span class="nm">10-bit ADC</span><span class="ds">Voltage → reading</span></div></li>
+          <li><div class="node"><span class="nm">Calibration equation</span><span class="ds">Reading → °F</span></div></li>
+          <li><div class="node end"><span class="nm">LCD · buzzer · serial</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">3</span>What I built</h2>
+    <div class="cols-3">
+      <div class="box"><span class="k">Embedded systems</span><p>Programmed the Arduino Uno to handle sensor input, mode selection, LCD output, and buzzer control with structured control logic.</p></div>
+      <div class="box"><span class="k">Sensor &amp; circuit</span><p>Built the thermistor sensing circuit and converted analog voltage readings into temperature with calibration equations.</p></div>
+      <div class="box"><span class="k">Data &amp; visualization</span><p>Wrote a Python script that reads the serial stream, plots temperature and alert state live with Matplotlib, and saves readings to CSV.</p></div>
+    </div>
+    <div class="pj-sub">
+      <h3>Results</h3>
+      <ul class="ticks">
+        <li>Measured and displayed temperature in real time</li>
+        <li>Reliable buzzer alerts at the set threshold</li>
+        <li>Live plotting and CSV logging for analysis and debugging</li>
+        <li>Modular enough to add more sensors</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">4</span>Build photos</h2>
+    <div class="gallery fit">
+      <figure class="media photo"><button type="button" data-full="../assets/img/temp-breadboard.jpg" data-caption="The circuit on a breadboard."><img width="422" height="316" style="--ar: 422 / 316" src="../assets/img/temp-breadboard.jpg" alt="Arduino Uno wired to a breadboard with a thermistor, buzzer and LCD" loading="lazy"></button><figcaption><b>BUILD</b>Arduino Uno, breadboard sensing circuit, and buzzer.</figcaption></figure>
+      <figure class="media photo"><button type="button" data-full="../assets/img/temp-lcd.jpg" data-caption="Live reading on the LCD."><img width="347" height="559" style="--ar: 347 / 559" src="../assets/img/temp-lcd.jpg" alt="LCD showing Temp 75.07 F" loading="lazy"></button><figcaption><b>LCD</b>Live reading on the 16×2 LCD.</figcaption></figure>
+      <figure class="media photo"><button type="button" data-full="../assets/img/temp-graph.jpg" data-caption="Matplotlib live plot of temperature over time."><img width="458" height="419" style="--ar: 458 / 419" src="../assets/img/temp-graph.jpg" alt="Matplotlib window plotting temperature in degrees Fahrenheit over time" loading="lazy"></button><figcaption><b>PLOT</b>Matplotlib live plot of temperature over time.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">5</span>Technologies &amp; skills</h2>
+    <ul class="chips">
+      <li>Arduino Uno</li><li>Embedded C/C++</li><li>Thermistor sensing</li><li>16×2 LCD</li><li>Buzzer</li><li>Serial communication</li><li>Python</li><li>Matplotlib</li><li>CSV logging</li><li>State / mode design</li>
+    </ul>
+  </div>
+</section>
+
+<nav class="wrap pager" aria-label="More projects">
+  <a href="chess.html"><span class="k">← Previous project</span><b>Modified Chess with Reinforcement Learning</b></a>
+  <a class="next" href="rover.html"><span class="k">Next project →</span><b>Autonomous Mobile Rover</b></a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <span>© 2026 Krish Patel · Electrical Engineering, UC Irvine</span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Résumé</a></span>
+  </div>
+</footer>
+<dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+  <button class="close" type="button" aria-label="Close">×</button>
+  <img src="data:," alt="">
+  <p></p>
+</dialog>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

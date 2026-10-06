@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modified Chess with Reinforcement Learning | Krish Patel</title>
+<meta name="description" content="A modified chess game in Python where the first player to 15 capture points wins, plus a reinforcement-learning agent trained on the new rules to compare AI and human adaptation.">
+<meta name="author" content="Krish Patel">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem("kp-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="Krish Patel, home">
+      <span class="chip-logo" aria-hidden="true"><i></i>KP</span>
+      <span><span class="brand-name">Krish Patel</span><span class="brand-sub">Electrical Engineering · UCI</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links"><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#research">Research</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+    <div class="nav-tools">
+      <a class="btn btn-sm btn-ghost btn-resume" href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Résumé</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" data-menu aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <header class="pj-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html#projects">Projects</a><span>/</span><span>chess-rl</span></nav>
+    <span class="net">Personal project · AI in progress</span>
+    <h1>Modified Chess with a Reinforcement-Learning AI</h1>
+    <p class="pj-lede">Chess without checkmate. Every capture scores points and the first player to 15 wins. I built the game in Python, and I'm training a reinforcement-learning agent on the new rules to compare how a machine and a person adapt to the same unfamiliar incentives.</p>
+    <dl class="info">
+      <div><dt>Type</dt><dd>Personal project</dd></div>
+      <div><dt>Dates</dt><dd>Mar – Apr 2026</dd></div>
+      <div><dt>Stack</dt><dd>Python, Pygame</dd></div>
+      <div><dt>AI</dt><dd>Q-learning / policy-based methods with function approximation</dd></div>
+      <div><dt>Status</dt><dd><span class="status live">Game done · agent training</span></dd></div>
+    </dl>
+    <div class="btn-row">
+      <a class="btn btn-wire" href="https://github.com/krishpatelkp2423-dot/Chess_" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>GitHub repository</a>
+    </div>
+  </header>
+</div>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">1</span>The new rules</h2>
+    <div class="cols-2">
+      <div class="prose">
+        <p>Traditional chess revolves around checkmate, which narrows strategy and makes the game hard to pick up. I wanted to see what happens to strategy when the win condition changes. In this version:</p>
+        <ul class="ticks">
+          <li>Every captured piece adds its <strong>point value</strong> to the capturer's score.</li>
+          <li><strong>No check, no checkmate.</strong> The king can be captured without ending the game.</li>
+          <li>The first player to reach <strong>15 points</strong> wins, shown on a live side-panel scoreboard.</li>
+        </ul>
+        <p>Each side starts with <strong>41 points</strong> of material, so winning means taking a little more than a third of your opponent's army. The queen alone is worth 60% of a win.</p>
+      </div>
+      <figure class="media"><button type="button" data-full="../assets/img/chess-board.jpg" data-caption="The game, with the scoreboard and piece values on the side panel." style="all:unset;cursor:zoom-in;display:block"><img width="558" height="440" style="--ar: 558 / 440" src="../assets/img/chess-board.jpg" alt="Chess board in Pygame with a side panel listing scores and piece values" loading="lazy"></button><figcaption><b>GAME</b>The Pygame board with the live scoreboard and the point values on the side panel.</figcaption></figure>
+    </div>
+    <div class="pj-sub">
+      <h3>Point values and their share of a win</h3>
+      <div class="points">
+        <div class="pt"><span class="glyph" aria-hidden="true">♙&#xFE0E;</span><span class="v">1</span><span class="s">Pawn · 7%</span><span class="bar"><i style="width:6.7%"></i></span></div>
+        <div class="pt"><span class="glyph" aria-hidden="true">♘&#xFE0E;</span><span class="v">3</span><span class="s">Knight · 20%</span><span class="bar"><i style="width:20%"></i></span></div>
+        <div class="pt"><span class="glyph" aria-hidden="true">♗&#xFE0E;</span><span class="v">3</span><span class="s">Bishop · 20%</span><span class="bar"><i style="width:20%"></i></span></div>
+        <div class="pt"><span class="glyph" aria-hidden="true">♖&#xFE0E;</span><span class="v">5</span><span class="s">Rook · 33%</span><span class="bar"><i style="width:33.3%"></i></span></div>
+        <div class="pt"><span class="glyph" aria-hidden="true">♕&#xFE0E;</span><span class="v">9</span><span class="s">Queen · 60%</span><span class="bar"><i style="width:60%"></i></span></div>
+        <div class="pt"><span class="glyph" aria-hidden="true">♔&#xFE0E;</span><span class="v">2</span><span class="s">King · 13%</span><span class="bar"><i style="width:13.3%"></i></span></div>
+      </div>
+      <p class="diagram-note">Bars show each piece as a share of the 15 points needed to win.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">2</span>How a turn works</h2>
+    <div class="cols-2">
+      <div class="diagram">
+        <div class="diagram-title"><span><b>FIG 2-1</b> Turn logic</span><span>Repeats until someone hits 15</span></div>
+        <div class="dt">
+          <div class="c1 node io"><span class="nm">Player makes a move</span><span class="ds">Standard piece movement rules</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 ad plain" aria-hidden="true"><span></span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 decision"><div><span class="q">Captured a piece?</span></div></div>
+          <div class="c2 ar"><span>no</span></div>
+          <div class="c3 out node"><span class="nm">Other player's turn</span><span class="ds">Back to the top</span></div>
+          <div class="c1 ad"><span>yes</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 node"><span class="nm">Add the piece's value</span><span class="ds">Scoreboard updates</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 ad plain" aria-hidden="true"><span></span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 decision"><div><span class="q">Score ≥ 15?</span></div></div>
+          <div class="c2 ar"><span>no</span></div>
+          <div class="c3 out node"><span class="nm">Other player's turn</span><span class="ds">Back to the top</span></div>
+          <div class="c1 ad"><span>yes</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 node end"><span class="nm">Winner declared</span></div><div class="c2"></div><div class="c3 blank"></div>
+        </div>
+      </div>
+      <div class="diagram">
+        <div class="diagram-title"><span><b>FIG 2-2</b> Training loop for the agent</span><span>In progress</span></div>
+        <ol class="flow vertical">
+          <li><div class="node io"><span class="nm">Board state</span><span class="ds">Encoded game position and both scores</span></div></li>
+          <li><div class="node"><span class="part">Function approximation</span><span class="nm">Agent picks a move</span><span class="ds">Estimates which move is worth most</span></div></li>
+          <li><div class="node"><span class="nm">Modified rules applied</span><span class="ds">Captures scored, 15-point win checked</span></div></li>
+          <li><div class="node"><span class="nm">Reward</span><span class="ds">Built around the points race, not checkmate</span></div></li>
+          <li><div class="node end"><span class="nm">Update the agent</span><span class="ds">Then play the next move</span></div></li>
+        </ol>
+        <p class="loop-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg>Repeats move after move, game after game</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">3</span>Humans vs. the AI: the psychology of new rules</h2>
+    <div class="prose" style="margin-bottom:1.5rem">
+      <p>The most interesting part of this project is psychological. A human player sits down with years of chess instinct built around protecting the king and hunting for checkmate. The agent sits down with nothing but the rules and a reward. Changing the win condition lets me see which instincts help, which ones get in the way, and how fast each kind of player adjusts.</p>
+      <p>Playtesting so far shows <strong>player strategies differ significantly from standard chess</strong>. The comparison with the trained agent is built around these questions:</p>
+    </div>
+    <div class="versus">
+      <div class="hd">Human player</div>
+      <div class="hd">RL agent</div>
+      <div class="hu"><span class="row-k">Starting point</span><p>Arrives with checkmate habits, opening theory, and a feel for "good" positions that was learned under different rules.</p></div>
+      <div class="ai"><span class="row-k">Starting point</span><p>Starts from zero. It knows only the legal moves and what earns reward, so it has no old habits to unlearn.</p></div>
+      <div class="hu"><span class="row-k">The king</span><p>Instinct says guard the king at all costs, even though here it's worth only 2 points and losing it doesn't end the game. How long does that instinct last?</p></div>
+      <div class="ai"><span class="row-k">The king</span><p>Values the king only as much as the reward does. Does it learn to treat the king as an ordinary 2-point piece, or even use it as an attacker?</p></div>
+      <div class="hu"><span class="row-k">Risk and the queen</span><p>The queen is 9 of the 15 points. Losing it hands the opponent 60% of a win. Do players become more cautious with big pieces, or chase the quick 9?</p></div>
+      <div class="ai"><span class="row-k">Risk and the queen</span><p>Learns the price of risk only from outcomes. Does it trade more aggressively, or more conservatively, than people do?</p></div>
+      <div class="hu"><span class="row-k">Thinking in points</span><p>Has to switch from "trap the king" to counting the score every move. A player at 12 points needs just one knight or bishop to win.</p></div>
+      <div class="ai"><span class="row-k">Thinking in points</span><p>Optimizes the points race from its first training game, since that's the only thing the reward measures.</p></div>
+      <div class="hu"><span class="row-k">Learning speed</span><p>Can read the rule sheet once and reason about it right away.</p></div>
+      <div class="ai"><span class="row-k">Learning speed</span><p>Needs many training games to discover what a person picks up from reading the rules. How many games until it plays at a human level?</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">4</span>What I built</h2>
+    <div class="cols-2">
+      <div class="box"><span class="k">Game development</span><p>Designed and implemented the board, piece movement, rule enforcement, and user interaction in Python with Pygame.</p></div>
+      <div class="box"><span class="k">Rule-system redesign</span><p>Removed the checkmate logic and replaced it with point tracking, which meant making the rule handling modular enough to change the win condition cleanly.</p></div>
+      <div class="box"><span class="k">User interface</span><p>A side-panel scoreboard tracks both players' points in real time and declares the winner the moment someone reaches 15.</p></div>
+      <div class="box"><span class="k">AI &amp; reinforcement learning</span><p>Training an agent with Q-learning / policy-based methods and function approximation to learn the new rules from scratch and play against people.</p></div>
+    </div>
+    <div class="pj-sub">
+      <h3>Status</h3>
+      <ul class="ticks">
+        <li>Fully playable modified chess game with the custom rules</li>
+        <li>Stable point tracking and win-condition logic</li>
+        <li>Playtests show strategies that differ significantly from standard chess</li>
+        <li>Reinforcement-learning agent in training</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">5</span>Technologies &amp; skills</h2>
+    <ul class="chips">
+      <li>Python</li><li>Pygame</li><li>Reinforcement learning</li><li>Q-learning</li><li>Function approximation</li><li>Game-state representation</li><li>Reward modeling</li><li>Rule-based logic</li><li>Human-centered gameplay analysis</li>
+    </ul>
+  </div>
+</section>
+
+<nav class="wrap pager" aria-label="More projects">
+  <a href="medsync.html"><span class="k">← Previous project</span><b>MedSync Smart Medication Dispenser</b></a>
+  <a class="next" href="temperature.html"><span class="k">Next project →</span><b>Temperature Sensing & Visualization</b></a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <span>© 2026 Krish Patel · Electrical Engineering, UC Irvine</span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Résumé</a></span>
+  </div>
+</footer>
+<dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+  <button class="close" type="button" aria-label="Close">×</button>
+  <img src="data:," alt="">
+  <p></p>
+</dialog>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

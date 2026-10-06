@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>General-Purpose Digital Oscilloscope | Krish Patel</title>
+<meta name="description" content="A from-scratch microcontroller oscilloscope comparing hardware auto-ranging, direct ESP32 ADC sampling, and an external 16-bit ADC, with flowcharts and an interactive auto-range simulation.">
+<meta name="author" content="Krish Patel">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem("kp-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="Krish Patel, home">
+      <span class="chip-logo" aria-hidden="true"><i></i>KP</span>
+      <span><span class="brand-name">Krish Patel</span><span class="brand-sub">Electrical Engineering · UCI</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links"><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#research">Research</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+    <div class="nav-tools">
+      <a class="btn btn-sm btn-ghost btn-resume" href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Résumé</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" data-menu aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <header class="pj-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html#projects">Projects</a><span>/</span><span>oscilloscope</span></nav>
+    <span class="net">Personal project</span>
+    <h1>General-Purpose Digital Oscilloscope</h1>
+    <p class="pj-lede">A microcontroller oscilloscope I designed from scratch to answer one question: how much does the analog front end decide what a microcontroller's ADC can actually resolve? One board carries three acquisition paths so I can compare them directly.</p>
+    <dl class="info">
+      <div><dt>Type</dt><dd>Personal project</dd></div>
+      <div><dt>Dates</dt><dd>Aug – Sep 2026</dd></div>
+      <div><dt>My role</dt><dd>Analog design, PCB, assembly, firmware, software</dd></div>
+      <div><dt>Board</dt><dd>2-layer KiCad PCB, hand-soldered</dd></div>
+      <div><dt>Controller</dt><dd>Seeed Studio XIAO ESP32</dd></div>
+    </dl>
+    <div class="btn-row">
+      <a class="btn btn-wire" href="https://github.com/krishpatelkp2423-dot/Oscilloscope" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>GitHub repository</a>
+      <a class="btn btn-ghost" href="#lab">Try the auto-range simulation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </header>
+</div>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">1</span>Overview</h2>
+    <div class="cols-2">
+      <div class="box">
+        <span class="k">Problem</span>
+        <p>A general-purpose scope has to resolve signals that could sit anywhere in a wide voltage range. A fixed-gain front end forces a trade-off: a range wide enough to avoid clipping big signals wastes most of the ADC's resolution on small ones.</p>
+      </div>
+      <div class="box">
+        <span class="k">Approach</span>
+        <p>Build three acquisition paths on one board and measure how much accuracy each added level of design complexity buys: a simple direct read, a fully auto-ranging analog front end, and a high-resolution external ADC.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">2</span>Three ways to read one signal</h2>
+    <div class="diagram">
+      <div class="diagram-title"><span><b>FIG 2-1</b> Acquisition paths on the board</span><span>Signal flows left → right</span></div>
+      <div class="merge">
+        <div class="node io"><span class="part">PROBE · RawInput</span><span class="nm">Probe input</span><span class="ds">Bipolar signal, −1.65 V to +1.65 V, sharing ground with the microcontroller.</span><span class="wave" data-wave="raw"></span></div>
+        <span class="merge-arrow">splits into three paths ↓</span>
+      </div>
+      <div class="lanes">
+        <div class="lane">
+          <div class="lane-label"><span class="tag">Version 1</span><b>Auto-ranging + amplification</b><span>Picks a voltage window and amplifies it to fill the ADC.</span></div>
+          <ol class="flow">
+            <li><div class="node"><span class="part">TSV794 op-amp</span><span class="nm">Level shifter</span><span class="ds">Adds 1.65 V → 0–3.3 V</span><span class="wave" data-wave="shift"></span></div></li>
+            <li><div class="node"><span class="part">LM397</span><span class="nm">Over-voltage check</span><span class="ds">Too high? Mux off</span><span class="wave" data-wave="check"></span></div></li>
+            <li><div class="node"><span class="part">MCP6544 + SN74LVC2G08</span><span class="nm">Window comparators</span><span class="ds">Which window is it in?</span><span class="wave" data-wave="window"></span></div></li>
+            <li><div class="node"><span class="part">CD4052</span><span class="nm">Analog mux</span><span class="ds">Routes to matching gain stage</span></div></li>
+            <li><div class="node"><span class="part">TSV794 op-amp</span><span class="nm">Gain stage</span><span class="ds">Stretches window to 0–3.3 V</span><span class="wave" data-wave="gain"></span></div></li>
+            <li><div class="node"><span class="part">XIAO ESP32</span><span class="nm">12-bit ADC</span><span class="ds">Sample + window code</span><span class="wave" data-wave="digital"></span></div></li>
+          </ol>
+        </div>
+        <div class="lane">
+          <div class="lane-label"><span class="tag">Version 2</span><b>Direct ADC</b><span>Baseline: no comparators, no gain switching.</span></div>
+          <ol class="flow">
+            <li><div class="node"><span class="part">TSV794 op-amp</span><span class="nm">Level shifter</span><span class="ds">Adds 1.65 V → 0–3.3 V</span><span class="wave" data-wave="shift"></span></div></li>
+            <li><div class="node"><span class="part">XIAO ESP32</span><span class="nm">12-bit ADC</span><span class="ds">Reads the shifted signal straight away</span><span class="wave" data-wave="digital"></span></div></li>
+          </ol>
+        </div>
+        <div class="lane">
+          <div class="lane-label"><span class="tag">Version 3</span><b>External 16-bit ADC</b><span>Takes the raw input. No level shift needed.</span></div>
+          <ol class="flow">
+            <li><div class="node"><span class="part">ADS8681</span><span class="nm">16-bit SAR ADC</span><span class="ds">Digitizes the raw bipolar input</span><span class="wave" data-wave="fine"></span></div></li>
+            <li><div class="node"><span class="part">SPI · custom driver</span><span class="nm">SPI link</span><span class="ds">Driver written from scratch</span></div></li>
+            <li><div class="node"><span class="part">XIAO ESP32</span><span class="nm">Receives samples</span><span class="ds">Forwards the data</span></div></li>
+          </ol>
+        </div>
+      </div>
+      <div class="merge">
+        <span class="merge-arrow">all three paths end here →</span>
+        <div class="node"><span class="part">XIAO ESP32 firmware</span><span class="nm">Rebuild the true voltage</span><span class="ds">Undo the 1.65 V shift (V1, V2) and the window gain (V1).</span></div>
+        <div class="node end"><span class="part">USB serial → Python</span><span class="nm">Live waveform viewer</span><span class="ds">GPU-accelerated plotting with LightningChart Python.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">3</span>Inside the auto-ranging path</h2>
+
+    <div class="pj-sub" style="margin-top:0">
+      <h3>Step 1 · Lift the signal into the ADC's range</h3>
+      <p>The XIAO's ADC can only read 0 to 3.3 V, but a probed node can swing below ground. The first op-amp stage adds 1.65 V, so a ±1.65 V input becomes a 0–3.3 V signal that oscillates around a <strong>1.65 V axis</strong> instead of 0 V. A unity-gain buffer makes that 1.65 V reference from a resistor divider, and the stage stays DC-coupled, because a series capacitor would strip the offset back off.</p>
+      <div class="diagram">
+        <div class="diagram-title"><span><b>FIG 3-1</b> Level shifter, before and after</span><span>Vout = Vin + 1.65 V</span></div>
+        <div class="shift-pair">
+          <figure><svg class="shift-svg" data-shift="raw" role="img" aria-label="Input sine wave between minus 1.65 and plus 1.65 volts, centered on 0 volts"></svg><figcaption>Probe input · oscillates around 0 V · red half is below 0 V, which the ADC can't read</figcaption></figure>
+          <div class="shift-op"><span class="big">+1.65 V</span><span>level shifter</span><span>→</span></div>
+          <figure><svg class="shift-svg" data-shift="shifted" role="img" aria-label="Shifted sine wave between 0 and 3.3 volts, centered on 1.65 volts"></svg><figcaption>After the shift · oscillates around 1.65 V · all of it inside 0–3.3 V</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="pj-sub">
+      <h3>Step 2 · Pick a window, then amplify it</h3>
+      <p>After the shift, the signal goes through a chain of comparators. The first makes sure the voltage isn't too high. The rest form two windows nested around the 1.65 V axis: <strong>window 1 is 1.35–1.95 V</strong> (±0.30 V) and <strong>window 2 is 0.95–2.35 V</strong> (±0.70 V). An AND gate turns each pair of comparator outputs into a mux select line, and the mux sends the signal to the gain stage that stretches that window across the full 0–3.3 V ADC range. The comparators use hysteresis so the choice doesn't chatter at a window's edge.</p>
+      <div class="diagram">
+        <div class="diagram-title"><span><b>FIG 3-2</b> Window selection, checked continuously</span><span>Gains are the ideal values to fill 0–3.3 V</span></div>
+        <div class="dt">
+          <div class="c1 node io"><span class="nm">Level-shifted signal</span><span class="ds">0–3.3 V, centered on 1.65 V</span></div><div class="c2"></div><div class="c3 blank"></div>
+          <div class="c1 ad plain" aria-hidden="true"><span></span></div><div class="c2"></div><div class="c3 blank"></div>
+
+          <div class="c1 decision"><div><span class="part">LM397 comparator</span><span class="q">Is the voltage too high?</span></div></div>
+          <div class="c2 ar"><span>yes</span></div>
+          <div class="c3 out node fault"><span class="nm">Mux disabled</span><span class="ds">The comparator drives the mux enable line, so the gain stages get no signal.</span></div>
+          <div class="c1 ad"><span>no</span></div><div class="c2"></div><div class="c3 blank"></div>
+
+          <div class="c1 decision"><div><span class="part">MCP6544 + AND gate</span><span class="q">Inside window 1? (1.35–1.95 V)</span></div></div>
+          <div class="c2 ar"><span>yes</span></div>
+          <div class="c3 out node"><span class="part">Gain stage 1</span><span class="nm">Amplify × 5.5</span><span class="ds">0.6 V window → 3.3 V. Finest steps.</span></div>
+          <div class="c1 ad"><span>no</span></div><div class="c2"></div><div class="c3 blank"></div>
+
+          <div class="c1 decision"><div><span class="part">MCP6544 + AND gate</span><span class="q">Inside window 2? (0.95–2.35 V)</span></div></div>
+          <div class="c2 ar"><span>yes</span></div>
+          <div class="c3 out node"><span class="part">Gain stage 2</span><span class="nm">Amplify × 2.36</span><span class="ds">1.4 V window → 3.3 V.</span></div>
+          <div class="c1 ad"><span>no</span></div><div class="c2"></div><div class="c3 blank"></div>
+
+          <div class="c1 node"><span class="nm">Outside both windows</span><span class="ds">Read the level-shifted signal directly at 1×.</span></div><div class="c2"></div><div class="c3 blank"></div>
+        </div>
+        <ol class="flow">
+          <li><div class="node"><span class="part">XIAO ESP32</span><span class="nm">Sample + window code</span><span class="ds">The active window is read from GPIO at the same moment as the ADC sample.</span></div></li>
+          <li><div class="node"><span class="part">Firmware</span><span class="nm">Undo the gain</span><span class="ds"><code>Vin = Vout / gain + Vlo</code>, where Vlo is the window's lower edge.</span></div></li>
+          <li><div class="node end"><span class="part">Firmware</span><span class="nm">Undo the shift</span><span class="ds">Subtract 1.65 V to get the true probe voltage, then stream it to Python.</span></div></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="pj-sub" id="lab">
+      <h3>Try it · drag the input amplitude</h3>
+      <p>This simulation runs the window logic above on a sine wave. The left plot is the level-shifted signal over the two windows, colored by which path each instant takes. The right plot is what the ADC actually receives after the gain stage: each window's slice is stretched to fill the full range, which is why the trace jumps when the window changes. The white dots are samples rebuilt in firmware with <code>Vin = Vout / gain + Vlo</code>, and they land back on the original wave.</p>
+      <div class="diagram lab">
+        <div class="lab-controls">
+          <label for="amp">Input amplitude (peak)</label>
+          <output id="amp-out" for="amp">±0.90 V</output>
+          <input id="amp" type="range" min="0.05" max="2" step="0.05" value="0.9">
+          <div class="presets" role="group" aria-label="Amplitude presets">
+            <button type="button" data-amp="0.25" aria-pressed="false">Small · ±0.25 V</button>
+            <button type="button" data-amp="0.6" aria-pressed="false">Medium · ±0.60 V</button>
+            <button type="button" data-amp="1.5" aria-pressed="false">Large · ±1.50 V</button>
+            <button type="button" data-amp="2" aria-pressed="false">Too big · ±2.00 V</button>
+          </div>
+        </div>
+        <div class="legend">
+          <span style="--c: var(--scr-w1)"><i></i>Window 1 · ×5.5</span>
+          <span style="--c: var(--scr-w2)"><i></i>Window 2 · ×2.36</span>
+          <span style="--c: var(--scr-full)"><i></i>Outside windows · ×1</span>
+          <span style="--c: var(--scr-fault)"><i></i>Over-range</span>
+        </div>
+        <div class="plots">
+          <figure class="plot"><canvas id="plot-in" role="img" aria-label="Level-shifted signal plotted over the two comparator windows"></canvas><figcaption><b>After level shift</b> · shaded bands are the two windows</figcaption></figure>
+          <figure class="plot"><canvas id="plot-adc" role="img" aria-label="Signal after the selected gain stage, as seen by the ADC"></canvas><figcaption><b>What the ADC sees</b> · after the selected gain stage</figcaption></figure>
+        </div>
+        <div class="readouts" aria-live="polite">
+          <div class="readout" style="--c: var(--scr-w1)"><span class="k">Time in window 1</span><span class="v" id="ro-w1">—</span><span class="s">step ≈ 0.15 mV</span></div>
+          <div class="readout" style="--c: var(--scr-w2)"><span class="k">Time in window 2</span><span class="v" id="ro-w2">—</span><span class="s">step ≈ 0.34 mV</span></div>
+          <div class="readout" style="--c: var(--scr-full)"><span class="k">Outside windows</span><span class="v" id="ro-full">—</span><span class="s">step ≈ 0.81 mV</span></div>
+          <div class="readout" style="--c: var(--scr-fault)"><span class="k">Over-range</span><span class="v" id="ro-fault">—</span><span class="s">flagged</span></div>
+        </div>
+        <p class="diagram-note" id="ro-note"></p>
+        <p class="diagram-note">Step sizes assume an ideal 12-bit ADC over 0–3.3 V: 3.3 V ÷ 4,096 ≈ 0.81 mV, divided by each window's gain. This is a simulation of the design intent, not measured data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">4</span>Comparing the three versions</h2>
+    <div class="table-wrap">
+      <table class="spec">
+        <thead><tr><th>Version</th><th>Signal path</th><th>Resolution</th><th>Design effort</th><th>What I found</th></tr></thead>
+        <tbody>
+          <tr><td><span class="rank">1</span>V3 · External ADC</td><td>Raw input → ADS8681 → SPI → ESP32</td><td class="num">16-bit native</td><td>Custom SPI driver; split 5 V analog / 3.3 V digital supplies</td><td>Most accurate of the three.</td></tr>
+          <tr><td><span class="rank">2</span>V2 · Direct ADC</td><td>Level shift → ESP32 ADC</td><td class="num">12-bit over 0–3.3 V</td><td>Simplest: one op-amp stage</td><td>Second most accurate.</td></tr>
+          <tr><td><span class="rank">3</span>V1 · Auto-ranging</td><td>Level shift → comparators → mux → gain → ESP32 ADC</td><td class="num">Finest steps near 1.65 V (up to 5.5× gain)</td><td>Most complex: comparator ladder, logic, mux, two gain stages</td><td>Switching op-amp gain stages caused delays and improperly amplified signals.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="callout" style="margin-top:1rem"><strong>Takeaway:</strong> on paper, auto-ranging gives the finest steps for small signals. On the bench, the external 16-bit ADC beat it, and even the plain direct read did better, because the gain-switching stages added delay and amplification errors.</p>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">5</span>What I did</h2>
+    <div class="cols-2">
+      <div class="box"><span class="k">Analog &amp; circuit design</span><p>Designed the level-shifting front end, the window-comparator ladder, the per-window gain stages, and clamp / fault-current protection. Verified matched-resistor gain relationships and power-vs-signal pin separation in simulation before committing to layout.</p></div>
+      <div class="box"><span class="k">PCB design &amp; fabrication</span><p>Laid out a two-layer board in KiCad. Diagnosed a footprint-library mismatch on the ADS8681 (TSSOP-16), cleared DRC violations (unconnected nets, missing board outline, dangling tracks and vias), verified the Gerber and Excellon export, and hand-soldered the board, including fine-pitch TSSOP-16 and SOIC parts.</p></div>
+      <div class="box"><span class="k">Firmware</span><p>Wrote an SPI driver for the ADS8681 from scratch, since no Arduino library supports the ADS868x family. Implemented the direct-ADC path and the window-detection and voltage-reconstruction logic that recovers the true input from each sampled window.</p></div>
+      <div class="box"><span class="k">Data acquisition &amp; visualization</span><p>Built a Python app that streams samples over serial and plots them in real time with LightningChart Python's GPU-accelerated charts.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">6</span>Schematic, layout &amp; board</h2>
+    <div class="gallery">
+      <figure class="media wide"><button type="button" data-full="../assets/img/osc-schematic.png" data-caption="KiCad schematic of the analog front end."><img width="1295" height="808" style="--ar: 1295 / 808" src="../assets/img/osc-schematic.png" alt="KiCad schematic with the op-amp, comparators, AND gate, analog mux, ADS8681 and XIAO connections" loading="lazy"></button><figcaption><b>SCH</b>KiCad schematic: TSV794 op-amps, MCP6544 window comparators, SN74LVC2G08 AND gate, CD4052 mux, LM397 over-voltage comparator, ADS8681 ADC, and the XIAO header.</figcaption></figure>
+      <figure class="media wide"><button type="button" data-full="../assets/img/osc-pcb-layout.png" data-caption="Two-layer PCB layout in KiCad."><img width="1295" height="446" style="--ar: 1295 / 446" src="../assets/img/osc-pcb-layout.png" alt="Two-layer PCB layout with red front copper and blue back copper" loading="lazy"></button><figcaption><b>PCB</b>Two-layer layout in KiCad, front copper in red and back copper in blue.</figcaption></figure>
+      <figure class="media photo"><button type="button" data-full="../assets/img/osc-pcb-board.jpg" data-caption="The fabricated board before assembly."><img width="433" height="1260" style="--ar: 433 / 1260" src="../assets/img/osc-pcb-board.jpg" alt="Fabricated blue oscilloscope PCB before components were soldered" loading="lazy"></button><figcaption><b>FAB</b>The fabricated board, ready for hand assembly.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap cols-2">
+    <div>
+      <h2 class="pj-h2"><span class="no">7</span>Parts &amp; tools</h2>
+      <ul class="chips">
+        <li>Seeed Studio XIAO ESP32</li><li>ADS8681 16-bit SAR ADC</li><li>TSV794 op-amp</li><li>MCP6544 comparator</li><li>LM397 comparator</li><li>SN74LVC2G08 AND gate</li><li>CD4052 analog mux</li><li>KiCad</li><li>SPI</li><li>Python</li><li>LightningChart Python</li><li>Hand soldering (SMD / THT)</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="pj-h2"><span class="no">8</span>Skills demonstrated</h2>
+      <ul class="ticks">
+        <li>Mixed-signal analog circuit design</li>
+        <li>PCB layout, DRC debugging, and Gerber / Excellon verification</li>
+        <li>Fine-pitch hand soldering and manual PCB assembly</li>
+        <li>Low-level protocol (SPI) driver development</li>
+        <li>Real-time data visualization in Python</li>
+        <li>Datasheet cross-referencing and root-cause debugging</li>
+        <li>Systematic architecture comparison and trade-off analysis</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<nav class="wrap pager" aria-label="More projects">
+  <a href="rover.html"><span class="k">← Previous project</span><b>Autonomous Mobile Rover</b></a>
+  <a class="next" href="cubesat.html"><span class="k">Next project →</span><b>UCI CubeSat</b></a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <span>© 2026 Krish Patel · Electrical Engineering, UC Irvine</span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Résumé</a></span>
+  </div>
+</footer>
+<dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+  <button class="close" type="button" aria-label="Close">×</button>
+  <img src="data:," alt="">
+  <p></p>
+</dialog>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>
