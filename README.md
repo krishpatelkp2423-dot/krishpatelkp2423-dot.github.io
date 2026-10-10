@@ -15,12 +15,12 @@ assets/js/main.js                Theme toggle, menu, lightbox, oscilloscope simu
 assets/img/                      Project images, research photos and posters, and headshot
 assets/research/                 High school research papers (PDF) linked from the Research section
 assets/video/                    Demo videos (H.264 MP4) and poster frames
-assets/Krish_Patel_Resume.pdf    Résumé linked across the site
+assets/Krish_Patel_Resume.pdf    Resume linked across the site
 .nojekyll                        Tells GitHub Pages to serve the files as-is
 ```
 
 ## Updating
 
 - Edit the HTML files and push to `main`; the site updates a minute or two later.
-- Replace `assets/Krish_Patel_Resume.pdf` to update the résumé link everywhere.
+- Replace `assets/Krish_Patel_Resume.pdf` to update the resume link everywhere.
 - Replace `assets/img/headshot.jpg` to change the About photo (portrait orientation works best).
