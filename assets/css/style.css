@@ -761,3 +761,33 @@ figure.portrait { margin: 0; }
 .bars li.base .bar span { background: var(--ink-3); }
 .bars .val { font: 500 0.8rem/1 var(--f-mono); color: var(--ink); text-align: right; }
 @media (max-width: 520px) { .bars li { grid-template-columns: minmax(0, 1fr) 3.5rem; } .bars .lbl { grid-column: 1 / -1; } }
+
+/* ---------- math (oscilloscope page; equations pre-rendered with KaTeX) ---------- */
+.math-intro { display: grid; gap: 1rem; }
+.math-intro > p { color: var(--ink-2); max-width: 70ch; }
+.math-toc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+.math-toc a { display: grid; gap: 0.25rem; text-decoration: none; color: var(--ink); background: var(--sheet); border: 1px solid var(--rule); padding: 0.85rem 1rem; }
+.math-toc a:hover { border-color: var(--wire); }
+.math-toc .k { font: 500 0.68rem/1 var(--f-mono); color: var(--wire); text-transform: uppercase; letter-spacing: 0.09em; }
+.math-toc b { font: 600 1.15rem/1.15 var(--f-display); }
+.math-toc span:last-child { color: var(--ink-2); font-size: 0.92rem; }
+@media (max-width: 640px) { .math-toc { grid-template-columns: 1fr; } }
+.math-body { display: grid; gap: 0.85rem; color: var(--ink-2); min-width: 0; }
+.math-body > p, .math-body > ul, .math-body > ol { max-width: 80ch; }
+.math-body p, .math-body li { color: var(--ink-2); }
+.math-body strong { color: var(--ink); font-weight: 600; }
+.math-body ul, .math-body ol { padding-left: 1.3rem; display: grid; gap: 0.35rem; }
+.math-body .math-h4 { font: 600 1.2rem/1.2 var(--f-display); color: var(--ink); margin-top: 0.9rem; letter-spacing: 0.01em; }
+.math-body .table-wrap { max-width: 100%; }
+.math-body table.spec { min-width: 0; }
+.math-body table.spec td:first-child { white-space: normal; }
+.math-body pre { overflow-x: auto; background: var(--sheet); border: 1px solid var(--rule); padding: 0.75rem 1rem; font-size: 0.85rem; }
+.math-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; background: var(--sheet); border-left: 3px solid var(--wire); padding: 0.15rem 1rem; }
+.math-display .katex-display { margin: 0.6rem 0; text-align: left; }
+.math-display .katex-display > .katex { text-align: left; }
+.math-body .katex { font-size: 1.06em; color: var(--ink); }
+/* KaTeX hides its MathML copy with position:absolute; anchoring it to each formula keeps it
+   inside scroll containers so it can't widen the page on phones. */
+.katex { position: relative; }
+table.spec th .katex { text-transform: none; letter-spacing: normal; }
+.katex svg { max-width: none; }
