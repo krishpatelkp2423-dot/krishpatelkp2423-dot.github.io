@@ -1,0 +1,8 @@
+{
+  "name": "site-math-build",
+  "private": true,
+  "description": "Pre-renders the oscilloscope page's equations with KaTeX (see the site README).",
+  "dependencies": {
+    "katex": "0.16.11"
+  }
+}
