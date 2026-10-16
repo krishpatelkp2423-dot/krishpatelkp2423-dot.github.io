@@ -793,8 +793,14 @@ table.spec th .katex { text-transform: none; letter-spacing: normal; }
 .katex svg { max-width: none; }
 
 /* ---------- playable chess (chess page) ---------- */
+.chess-app { --ink-3: #5f6a80; --cp-tile: transparent; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chess-app { --ink-3: #7a869e; --cp-tile: #f0d9b5; } }
+:root[data-theme="dark"] .chess-app { --ink-3: #7a869e; --cp-tile: #f0d9b5; }
+/* without JavaScript there's no game: show only the notice */
+html:not(.js) .chess-stage, html:not(.js) .chess-panel, html:not(.js) .chess-title { display: none; }
+.chess-app > noscript { grid-column: 1 / -1; }
 .chess-app {
-  display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 1fr); gap: clamp(1rem, 2.5vw, 1.75rem); align-items: start;
+  display: grid; grid-template-columns: minmax(0, 560px) minmax(340px, 1fr); gap: clamp(1rem, 2.5vw, 1.75rem); align-items: start;
   background: var(--sheet); border: 1.5px solid var(--rule-strong); padding: clamp(0.75rem, 2.5vw, 1.5rem); box-shadow: var(--shadow);
 }
 .chess-title { grid-column: 1 / -1; }
@@ -808,24 +814,27 @@ table.spec th .katex { text-transform: none; letter-spacing: normal; }
   position: relative; display: block; min-width: 0; margin: 0; padding: 0; border: 0; border-radius: 0;
   background: var(--sq); font: inherit; color: inherit; cursor: default; -webkit-tap-highlight-color: transparent;
 }
-.chess-board .light { --sq: #f0d9b5; --sq-ink: #b58863; }
-.chess-board .dark { --sq: #b58863; --sq-ink: #f0d9b5; }
+.chess-board .light { --sq: #f0d9b5; --sq-ink: #7a5530; }
+.chess-board .dark { --sq: #b58863; --sq-ink: #ffffff; }
 .chess-board .sq::before, .chess-board .sq::after { content: ""; position: absolute; pointer-events: none; }
 .chess-board .is-last::before { inset: 0; background: rgba(255, 214, 40, 0.42); }
-.chess-board .is-selected::before { inset: 0; background: rgba(46, 140, 70, 0.55); }
-.chess-board .is-target::after { left: 50%; top: 50%; width: 28%; height: 28%; transform: translate(-50%, -50%); border-radius: 50%; background: rgba(19, 28, 46, 0.3); }
-.chess-board .is-capture::after { inset: 0; background: radial-gradient(circle, transparent 0 60%, rgba(19, 28, 46, 0.34) 61% 72%, transparent 73%); }
+.chess-board .is-selected::before { inset: 0; background: rgba(46, 140, 70, 0.55); box-shadow: inset 0 0 0 3px rgba(19, 28, 46, 0.55); }
+.chess-board .is-target::after { left: 50%; top: 50%; width: 28%; height: 28%; transform: translate(-50%, -50%); border-radius: 50%; background: rgba(19, 28, 46, 0.42); }
+.chess-board .is-capture::after { inset: 0; background: radial-gradient(circle closest-side, transparent 0 79%, rgba(19, 28, 46, 0.42) 80% 97%, transparent 98%); }
 .chess-board .is-mine, .chess-board .is-target, .chess-board .is-capture { cursor: pointer; }
-.chess-board .is-target:hover::after { background: rgba(19, 28, 46, 0.5); }
-.chess-board .is-capture:hover::after { background: radial-gradient(circle, transparent 0 58%, rgba(19, 28, 46, 0.5) 59% 74%, transparent 75%); }
-.chess-board .sq:focus-visible { outline: 3px solid var(--wire); outline-offset: -3px; border-radius: 0; z-index: 2; }
+.chess-board .is-target:hover::after { background: rgba(19, 28, 46, 0.58); }
+.chess-board .is-capture:hover::after { background: radial-gradient(circle closest-side, transparent 0 77%, rgba(19, 28, 46, 0.58) 78% 97%, transparent 98%); }
+/* two-tone focus ring, drawn over the highlights and visible on every square in both themes */
+.chess-board .sq:focus-visible { outline: none; z-index: 2; }
+.chess-board .sq:focus-visible::before { inset: 0; box-shadow: inset 0 0 0 3px #0b1f5c, inset 0 0 0 5px #ffffff; }
 .chess-board .is-moving { z-index: 3; }
 .chess-board .pc { position: absolute; left: 3%; top: 3%; width: 94%; height: 94%; filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.3)); pointer-events: none; }
 .chess-board .is-mine:hover .pc { filter: drop-shadow(0 3px 2.5px rgba(0, 0, 0, 0.38)); }
 .sq-rank, .sq-file { position: absolute; font: 600 clamp(0.55rem, 1.4vw, 0.7rem)/1 var(--f-mono); color: var(--sq-ink); pointer-events: none; }
+.chess-board .dark .sq-rank, .chess-board .dark .sq-file { text-shadow: 0 0 2px rgba(60, 35, 10, 0.5); }
 .sq-rank { left: 4px; top: 4px; }
 .sq-file { right: 4px; bottom: 4px; }
-@media (prefers-reduced-motion: reduce) { .chess-board .pc { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { .chess-board .pc, .cp-bar i { transition: none !important; } }
 
 .chess-overlay {
   position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; padding: 1rem;
@@ -838,7 +847,7 @@ table.spec th .katex { text-transform: none; letter-spacing: normal; }
 }
 .chess-dialog-k { font: 600 0.72rem/1.2 var(--f-mono); color: var(--title); text-transform: uppercase; letter-spacing: 0.1em; }
 .chess-dialog h3 { font-size: clamp(1.8rem, 5vw, 2.4rem); margin: 0; }
-.chess-dialog p:not(.chess-dialog-k) { color: var(--ink-2); max-width: 32ch; }
+.chess-dialog p:not(.chess-dialog-k) { color: var(--ink-2); max-width: 32ch; text-wrap: pretty; }
 .chess-dialog .btn-row { justify-content: center; margin-top: 0.3rem; }
 .promo-choices { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.4rem; }
 .promo-btn {
@@ -852,7 +861,7 @@ table.spec th .katex { text-transform: none; letter-spacing: normal; }
 
 .chess-panel { display: grid; gap: 0.9rem; align-content: start; min-width: 0; }
 .cp-status {
-  margin: 0; min-height: 4.4em; padding: 0.7rem 0.85rem; background: var(--paper); border: 1px solid var(--rule);
+  margin: 0; min-height: calc(2 * 1.45em + 1.4rem + 2px); padding: 0.7rem 0.85rem; background: var(--paper); border: 1px solid var(--rule);
   border-left: 3px solid var(--wire); color: var(--ink); font-size: 0.95rem; line-height: 1.45;
 }
 .chess-app.is-thinking .cp-status { border-left-color: var(--net); }
@@ -865,11 +874,11 @@ table.spec th .katex { text-transform: none; letter-spacing: normal; }
 .cp-player.is-turn { border-left-color: var(--wire); }
 .cp-player.is-winner { border-left-color: var(--ok); }
 .cp-head { display: flex; align-items: center; gap: 0.45rem; min-width: 0; }
-.cp-icon { width: 28px; height: 28px; flex: none; }
+.cp-icon { width: 30px; height: 30px; padding: 2px; flex: none; background: var(--cp-tile); border-radius: 4px; }
 .cp-name { font: 600 1.15rem/1 var(--f-display); text-transform: uppercase; letter-spacing: 0.05em; }
 .cp-tag { font: 600 0.62rem/1 var(--f-mono); padding: 3px 5px; border-radius: 2px; background: var(--wire-soft); color: var(--wire); text-transform: uppercase; letter-spacing: 0.06em; }
 .cp-tag.is-you { background: var(--net); color: var(--net-ink); }
-.cp-turn { font: 500 0.66rem/1 var(--f-mono); color: var(--wire); text-transform: uppercase; letter-spacing: 0.06em; visibility: hidden; display: inline-flex; align-items: center; gap: 0.3rem; }
+.cp-turn { font: 500 0.66rem/1 var(--f-mono); color: var(--wire); text-transform: uppercase; letter-spacing: 0.06em; visibility: hidden; display: inline-flex; align-items: center; gap: 0.3rem; white-space: nowrap; }
 .cp-turn::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 .cp-player.is-turn .cp-turn { visibility: visible; }
 .chess-app.is-thinking .cp-player.is-turn .cp-turn { color: var(--title); }
@@ -881,7 +890,8 @@ table.spec th .katex { text-transform: none; letter-spacing: normal; }
 .cp-bar { height: 6px; background: var(--rule); border-radius: 3px; overflow: hidden; }
 .cp-bar i { display: block; height: 100%; width: 0; background: var(--wire); transition: width 0.35s ease; }
 .cp-player.is-winner .cp-bar i { background: var(--ok); }
-.cp-caps { display: flex; flex-wrap: wrap; min-height: 22px; padding-left: 2px; }
+.cp-caps { display: flex; flex-wrap: wrap; width: fit-content; max-width: 100%; min-height: 26px; padding: 2px 9px 2px 4px; border-radius: 4px; }
+.cp-caps:not(:empty) { background: var(--cp-tile); }
 .cp-caps .cap { width: 22px; height: 22px; margin-right: -5px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25)); }
 .cp-reset { justify-content: center; width: 100%; }
 .cp-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
@@ -895,10 +905,11 @@ table.spec th .katex { text-transform: none; letter-spacing: normal; }
 .seg button:last-child { border-right: 0; }
 .seg button:hover { color: var(--wire); background: var(--wire-soft); }
 .seg button[aria-pressed="true"] { background: var(--wire); color: var(--wire-ink); }
+.seg button[aria-pressed="true"]:focus-visible { outline-color: var(--wire-ink); }
 .seg button:focus-visible { outline-offset: -3px; }
 .cp-log { display: grid; gap: 0.35rem; min-width: 0; }
 .cp-moves {
-  list-style: none; margin: 0; padding: 0.4rem 0.6rem; height: calc(6 * 1.4rem + 0.8rem + 2px); overflow-y: auto; background: var(--paper);
+  list-style: none; margin: 0; padding: 0 0.6rem; height: calc(6 * 1.4rem + 2px); overflow-y: auto; background: var(--paper);
   border: 1px solid var(--rule); font: 500 0.8rem/1.75 var(--f-mono); color: var(--ink-2); font-variant-numeric: tabular-nums;
 }
 .cp-moves:empty::before { content: "No moves yet."; color: var(--ink-3); }
@@ -914,9 +925,20 @@ table.spec th .katex { text-transform: none; letter-spacing: normal; }
 }
 @media (max-width: 420px) {
   .cp-opts { grid-template-columns: minmax(0, 1fr); }
+  .cp-status { min-height: calc(3 * 1.45em + 1.4rem + 2px); }
+  .cp-turn { font-size: 0; gap: 0; } /* just the dot; the card border and status say whose turn it is */
+  .cp-turn::before { width: 7px; height: 7px; }
+  .chess-title > span:last-child { display: none; }
   .chess-overlay { padding: 0.5rem; }
+  .chess-dialog { padding: 0.8rem 0.6rem; gap: 0.5rem; }
+  .chess-dialog h3 { font-size: 1.6rem; }
+  .chess-dialog .btn-row { flex-wrap: nowrap; gap: 0.5rem; }
+  .chess-dialog .btn { min-height: 40px; padding: 0.45rem 0.8rem; font-size: 0.88rem; }
   .promo-choices { gap: 0.25rem; }
+  .promo-btn { padding: 0.35rem 0.1rem 0.4rem; }
+  .promo-btn .pc { width: min(40px, 100%); height: auto; aspect-ratio: 1; }
+  .promo-btn span { font-size: 0.6rem; }
   .promo-btn small { display: none; }
 }
 .pj-section[id] { scroll-margin-top: 64px; }
-@media (max-width: 900px) { .cp-moves { height: auto; min-height: calc(2 * 1.4rem + 0.8rem + 2px); max-height: calc(5 * 1.4rem + 0.8rem + 2px); } }
+@media (max-width: 900px) { .cp-moves { height: auto; min-height: calc(2 * 1.4rem + 2px); max-height: calc(5 * 1.4rem + 2px); } }

@@ -53,7 +53,7 @@ The script replaces everything between the `MATH:START` and `MATH:END` comments 
 
 `projects/chess.html` has a playable version of the [modified chess game](https://github.com/krishpatelkp2423-dot/Chess_): no check or checkmate, the king is a 2-point piece, and the first player to 15 capture points wins. It's plain JavaScript with no build step:
 
-- `assets/js/chess-engine.js` is a port of the desktop game's `pieces.py` (rules) and `ai.py` (minimax with alpha-beta pruning, quiescence search and piece-square tables). Keep the two in sync when the rules change.
+- `assets/js/chess-engine.js` is a port of the desktop game's `pieces.py` (rules) and `ai.py` (minimax with alpha-beta pruning, quiescence search and piece-square tables). The web AI adds killer/history move ordering, a penalty for going back to a position the game has already been in (so it doesn't shuffle forever), and Easy/Medium/Hard levels. Keep the rules in sync with the desktop game when they change.
 - `assets/js/chess-worker.js` runs the AI in a Web Worker so the page never freezes while it thinks. If a worker can't start (for example when the page is opened straight from a file), the AI thinks on the page instead.
 - `assets/js/chess.js` draws the board and handles clicks, the keyboard, promotion, the scoreboard, the AI level and the New game button.
 
