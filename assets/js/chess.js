@@ -91,10 +91,17 @@
     state.result = null;
     state.thinking = false;
     state.note = "";
+    state.seen = {}; // how often each position has occurred, so the AI avoids going in circles
+    remember();
     hide(els.promo);
     hide(els.over);
     render();
     if (state.turn !== state.human) aiTurn();
+  }
+
+  function remember() {
+    var key = E.positionKey(state.board, state.turn);
+    state.seen[key] = (state.seen[key] || 0) + 1;
   }
 
   function isHumanTurn() {
@@ -181,6 +188,7 @@
         state.turn = mover;
       }
     }
+    remember();
 
     render({ from: from, to: to });
     if (state.result) setTimeout(showGameOver, reduceMotion ? 0 : 450);
@@ -220,7 +228,7 @@
 
   function thinkOnPage(job, done) {
     // give the page a moment to show "thinking" before the search blocks it
-    setTimeout(function () { done(E.chooseMove(job.board, job.color, job.white, job.black, job.level)); }, 60);
+    setTimeout(function () { done(E.chooseMove(job.board, job.color, job.white, job.black, job.level, job.seen)); }, 60);
   }
 
   function requestAiMove(job, done) {
@@ -245,7 +253,7 @@
     render();
     requestAiMove({
       id: id, board: state.board.slice(), color: state.turn,
-      white: state.scores.white, black: state.scores.black, level: state.level
+      white: state.scores.white, black: state.scores.black, level: state.level, seen: state.seen
     }, function (move) {
       if (id !== requestId || game !== state.game) return;
       setTimeout(function () {
