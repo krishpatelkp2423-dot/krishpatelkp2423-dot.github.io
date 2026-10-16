@@ -16,7 +16,7 @@ An op-amp with negative feedback trades gain for bandwidth:
 f_\text{CL} = \frac{\text{GBW}}{\text{noise gain}}
 ```
 
-$`f_\text{CL}`$ is the closed-loop bandwidth and GBW the op-amp's gain-bandwidth product. With the TSV794's 50 MHz GBW, the level shifter (noise gain 2) reaches 25 MHz, a 14 ns rise time. An inverting stage of gain $`-G`$ has noise gain $`1 + G`$, so the gain stages (6.5 and 3.36) reach 7.7 and 14.9 MHz. The ADS8681's internal filter is far slower: it rolls off at about 15 kHz and delays the signal by about 14 µs.
+$`f_\text{CL}`$ is the closed-loop bandwidth, GBW the op-amp's gain-bandwidth product, and the noise gain is 1 divided by the fraction of the output fed back to the inverting input. With the TSV794's 50 MHz GBW, the level shifter (noise gain 2) reaches 25 MHz, a 14 ns rise time. An inverting stage of gain $`-G`$ has noise gain $`1 + G`$, so the gain stages (gains 5.5 and 2.36, noise gains 6.5 and 3.36) reach 7.7 and 14.9 MHz. The ADS8681's internal filter is far slower: it rolls off at about 15 kHz and delays the signal by about 14 µs.
 
 ### Sampling and aliasing
 
