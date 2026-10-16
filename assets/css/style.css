@@ -898,7 +898,7 @@ table.spec th .katex { text-transform: none; letter-spacing: normal; }
 .seg button:focus-visible { outline-offset: -3px; }
 .cp-log { display: grid; gap: 0.35rem; min-width: 0; }
 .cp-moves {
-  list-style: none; margin: 0; padding: 0.4rem 0.6rem; height: 9.5rem; overflow-y: auto; background: var(--paper);
+  list-style: none; margin: 0; padding: 0.4rem 0.6rem; height: calc(6 * 1.4rem + 0.8rem + 2px); overflow-y: auto; background: var(--paper);
   border: 1px solid var(--rule); font: 500 0.8rem/1.75 var(--f-mono); color: var(--ink-2); font-variant-numeric: tabular-nums;
 }
 .cp-moves:empty::before { content: "No moves yet."; color: var(--ink-3); }
@@ -919,4 +919,4 @@ table.spec th .katex { text-transform: none; letter-spacing: normal; }
   .promo-btn small { display: none; }
 }
 .pj-section[id] { scroll-margin-top: 64px; }
-@media (max-width: 900px) { .cp-moves { height: auto; min-height: 3.4rem; max-height: 8.5rem; } }
+@media (max-width: 900px) { .cp-moves { height: auto; min-height: calc(2 * 1.4rem + 0.8rem + 2px); max-height: calc(5 * 1.4rem + 0.8rem + 2px); } }

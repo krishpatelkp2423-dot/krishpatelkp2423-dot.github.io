@@ -135,6 +135,7 @@
      on material, the 15-point race, and where pieces stand (piece-square tables). */
 
   var WIN = 100000; // score for reaching WIN_SCORE; bigger than any normal evaluation
+  var REPEAT_PENALTY = 25; // per earlier visit to the position a move leads to
   var MAX_QDEPTH = 6;
   var MATERIAL = { p: 100, n: 320, b: 330, r: 500, q: 900, k: 200 };
   var POINT_VALUE = 100;    // what one scoreboard point is worth to the AI
@@ -290,14 +291,23 @@
   };
 
   /* Scores every root move; with exact=false later moves only get an upper bound
-     (faster), with exact=true every move gets its true score (for the Easy level). */
-  Search.prototype.root = function (board, color, depth, rootMoves, points, exact) {
+     (faster), with exact=true every move gets its true score (for the Easy level).
+     `seen` counts the positions already reached this game: going back to one costs
+     REPEAT_PENALTY per earlier visit, so the AI tries something new instead of
+     shuffling the same pieces back and forth forever. */
+  Search.prototype.root = function (board, color, depth, rootMoves, points, exact, seen) {
     var alpha = -WIN * 2, beta = WIN * 2, results = [], white = color === "white";
     for (var i = 0; i < rootMoves.length; i++) {
       var m = rootMoves[i], res = applyMove(board, m[0], m[1]);
       var np = addPoints(color, res.captured, points), value;
-      if ((white ? np[0] : np[1]) >= WIN_SCORE) value = WIN - 1;
-      else value = -this.negamax(res.board, other(color), depth - 1, -beta, exact ? WIN * 2 : -alpha, 1, np);
+      if ((white ? np[0] : np[1]) >= WIN_SCORE) {
+        value = WIN - 1;
+      } else {
+        var penalty = seen ? (seen[positionKey(res.board, other(color))] || 0) * REPEAT_PENALTY : 0;
+        // search for the unpenalised score, with the window shifted to match
+        value = -this.negamax(res.board, other(color), depth - 1, -beta - penalty,
+          exact ? WIN * 2 : -alpha - penalty, 1, np) - penalty;
+      }
       results.push({ move: m, value: value, index: i });
       if (value > alpha) alpha = value;
     }
@@ -312,15 +322,24 @@
 
   // depth = most moves ahead, timeMs = most thinking time, slack = Easy picks at random
   // among moves scoring within this much (hundredths of a pawn) of the best one
+  // Easy also widens its spread to `wildSlack` on a `wildChance` share of its moves, so
+  // casual players can win; it still always takes a capture that wins the game.
   var LEVELS = {
-    easy: { depth: 2, timeMs: 400, slack: 120 },
+    easy: { depth: 2, timeMs: 400, slack: 120, wildChance: 0.25, wildSlack: 350 },
     medium: { depth: 4, timeMs: 1500, slack: 0 },
     hard: { depth: 6, timeMs: 3000, slack: 0 }
   };
 
-  /* Pick a move for `color`. Returns {from, to, depth, score} or null if it has no move. */
-  function chooseMove(board, color, whitePoints, blackPoints, level) {
-    var opts = typeof level === "string" ? LEVELS[level] : (level || LEVELS.medium);
+  /* A string naming a position and whose turn it is, for spotting repeated positions. */
+  function positionKey(board, colorToMove) {
+    return colorToMove.charAt(0) + board.map(function (p) { return p || "."; }).join("");
+  }
+
+  /* Pick a move for `color`. Returns {from, to, depth, score} or null if it has no move.
+     `level` is "easy", "medium", "hard" or an options object; `seen` (optional) maps
+     positionKey() strings to how many times that position has occurred this game. */
+  function chooseMove(board, color, whitePoints, blackPoints, level, seen) {
+    var opts = (typeof level === "string" ? LEVELS[level] : level) || LEVELS.medium;
     var rootMoves = allMoves(board, color);
     if (rootMoves.length === 0) return null;
     if (rootMoves.length === 1) return { from: rootMoves[0][0], to: rootMoves[0][1], depth: 0, score: 0 };
@@ -336,7 +355,7 @@
     for (var depth = 1; depth <= opts.depth; depth++) {
       search.deadline = depth > 1 ? deadline : null; // depth 1 always finishes
       try {
-        results = search.root(board, color, depth, rootMoves, points, opts.slack > 0);
+        results = search.root(board, color, depth, rootMoves, points, opts.slack > 0, seen);
       } catch (e) {
         if (e instanceof OutOfTime) break;
         throw e;
@@ -348,7 +367,8 @@
 
     var pick = results[0];
     if (opts.slack > 0 && Math.abs(pick.value) < WIN - 100) {
-      var close = results.filter(function (r) { return r.value >= pick.value - opts.slack; });
+      var slack = opts.wildChance && Math.random() < opts.wildChance ? opts.wildSlack : opts.slack;
+      var close = results.filter(function (r) { return r.value >= pick.value - slack; });
       pick = close[Math.floor(Math.random() * close.length)];
     }
     return { from: pick.move[0], to: pick.move[1], depth: depthDone, score: pick.value };
@@ -367,6 +387,7 @@
     isPromotion: isPromotion,
     applyMove: applyMove,
     evaluate: evaluate,
+    positionKey: positionKey,
     chooseMove: chooseMove
   };
 })(typeof self !== "undefined" ? self : this);
