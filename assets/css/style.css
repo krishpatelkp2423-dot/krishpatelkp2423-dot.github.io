@@ -778,6 +778,8 @@ figure.portrait { margin: 0; }
 .math-body .table-wrap { max-width: 100%; }
 .math-body table.spec { min-width: 0; }
 .math-body table.spec td:first-child { white-space: normal; }
+.math-body table.spec td + td { white-space: nowrap; }
+@media (max-width: 520px) { .math-body table.spec { font-size: 0.88rem; } .math-body table.spec th, .math-body table.spec td { padding: 0.55rem 0.45rem; } .math-body table.spec th { letter-spacing: 0.03em; } }
 .math-body pre { overflow-x: auto; background: var(--sheet); border: 1px solid var(--rule); padding: 0.75rem 1rem; font-size: 0.85rem; }
 .math-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; background: var(--sheet); border-left: 3px solid var(--wire); padding: 0.15rem 1rem; }
 .math-display .katex-display { margin: 0.6rem 0; text-align: left; }
