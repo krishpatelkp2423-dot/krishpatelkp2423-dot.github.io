@@ -304,9 +304,12 @@
         value = WIN - 1;
       } else {
         var penalty = seen ? (seen[positionKey(res.board, other(color))] || 0) * REPEAT_PENALTY : 0;
-        // search for the unpenalised score, with the window shifted to match
+        // Search for the unpenalised score with a window that's right whether or not the
+        // penalty ends up applying. A forced win or loss is never penalised: losing later
+        // is always better than losing now, even if it means repeating a position.
         value = -this.negamax(res.board, other(color), depth - 1, -beta - penalty,
-          exact ? WIN * 2 : -alpha - penalty, 1, np) - penalty;
+          exact ? WIN * 2 : -alpha, 1, np);
+        if (Math.abs(value) < WIN - 100) value -= penalty;
       }
       results.push({ move: m, value: value, index: i });
       if (value > alpha) alpha = value;

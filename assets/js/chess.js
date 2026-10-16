@@ -24,10 +24,12 @@
   var NAMES = { k: "king", q: "queen", r: "rook", b: "bishop", n: "knight", p: "pawn" };
   var FILES = "abcdefgh";
   var AI_MIN_MS = 450; // the AI waits at least this long, so its reply never appears instantly
-  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var motionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+  function reduceMotion() { return !!(motionQuery && motionQuery.matches); }
 
   var els = {
     board: app.querySelector("[data-board]"),
+    panel: app.querySelector(".chess-panel"),
     status: app.querySelector("[data-status]"),
     scores: app.querySelector("[data-scores]"),
     player: { white: app.querySelector('[data-player="white"]'), black: app.querySelector('[data-player="black"]') },
@@ -78,6 +80,7 @@
   };
 
   function newGame() {
+    var refocus = els.over.contains(document.activeElement) || els.promo.contains(document.activeElement);
     cancelAi();
     state.game++;
     state.board = E.START.slice();
@@ -93,9 +96,11 @@
     state.note = "";
     state.seen = {}; // how often each position has occurred, so the AI avoids going in circles
     remember();
-    hide(els.promo);
-    hide(els.over);
+    focusSq = state.human === "white" ? 52 : 12; // keyboard focus starts on your e-pawn
+    setOverlay(els.promo, false);
+    setOverlay(els.over, false);
     render();
+    if (refocus) focusSquare(focusSq);
     if (state.turn !== state.human) aiTurn();
   }
 
@@ -138,18 +143,19 @@
     els.promoChoices.innerHTML = html;
     els.promoChoices.querySelectorAll("[data-promote]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        hide(els.promo);
+        setOverlay(els.promo, false);
         makeMove(from, to, btn.getAttribute("data-promote"));
+        focusSquare(to);
       });
     });
-    show(els.promo);
+    setOverlay(els.promo, true);
     render();
     els.promoChoices.querySelector("button").focus();
   }
 
   function cancelPromotion() {
     if (els.promo.hidden) return;
-    hide(els.promo);
+    setOverlay(els.promo, false);
     state.selected = null;
     state.targets = [];
     render();
@@ -191,7 +197,7 @@
     remember();
 
     render({ from: from, to: to });
-    if (state.result) setTimeout(showGameOver, reduceMotion ? 0 : 450);
+    if (state.result) setTimeout(showGameOver, reduceMotion() ? 0 : 450);
     else if (state.turn !== state.human) aiTurn();
   }
 
@@ -228,7 +234,10 @@
 
   function thinkOnPage(job, done) {
     // give the page a moment to show "thinking" before the search blocks it
-    setTimeout(function () { done(E.chooseMove(job.board, job.color, job.white, job.black, job.level, job.seen)); }, 60);
+    setTimeout(function () {
+      if (job.id !== requestId) return; // the game was reset meanwhile
+      done(E.chooseMove(job.board, job.color, job.white, job.black, job.level, job.seen));
+    }, 60);
   }
 
   function requestAiMove(job, done) {
@@ -250,7 +259,7 @@
   function aiTurn() {
     var id = ++requestId, game = state.game, started = Date.now();
     state.thinking = true;
-    render();
+    renderPanel();
     requestAiMove({
       id: id, board: state.board.slice(), color: state.turn,
       white: state.scores.white, black: state.scores.black, level: state.level, seen: state.seen
@@ -271,7 +280,7 @@
   }
 
   /* ---------- drawing ---------- */
-  var squares = [], focusSq = 52; // keyboard focus starts on e2
+  var squares = [], drawn = [], focusSq = 52; // drawn = each square's current markup
 
   function buildBoard() {
     for (var sq = 0; sq < 64; sq++) {
@@ -328,6 +337,7 @@
       btn.style.gridRow = pos[0] + 1;
       btn.style.gridColumn = pos[1] + 1;
       var cls = btn.className.split(" ").slice(0, 2);
+      if (btn.classList.contains("is-moving")) cls.push("is-moving");
       if (state.last && (sq === state.last.from || sq === state.last.to)) cls.push("is-last");
       if (sq === state.selected) cls.push("is-selected");
       if (targets[sq]) cls.push(piece ? "is-capture" : "is-target");
@@ -338,7 +348,11 @@
       if (pos[1] === 0) html += '<span class="sq-rank" aria-hidden="true">' + (8 - (sq >> 3)) + "</span>";
       if (pos[0] === 7) html += '<span class="sq-file" aria-hidden="true">' + FILES[sq & 7] + "</span>";
       if (piece) html += pieceSvg(piece);
-      btn.innerHTML = html;
+      // only touch squares that changed, so a piece that's still sliding isn't replaced
+      if (drawn[sq] !== html) {
+        btn.innerHTML = html;
+        drawn[sq] = html;
+      }
 
       var label = squareName(sq) + ", " + (piece ? describe(piece) : "empty");
       if (sq === state.selected) label += ", selected";
@@ -352,7 +366,7 @@
 
   function animateMove(from, to) {
     var el = squares[to].querySelector(".pc");
-    if (!el || reduceMotion) return;
+    if (!el || reduceMotion()) return;
     var a = screenPos(from), b = screenPos(to), size = squares[to].offsetWidth;
     var btn = squares[to];
     btn.classList.add("is-moving");
@@ -383,17 +397,21 @@
     els.scores.classList.toggle("is-flipped", flipped());
     app.classList.toggle("is-thinking", state.thinking);
 
-    els.status.textContent = statusText();
+    var status = statusText();
+    if (els.status.textContent !== status) els.status.textContent = status;
 
-    // One row per White move and Black reply. A skipped turn leaves a gap ("…").
+    // One row per White move and Black reply. A skipped turn shows as "…".
     var rows = [], row = null;
     state.history.forEach(function (m) {
       if (!row || m.color === "white" || row.black) { row = { white: null, black: null }; rows.push(row); }
       row[m.color] = m;
     });
+    var gap = '<span class="mv">…</span>';
     els.moves.innerHTML = rows.map(function (r, i) {
-      return '<li><span class="mv-no">' + (i + 1) + ".</span>" +
-        (r.white ? moveText(r.white) : '<span class="mv">…</span>') + (r.black ? moveText(r.black) : "<span></span>") + "</li>";
+      // Black's slot is only legitimately empty in the last row while Black is to move
+      var blackSkipped = i < rows.length - 1 || (!state.result && state.turn === "white");
+      return '<li><span class="mv-no">' + (i + 1) + ".</span>" + (r.white ? moveText(r.white) : gap) +
+        (r.black ? moveText(r.black) : blackSkipped ? gap : "<span></span>") + "</li>";
     }).join("");
     els.moves.scrollTop = els.moves.scrollHeight;
 
@@ -419,18 +437,25 @@
       return state.result.winner === state.human ? "You win! You reached " + state.scores[state.human] + " points." :
         "The AI wins with " + state.scores[E.other(state.human)] + " points. Press New game to try again.";
     }
-    if (state.thinking) return state.note + "The AI is thinking…";
+    var last = state.history[state.history.length - 1];
+    if (state.thinking) {
+      var took = last && last.color === state.human && last.captured ?
+        "You took its " + NAMES[last.captured.toLowerCase()] + " (+" + last.gained + "). " : "";
+      return state.note + took + "The AI is thinking…";
+    }
     if (!els.promo.hidden) return "Choose a piece for your pawn.";
-    var last = state.history[state.history.length - 1], text = "";
+    if (state.selected !== null) {
+      var name = NAMES[state.board[state.selected].toLowerCase()];
+      return state.targets.length ? "Pick a square for your " + name + "." : "That " + name + " can't move right now.";
+    }
+    var text = "";
     if (last && last.color !== state.human) {
       text = "The AI moved its " + NAMES[last.piece.toLowerCase()] + " " + squareName(last.from) + " to " + squareName(last.to);
+      if (last.promo) text += " and made it a " + NAMES[last.promo.toLowerCase()];
       text += last.captured ? ", taking your " + NAMES[last.captured.toLowerCase()] + " (+" + last.gained + "). " : ". ";
     }
-    if (state.selected !== null) {
-      return text + (state.targets.length ? "Pick a square for your " + NAMES[state.board[state.selected].toLowerCase()] + "." :
-        "That " + NAMES[state.board[state.selected].toLowerCase()] + " can't move right now.");
-    }
-    return state.note + text + (state.history.length ? "Your move." : "You play " + state.human + ". Your move.");
+    return state.note + text + (state.history.length ? "Your move." :
+      "You play " + (state.human === "white" ? "White" : "Black") + ". Your move.");
   }
 
   function showGameOver() {
@@ -447,12 +472,17 @@
       els.overTitle.textContent = "The AI wins";
       els.overText.textContent = "It reached " + ai + " points. You had " + you + ".";
     }
-    show(els.over);
+    setOverlay(els.over, true);
     els.over.querySelector("[data-reset]").focus();
   }
 
-  function show(el) { el.hidden = false; }
-  function hide(el) { el.hidden = true; }
+  /* While a dialog covers the board, the board can't be focused or clicked. The
+     promotion picker is modal, so the panel is shut off too and Tab stays inside it. */
+  function setOverlay(el, open) {
+    el.hidden = !open;
+    els.board.inert = !els.promo.hidden || !els.over.hidden;
+    els.panel.inert = !els.promo.hidden;
+  }
 
   /* ---------- controls ---------- */
   function setup() {
@@ -461,8 +491,8 @@
     app.querySelectorAll("[data-reset]").forEach(function (b) { b.addEventListener("click", newGame); });
     app.querySelectorAll("[data-side]").forEach(function (b) {
       b.addEventListener("click", function () {
+        if (b.getAttribute("data-side") === state.human) return; // already playing that side
         state.human = b.getAttribute("data-side");
-        focusSq = state.human === "white" ? 52 : 12; // your e-pawn
         newGame();
       });
     });
@@ -473,13 +503,19 @@
       });
     });
     app.querySelector("[data-view-board]").addEventListener("click", function () {
-      hide(els.over);
+      setOverlay(els.over, false);
       focusSquare(focusSq);
     });
     app.addEventListener("keydown", function (e) {
       if (e.key !== "Escape") return;
       if (!els.promo.hidden) cancelPromotion();
-      else if (!els.over.hidden) hide(els.over);
+      else if (!els.over.hidden) { setOverlay(els.over, false); focusSquare(focusSq); }
+    });
+    els.promo.addEventListener("keydown", function (e) {
+      if (e.key !== "Tab") return; // keep Tab inside the promotion picker
+      var btns = els.promoChoices.querySelectorAll("button"), first = btns[0], lastBtn = btns[btns.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastBtn.focus(); }
+      else if (!e.shiftKey && document.activeElement === lastBtn) { e.preventDefault(); first.focus(); }
     });
     newGame();
   }
