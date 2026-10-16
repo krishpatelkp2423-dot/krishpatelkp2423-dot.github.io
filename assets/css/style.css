@@ -765,19 +765,16 @@ figure.portrait { margin: 0; }
 /* ---------- math (oscilloscope page; equations pre-rendered with KaTeX) ---------- */
 .math-intro { display: grid; gap: 1rem; }
 .math-intro > p { color: var(--ink-2); max-width: 70ch; }
-.math-toc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
-.math-toc a { display: grid; gap: 0.25rem; text-decoration: none; color: var(--ink); background: var(--sheet); border: 1px solid var(--rule); padding: 0.85rem 1rem; }
-.math-toc a:hover { border-color: var(--wire); }
-.math-toc .k { font: 500 0.68rem/1 var(--f-mono); color: var(--wire); text-transform: uppercase; letter-spacing: 0.09em; }
-.math-toc b { font: 600 1.15rem/1.15 var(--f-display); }
-.math-toc span:last-child { color: var(--ink-2); font-size: 0.92rem; }
-@media (max-width: 640px) { .math-toc { grid-template-columns: 1fr; } }
+.math-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2.5vw, 1.5rem); margin-top: clamp(1.25rem, 3vw, 2rem); }
+@media (max-width: 860px) { .math-grid { grid-template-columns: 1fr; } }
+.math-card .k { color: var(--wire); }
+.math-card .math-display { background: var(--paper); }
+.math-more { margin-top: 1.25rem; color: var(--ink-2); }
 .math-body { display: grid; gap: 0.85rem; color: var(--ink-2); min-width: 0; }
-.math-body > p, .math-body > ul, .math-body > ol { max-width: 80ch; }
+.math-body > p, .math-body > ul, .math-body > ol { max-width: 70ch; }
 .math-body p, .math-body li { color: var(--ink-2); }
 .math-body strong { color: var(--ink); font-weight: 600; }
 .math-body ul, .math-body ol { padding-left: 1.3rem; display: grid; gap: 0.35rem; }
-.math-body .math-h4 { font: 600 1.2rem/1.2 var(--f-display); color: var(--ink); margin-top: 0.9rem; letter-spacing: 0.01em; }
 .math-body .table-wrap { max-width: 100%; }
 .math-body table.spec { min-width: 0; }
 .math-body table.spec td:first-child { white-space: normal; }
