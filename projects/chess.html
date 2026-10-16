@@ -39,12 +39,13 @@
     <dl class="info">
       <div><dt>Type</dt><dd>Personal project</dd></div>
       <div><dt>Dates</dt><dd>Mar – Apr 2026</dd></div>
-      <div><dt>Stack</dt><dd>Python, Pygame</dd></div>
+      <div><dt>Stack</dt><dd>Python, Pygame · JavaScript web version</dd></div>
       <div><dt>AI</dt><dd>Q-learning / policy-based methods with function approximation</dd></div>
       <div><dt>Status</dt><dd><span class="status live">Game done · agent training</span></dd></div>
     </dl>
     <div class="btn-row">
-      <a class="btn btn-wire" href="https://github.com/krishpatelkp2423-dot/Chess_" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>GitHub repository</a>
+      <a class="btn btn-wire" href="#play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Play it in your browser</a>
+      <a class="btn btn-ghost" href="https://github.com/krishpatelkp2423-dot/Chess_" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>GitHub repository</a>
     </div>
   </header>
 </div>
@@ -62,7 +63,7 @@
         </ul>
         <p>Each side starts with <strong>41 points</strong> of material, so winning means taking a little more than a third of your opponent's army. The queen alone is worth 60% of a win.</p>
       </div>
-      <figure class="media"><button type="button" data-full="../assets/img/chess-board.jpg" data-caption="The game, with the scoreboard and piece values on the side panel." style="all:unset;cursor:zoom-in;display:block"><img width="558" height="440" style="--ar: 558 / 440" src="../assets/img/chess-board.jpg" alt="Chess board in Pygame with a side panel listing scores and piece values" loading="lazy"></button><figcaption><b>GAME</b>The Pygame board with the live scoreboard and the point values on the side panel.</figcaption></figure>
+      <figure class="media"><button type="button" data-full="../assets/img/chess-board.jpg" data-caption="The game, with the scoreboard and piece values on the side panel." style="all:unset;cursor:zoom-in;display:block"><img width="700" height="560" style="--ar: 700 / 560" src="../assets/img/chess-board.jpg" alt="Chess board in Pygame with a side panel listing scores and piece values" loading="lazy"></button><figcaption><b>GAME</b>The Pygame board with the live scoreboard and the point values on the side panel.</figcaption></figure>
     </div>
     <div class="pj-sub">
       <h3>Point values and their share of a win</h3>
@@ -79,9 +80,88 @@
   </div>
 </section>
 
+<section class="pj-section" id="play">
+  <div class="wrap">
+    <h2><span class="no">2</span>Play it against the AI</h2>
+    <div class="prose" style="margin-bottom:1.5rem">
+      <p>This is the same game, rebuilt in JavaScript so it runs right here in your browser. The rules match the desktop version: <strong>no check or checkmate</strong>, the king is an ordinary 2-point piece, and the <strong>first to 15 points wins</strong>. Click a piece to see where it can go, then click a square to move.</p>
+    </div>
+    <div class="chess-app" data-chess data-worker="../assets/js/chess-worker.js">
+      <div class="diagram-title chess-title"><span><b>LIVE</b> You vs. the AI · first to 15 points</span><span>Runs in your browser</span></div>
+      <div class="chess-stage">
+        <div class="chess-board" data-board role="group" aria-label="Chess board. Use the arrow keys to move between squares and Enter to pick a piece or a square."></div>
+        <div class="chess-overlay" data-promo hidden>
+          <div class="chess-dialog" role="dialog" aria-modal="true" aria-labelledby="promo-title">
+            <p class="chess-dialog-k" id="promo-title">Promote your pawn to</p>
+            <div class="promo-choices" data-promo-choices></div>
+          </div>
+        </div>
+        <div class="chess-overlay" data-over hidden>
+          <div class="chess-dialog" role="dialog" aria-labelledby="over-title" aria-describedby="over-text">
+            <p class="chess-dialog-k">Game over</p>
+            <h3 id="over-title" data-over-title></h3>
+            <p id="over-text" data-over-text></p>
+            <div class="btn-row">
+              <button class="btn btn-wire" type="button" data-reset>Play again</button>
+              <button class="btn btn-ghost" type="button" data-view-board>View board</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chess-panel">
+        <p class="cp-status" data-status role="status" aria-live="polite"></p>
+        <div class="cp-scores" data-scores>
+          <div class="cp-player" data-player="black">
+            <div class="cp-head">
+              <svg class="cp-icon" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><use href="#chess-pc-k"></use></svg>
+              <span class="cp-name">Black</span><span class="cp-tag" data-tag>AI</span><span class="cp-turn" data-turn>To move</span>
+              <span class="cp-pts"><b data-points>0</b>/15</span>
+            </div>
+            <div class="cp-bar" aria-hidden="true"><i data-bar></i></div>
+            <div class="cp-caps" data-caps role="img"></div>
+          </div>
+          <div class="cp-player" data-player="white">
+            <div class="cp-head">
+              <svg class="cp-icon" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><use href="#chess-pc-K"></use></svg>
+              <span class="cp-name">White</span><span class="cp-tag" data-tag>You</span><span class="cp-turn" data-turn>To move</span>
+              <span class="cp-pts"><b data-points>0</b>/15</span>
+            </div>
+            <div class="cp-bar" aria-hidden="true"><i data-bar></i></div>
+            <div class="cp-caps" data-caps role="img"></div>
+          </div>
+        </div>
+        <button class="btn btn-wire cp-reset" type="button" data-reset><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>New game</button>
+        <div class="cp-opts">
+          <div class="cp-opt">
+            <span class="cp-label" id="chess-side-label">Play as</span>
+            <div class="seg" role="group" aria-labelledby="chess-side-label">
+              <button type="button" data-side="white" aria-pressed="true">White</button>
+              <button type="button" data-side="black" aria-pressed="false">Black</button>
+            </div>
+          </div>
+          <div class="cp-opt">
+            <span class="cp-label" id="chess-level-label">AI level</span>
+            <div class="seg" role="group" aria-labelledby="chess-level-label">
+              <button type="button" data-level="easy" aria-pressed="false">Easy</button>
+              <button type="button" data-level="medium" aria-pressed="true">Medium</button>
+              <button type="button" data-level="hard" aria-pressed="false">Hard</button>
+            </div>
+          </div>
+        </div>
+        <div class="cp-log">
+          <span class="cp-label" id="chess-moves-label">Moves</span>
+          <ol class="cp-moves" data-moves aria-labelledby="chess-moves-label"></ol>
+        </div>
+      </div>
+      <noscript><p class="cp-status">The game needs JavaScript to run.</p></noscript>
+    </div>
+    <p class="diagram-note chess-note">The computer opponent searches ahead with minimax and alpha-beta pruning, the same engine as the desktop game. It isn't the reinforcement-learning agent, which is still training. Switching sides starts a new game; a new AI level applies from its next move. Castling and en passant aren't part of this version.</p>
+  </div>
+</section>
+
 <section class="pj-section">
   <div class="wrap">
-    <h2><span class="no">2</span>How a turn works</h2>
+    <h2><span class="no">3</span>How a turn works</h2>
     <div class="cols-2">
       <div class="diagram">
         <div class="diagram-title"><span><b>FIG 2-1</b> Turn logic</span><span>Repeats until someone hits 15</span></div>
@@ -118,7 +198,7 @@
 
 <section class="pj-section">
   <div class="wrap">
-    <h2><span class="no">3</span>Humans vs. the AI: the psychology of new rules</h2>
+    <h2><span class="no">4</span>Humans vs. the AI: the psychology of new rules</h2>
     <div class="prose" style="margin-bottom:1.5rem">
       <p>The most interesting part of this project is psychological. A human player sits down with years of chess instinct built around protecting the king and hunting for checkmate. The agent sits down with nothing but the rules and a reward. Changing the win condition lets me see which instincts help, which ones get in the way, and how fast each kind of player adjusts.</p>
       <p>Playtesting so far shows <strong>player strategies differ significantly from standard chess</strong>. The comparison with the trained agent is built around these questions:</p>
@@ -142,7 +222,7 @@
 
 <section class="pj-section">
   <div class="wrap">
-    <h2><span class="no">4</span>What I built</h2>
+    <h2><span class="no">5</span>What I built</h2>
     <div class="cols-2">
       <div class="box"><span class="k">Game development</span><p>Designed and implemented the board, piece movement, rule enforcement, and user interaction in Python with Pygame.</p></div>
       <div class="box"><span class="k">Rule-system redesign</span><p>Removed the checkmate logic and replaced it with point tracking, which meant making the rule handling modular enough to change the win condition cleanly.</p></div>
@@ -153,6 +233,7 @@
       <h3>Status</h3>
       <ul class="ticks">
         <li>Fully playable modified chess game with the custom rules</li>
+        <li>Web version on this page: the rules and search AI ported to JavaScript, with the AI thinking in a Web Worker</li>
         <li>Stable point tracking and win-condition logic</li>
         <li>Playtests show strategies that differ significantly from standard chess</li>
         <li>Reinforcement-learning agent in training</li>
@@ -163,9 +244,9 @@
 
 <section class="pj-section">
   <div class="wrap">
-    <h2><span class="no">5</span>Technologies &amp; skills</h2>
+    <h2><span class="no">6</span>Technologies &amp; skills</h2>
     <ul class="chips">
-      <li>Python</li><li>Pygame</li><li>Reinforcement learning</li><li>Q-learning</li><li>Function approximation</li><li>Game-state representation</li><li>Reward modeling</li><li>Rule-based logic</li><li>Human-centered gameplay analysis</li>
+      <li>Python</li><li>Pygame</li><li>JavaScript</li><li>Web Workers</li><li>Minimax / alpha-beta search</li><li>Reinforcement learning</li><li>Q-learning</li><li>Function approximation</li><li>Game-state representation</li><li>Reward modeling</li><li>Rule-based logic</li><li>Human-centered gameplay analysis</li>
     </ul>
   </div>
 </section>
@@ -187,5 +268,7 @@
   <p></p>
 </dialog>
 <script src="../assets/js/main.js" defer></script>
+<script src="../assets/js/chess-engine.js" defer></script>
+<script src="../assets/js/chess.js" defer></script>
 </body>
 </html>
