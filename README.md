@@ -9,8 +9,8 @@ Static portfolio site (plain HTML, CSS and JavaScript, no build step). GitHub Pa
 ```
 index.html                       Home: hero, projects, GitHub repos, research, skills, about, contact
 projects/*.html                  One page per project (flowcharts, video, photos)
-projects/oscilloscope.html       Includes "The math behind it": Laplace transforms, sampling,
-                                 noise and firmware math, with equations pre-rendered as HTML
+projects/oscilloscope.html       Includes "The math behind it": a short tour of the Laplace transforms,
+                                 sampling, noise and firmware math, with equations pre-rendered as HTML
 projects/chess.html              Includes a playable version of the modified chess game
 research/quantum-photonics.html  Integrated quantum photonics research (Shcherbakov Nanophotonics Lab)
 assets/css/style.css             All styles (light + dark theme)
@@ -24,7 +24,7 @@ assets/video/                    Demo videos (H.264 MP4) and poster frames
 assets/vendor/katex/             KaTeX 0.16.11 stylesheet and fonts for the math (MIT license)
 assets/vendor/dejavu/LICENSE     License for the DejaVu chess glyphs used as the chess pieces
 assets/Krish_Patel_Resume.pdf    Resume linked across the site
-tools/math/                      Optional script that regenerates the oscilloscope math section
+tools/math/                      Text and optional build script for the oscilloscope math section
 tools/chess/                     Optional script that regenerates the chess piece shapes
 .nojekyll                        Tells GitHub Pages to serve the files as-is
 ```
@@ -37,14 +37,14 @@ tools/chess/                     Optional script that regenerates the chess piec
 
 ## The oscilloscope math section
 
-The "math behind it" section of `projects/oscilloscope.html` comes from the "Theory and math" chapter of the [Oscilloscope repository's README](https://github.com/krishpatelkp2423-dot/Oscilloscope#theory-and-math). The README is the source; the page is generated from it. Every equation is rendered to static HTML ahead of time with [KaTeX](https://katex.org), so the page shows math without running any JavaScript. Only `assets/vendor/katex/katex.min.css` and its fonts are needed in the browser.
+The "math behind it" section of `projects/oscilloscope.html` is a short version of the "Theory and math" chapter in the [Oscilloscope repository's README](https://github.com/krishpatelkp2423-dot/Oscilloscope#theory-and-math). The page links to that chapter for the longer explanations. The section's text lives in `tools/math/oscilloscope-math.md`: an intro paragraph, then one `### ` heading per card, with math written the way GitHub expects (`` $`...`$ `` inline, ` ```math ` blocks for display). Every equation is rendered to static HTML ahead of time with [KaTeX](https://katex.org), so the page shows math without running any JavaScript. Only `assets/vendor/katex/katex.min.css` and its fonts are needed in the browser.
 
-The site itself still has no build step. The script below is only needed when the chapter changes. It needs Node.js and Python 3:
+The site itself still has no build step. The script below is only needed after editing `oscilloscope-math.md`. It needs Node.js and Python 3:
 
 ```bash
 (cd tools/math && npm install)          # once: installs KaTeX into tools/math/node_modules
 pip install markdown                    # once
-python3 tools/math/build_math.py ../Oscilloscope/README.md
+python3 tools/math/build_math.py
 ```
 
 The script replaces everything between the `MATH:START` and `MATH:END` comments in `projects/oscilloscope.html`, so don't hand-edit inside them. It stops with an error if any equation fails to render.
