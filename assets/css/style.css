@@ -999,3 +999,5 @@ table.spec th.num { text-align: right; }
 .lineplot .p-curve { fill: none; stroke: var(--wire); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .lineplot .p-lvl { fill: none; stroke: var(--title); stroke-width: 1.25; stroke-dasharray: 4 4; }
 .lineplot .p-dot { fill: var(--title); stroke: var(--sheet); stroke-width: 2; }
+.lineplot .p-grid { fill: none; stroke: var(--rule); stroke-width: 1; }
+.lineplot .p-band { fill: var(--wire-soft); }

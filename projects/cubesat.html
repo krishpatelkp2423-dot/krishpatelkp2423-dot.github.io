@@ -50,9 +50,14 @@
       <div><dt>Team</dt><dd>UCI CubeSat · Systems</dd></div>
       <div><dt>Dates</dt><dd>Aug 2026 – present</dd></div>
       <div><dt>Spacecraft</dt><dd>2U CubeSat</dd></div>
-      <div><dt>My role</dt><dd>FlatSat lead, power integration, systems docs</dd></div>
+      <div><dt>My role</dt><dd>FlatSat lead, power integration, requirements owner for the balloon flight</dd></div>
       <div><dt>Status</dt><dd><span class="status live">In progress</span></dd></div>
+      <div><dt>Next milestone</dt><dd>Balloon test flight to about 32 km, target April 17, 2027</dd></div>
     </dl>
+    <div class="btn-row">
+      <a class="btn btn-wire" href="#balloon">The balloon test flight <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-ghost" href="#block-diagram">System block diagram</a>
+    </div>
   </header>
 </div>
 
@@ -197,9 +202,121 @@
   </div>
 </section>
 
+<section class="pj-section" id="balloon">
+  <div class="wrap">
+    <h2><span class="no">6</span>Next milestone: a balloon test flight</h2>
+    <div class="cols-2">
+      <div class="prose">
+        <p>Before the satellite goes to orbit, the team is flying its electronics on a weather balloon. We call it a <strong>high-altitude FlatSat</strong>: the real power board, flight computer, radio, sensors, wiring harness and flight software ride to about 32 km, run on their own in air colder than −60 °C at about 1% of sea-level pressure, and come back down under a parachute. The target launch date is <strong>April 17, 2027</strong>.</p>
+        <p><strong>My part: I own the requirements for this flight.</strong> The mission has 38 requirements and 15 test cases. I keep them in the team's master requirements sheet and track how each one gets verified, by test, analysis or inspection.</p>
+      </div>
+      <div class="diagram">
+        <div class="diagram-title"><span><b>FIG 6-1</b> Planned flight profile</span><span>Planning values</span></div>
+        <svg class="lineplot" viewBox="0 0 520 290" role="img" aria-labelledby="hab-title hab-desc">
+          <title id="hab-title">Planned altitude of the balloon flight against time</title>
+          <desc id="hab-desc">The payload climbs at about 5 meters per second for 1 hour 47 minutes to about 32 kilometers, where the balloon bursts. It then falls under a parachute, quickly at first and slowing as the air thickens, and lands about 2 hours 27 minutes after launch. The coldest air, about minus 65 degrees Celsius, is between 13 and 18 kilometers.</desc>
+          <rect class="p-band" x="50" y="144.1" width="450" height="29.4"/>
+          <text x="42" y="196.1" text-anchor="end">10</text><path class="p-grid" d="M50 191.1 H500"/><text x="42" y="137.3" text-anchor="end">20</text><path class="p-grid" d="M50 132.3 H500"/><text x="42" y="78.4" text-anchor="end">30</text><path class="p-grid" d="M50 73.4 H500"/>
+          <path class="p-axis" d="M50 32 V250 H500"/>
+          <path class="p-curve" d="M50.0 250.0 L350.9 61.7 C367.8 167.6 404.4 214.7 463.4 250.0"/>
+          <circle class="p-dot" cx="350.9" cy="61.7" r="5"/>
+          <circle class="p-dot" cx="463.4" cy="250.0" r="5"/>
+          <text class="p-strong" x="340.9" y="53.7" text-anchor="end">Burst ≈ 32 km, +1 h 47 min</text>
+          <text class="p-strong" x="514" y="194.1" text-anchor="end">Lands</text>
+          <text x="514" y="214.7" text-anchor="end">+2 h 27 min</text>
+          <text x="58" y="163.8">−65 °C air</text>
+          <text x="196.2" y="208.8">Climb ≈ 5 m/s</text>
+          <text x="379.1" y="108.7">Parachute</text>
+          <text x="50.0" y="270" text-anchor="start">Launch</text><text x="218.8" y="270" text-anchor="middle">+1 h</text><text x="387.5" y="270" text-anchor="middle">+2 h</text>
+          <text class="p-strong" x="54" y="22">Altitude, km</text>
+        </svg>
+      </div>
+    </div>
+    <div class="stats" style="margin-top:1.5rem">
+      <div class="stat"><span class="n">≈ 32 km</span><span class="l">planned burst altitude</span><span class="d">Anywhere from 28 to 35 km is possible.</span></div>
+      <div class="stat"><span class="n">≈ 2.5 h</span><span class="l">from launch to landing</span><span class="d">The payload lands 50 to 200 km downwind and is tracked by radio and a satellite tracker.</span></div>
+      <div class="stat"><span class="n">−75 °C</span><span class="l">design temperature for outside air</span><span class="d">A foam shell and a battery heater keep the cells at 0 °C or warmer.</span></div>
+      <div class="stat"><span class="n">38 / 15</span><span class="l">requirements and test cases</span><span class="d">Each requirement names the test, analysis or inspection that checks it.</span></div>
+    </div>
+
+    <div class="pj-sub">
+      <h3>What the flight can and cannot prove</h3>
+      <div class="table-wrap">
+        <table class="spec">
+          <thead><tr><th>It can prove</th><th>It cannot prove</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight:400;white-space:normal">The power board, flight computer, radio, sensors and harness working together on battery power for hours</td><td>Solar charging and the power balance in orbit</td></tr>
+            <tr><td style="font-weight:400;white-space:normal">Flight software running on its own: modes, logging, telemetry, and recovery from faults</td><td>Attitude control, because a payload hanging on a line cannot be steered</td></tr>
+            <tr><td style="font-weight:400;white-space:normal">A radio link over more than 100 km, with a GPS position in every packet</td><td>Vibration and shock from a rocket launch</td></tr>
+            <tr><td style="font-weight:400;white-space:normal">Operation in very cold, thin air, where parts lose their air cooling</td><td>Thermal cycling, vacuum and radiation over months in orbit</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="pj-sub">
+      <h3>Requirements I track</h3>
+      <div class="table-wrap">
+        <table class="spec">
+          <thead><tr><th>ID</th><th>The payload shall</th><th>Why</th><th>Checked by</th></tr></thead>
+          <tbody>
+            <tr><td>HR-01</td><td>Run the whole mission, from power-on to recovery, without any ground command</td><td>The whole bus is tested as one system</td><td>Test</td></tr>
+            <tr><td>HR-02</td><td>Run at least 8 hours on one battery charge, heater included</td><td>About 3.5 hours powered, plus holds and recovery</td><td>Test</td></tr>
+            <tr><td>HR-03</td><td>Weigh no more than 2.72 kg (6 lb) packed</td><td>Keeps the flight inside the FAA's rules for light balloons</td><td>Inspection</td></tr>
+            <tr><td>HR-11</td><td>Detect launch, burst and landing by itself and change mode within 60 seconds</td><td>The system has to run with no human help</td><td>Test</td></tr>
+            <tr><td>HR-12</td><td>After any reset, be back in the correct mode and transmitting within 60 seconds</td><td>The flight computer has to recover from faults by itself</td><td>Test</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="diagram-note" style="margin-top:0.75rem">Five of the 38. A flight counts as a full success if telemetry is received for at least 90% of it, the onboard log is at least 95% complete, every reset recovers automatically, and the payload is recovered within 24 hours.</p>
+    </div>
+
+    <div class="pj-sub" id="power-budget">
+      <h3>Power budget for the flight</h3>
+      <div class="cols-2">
+        <div class="table-wrap">
+          <table class="spec">
+            <thead><tr><th>Load</th><th class="num">Average power</th></tr></thead>
+            <tbody>
+              <tr><td style="font-weight:400">Flight computer</td><td class="num">0.50 W</td></tr>
+              <tr><td style="font-weight:400">Power board electronics and regulators</td><td class="num">0.30 W</td></tr>
+              <tr><td style="font-weight:400">Radio, transmitting 8% of the time</td><td class="num">0.26 W</td></tr>
+              <tr><td style="font-weight:400">Sensors and SD card logging</td><td class="num">0.20 W</td></tr>
+              <tr><td style="font-weight:400">Comms microcontroller and radio listening</td><td class="num">0.15 W</td></tr>
+              <tr><td style="font-weight:400">GPS</td><td class="num">0.10 W</td></tr>
+              <tr><td>Total, at about 85% converter efficiency</td><td class="num">≈ 1.8 W</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="prose">
+          <p>The team plans around <strong>2.0 W</strong>. Over the 8 hours the battery has to last, that is 16 Wh. The battery heater adds 12 Wh and the magnetorquer driver tests add 0.5 Wh, for about <strong>28.5 Wh</strong> in total.</p>
+          <p>The battery is a custom pack of six 18650 cells that stores about 72 Wh. That is roughly <strong>2.5 times</strong> what the flight needs, or 2 times if the cold costs a fifth of its capacity.</p>
+          <p class="diagram-note">These are the team's estimates from the mission's concept of operations (Rev C, November 2026). They get replaced with measured values in the endurance test.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pj-sub">
+      <h3>The road to launch</h3>
+      <div class="table-wrap">
+        <table class="spec">
+          <thead><tr><th>Phase</th><th>When</th><th>Done when</th></tr></thead>
+          <tbody>
+            <tr><td>Build and integrate</td><td>Now to mid-February 2027</td><td>The integrated payload passes its functional test</td></tr>
+            <tr><td>Test campaign</td><td>Mid-February to early April</td><td>Every test case passes and the flight readiness review is passed</td></tr>
+            <tr><td>Launch campaign</td><td>The two weeks before launch</td><td>Site, permissions, helium, radio licenses and the landing prediction are all in order</td></tr>
+            <tr><td>Launch, flight and recovery</td><td>April 17, 2027 (target)</td><td>The payload is recovered and powered off</td></tr>
+            <tr><td>Post-flight</td><td>The four weeks after</td><td>Data is archived and the flight report is out</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="pj-section" id="block-diagram">
   <div class="wrap">
-    <h2><span class="no">6</span>System block diagram</h2>
+    <h2><span class="no">7</span>System block diagram</h2>
     <div class="prose" style="margin-bottom:1.25rem">
       <p>To integrate hardware on the FlatSat I need to know where every wire goes. I put together this block diagram of the whole satellite from each subteam's signal list. It shows <strong>75 connections, one line per wire</strong>: the four solar panels and the battery into the power board, the power rails out to every load, and the signals that cross between the three boards in the stack.</p>
     </div>
@@ -224,7 +341,7 @@
 
 <section class="pj-section">
   <div class="wrap">
-    <h2><span class="no">7</span>From the project</h2>
+    <h2><span class="no">8</span>From the project</h2>
     <div class="gallery fit">
       <figure class="media wide"><button type="button" data-full="../assets/img/cubesat-stk.jpg" data-caption="Orbit simulation in Systems Tool Kit (STK)."><img width="1160" height="510" style="--ar: 1160 / 510" src="../assets/img/cubesat-stk.jpg" alt="STK 3D globe and 2D ground-track views of the satellite's orbit" loading="lazy"></button><figcaption><b>STK</b>Orbit simulation in Systems Tool Kit: 3D view and ground track, used to validate orbital paths and communication windows.</figcaption></figure>
       <figure class="media wide"><button type="button" data-full="../assets/img/cubesat-power-3v3.png" data-caption="Power board: 3.3 V regulation sheet."><img width="1800" height="1000" style="--ar: 1800 / 1000" src="../assets/img/cubesat-power-3v3.png" alt="Schematic of the 3.3 V switching buck regulator, rail current monitor, and output decoupling" loading="lazy"></button><figcaption><b>PWR</b>Power board, 3.3 V regulation sheet: a TPS54531 buck regulator fed from the e-fuse output, an INA180 current-sense amplifier on the 3.3 V rail reporting to the STM32, and output decoupling with a status LED.</figcaption></figure>
@@ -236,7 +353,7 @@
 
 <section class="pj-section">
   <div class="wrap">
-    <h2><span class="no">8</span>Methods &amp; tools</h2>
+    <h2><span class="no">9</span>Methods &amp; tools</h2>
     <ul class="chips">
       <li>Systems-engineering V-model</li><li>FlatSat test bench</li><li>Systems Tool Kit (STK)</li><li>FMEA</li><li>Interface Control Documents</li><li>CONOPS</li><li>Mass / power / link budgets</li><li>Requirements V&amp;V</li><li>Power wiring &amp; current measurement</li>
     </ul>
