@@ -992,10 +992,10 @@ table.spec .num { text-align: right; white-space: nowrap; }
 table.spec th.num { text-align: right; }
 
 /* ---------- small line plots ---------- */
-.plot { width: 100%; height: auto; display: block; }
-.plot text { font: 500 14px var(--f-mono); fill: var(--ink-2); }
-.plot .p-strong { fill: var(--ink); }
-.plot .p-axis { fill: none; stroke: var(--rule-strong); stroke-width: 1.5; }
-.plot .p-curve { fill: none; stroke: var(--wire); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.plot .p-lvl { fill: none; stroke: var(--title); stroke-width: 1.25; stroke-dasharray: 4 4; }
-.plot .p-dot { fill: var(--title); stroke: var(--sheet); stroke-width: 2; }
+.lineplot { width: 100%; height: auto; display: block; }
+.lineplot text { font: 500 14px var(--f-mono); fill: var(--ink-2); }
+.lineplot .p-strong { fill: var(--ink); }
+.lineplot .p-axis { fill: none; stroke: var(--rule-strong); stroke-width: 1.5; }
+.lineplot .p-curve { fill: none; stroke: var(--wire); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.lineplot .p-lvl { fill: none; stroke: var(--title); stroke-width: 1.25; stroke-dasharray: 4 4; }
+.lineplot .p-dot { fill: var(--title); stroke: var(--sheet); stroke-width: 2; }
