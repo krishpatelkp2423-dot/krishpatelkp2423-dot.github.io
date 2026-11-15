@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Co-Packaged Optics | Krish Patel</title>
+<meta name="description" content="Co-packaged optics (CPO) research at UC Irvine: how a CPO link works from the switch chip to the fiber, how modulators encode data in light, how the optics are packaged with the chip, and what is still unsolved.">
+<meta name="author" content="Krish Patel">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Krish Patel · Engineering Portfolio">
+<meta property="og:title" content="Co-Packaged Optics | Krish Patel">
+<meta property="og:description" content="Co-packaged optics (CPO) research at UC Irvine: how a CPO link works from the switch chip to the fiber, how modulators encode data in light, how the optics are packaged with the chip, and what is still unsolved.">
+<meta property="og:url" content="https://krishpatelkp2423-dot.github.io/research/co-packaged-optics.html">
+<meta property="og:image" content="https://krishpatelkp2423-dot.github.io/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://krishpatelkp2423-dot.github.io/research/co-packaged-optics.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem("kp-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="Krish Patel, home">
+      <span class="chip-logo" aria-hidden="true"><i></i>KP</span>
+      <span><span class="brand-name">Krish Patel</span><span class="brand-sub">Electrical Engineering · UCI</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links"><li><a href="../index.html#projects">Projects</a></li><li><a href="../index.html#research" aria-current="page">Research</a></li><li><a href="../index.html#skills">Skills</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+    <div class="nav-tools">
+      <a class="btn btn-sm btn-ghost btn-resume" href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Resume</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" data-menu aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <header class="pj-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html#research">Research</a><span>/</span><span>co-packaged-optics</span></nav>
+    <span class="net">Shcherbakov Nanophotonics Lab · UC Irvine</span>
+    <h1>Co-Packaged Optics</h1>
+    <p class="pj-lede">AI clusters move so much data between chips that copper wiring has become the limit. Co-packaged optics (CPO) puts the photonic chip in the same package as the switch or processor, so data becomes light a few millimeters from where it is made. I'm studying how these links work: the components, how data is encoded in light, how the optics are packaged, and what is still unsolved.</p>
+    <dl class="info">
+      <div><dt>Lab</dt><dd>Shcherbakov Nanophotonics Lab, UC Irvine</dd></div>
+      <div><dt>My role</dt><dd>Undergraduate researcher</dd></div>
+      <div><dt>Dates</dt><dd>Nov 2026 – present</dd></div>
+      <div><dt>So far</dt><dd>Literature review and a 33-slide technical presentation</dd></div>
+      <div><dt>Main source</dt><dd><a href="https://doi.org/10.1038/s41928-026-01681-6" target="_blank" rel="noopener">Kim et al., <em>Nature Electronics</em> 9, 853–867 (2026)</a></dd></div>
+    </dl>
+    <div class="btn-row">
+      <a class="btn btn-wire" href="#encoding">How data gets onto light <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-ghost" href="#did">What I did</a>
+    </div>
+  </header>
+</div>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">1</span>Why move the optics into the package</h2>
+    <div class="cols-2">
+      <div class="box"><span class="k">Today: pluggable optics</span><p>In a datacenter switch, data leaves the chip as an electrical signal and crosses the circuit board to a pluggable optical module at the front panel. At today's lane speeds copper only works over a meter or two, and driving those traces costs power and needs heavy signal processing to clean up the result.</p></div>
+      <div class="box"><span class="k">The goal: co-packaged optics</span><p>Put the photonic chip inside the same package as the switch or processor. The electrical path shrinks from the length of a board to a few millimeters, which cuts the energy spent per bit and leaves room for more bandwidth at the edge of the chip.</p></div>
+    </div>
+    <p class="callout" style="margin-top:1.25rem"><strong>Co-packaged describes where the optics sit, not how far the light goes.</strong> CPO replaces copper on the short hops inside and between racks, where most datacenter traffic stays. Long links between buildings and cities use separate coherent transceivers.</p>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">2</span>The link, end to end</h2>
+    <div class="diagram">
+      <div class="diagram-title"><span><b>FIG 2-1</b> One direction of a CPO link</span><span>Electrical → optical → electrical</span></div>
+      <ol class="flow">
+        <li><div class="node io"><span class="part">ASIC</span><span class="nm">Where the bits start</span><span class="ds">The switch chip or GPU doing the work</span></div></li>
+        <li><div class="node"><span class="part">SerDes</span><span class="nm">Pack the data</span><span class="ds">Many slow parallel wires become a few fast lanes</span></div></li>
+        <li><div class="node"><span class="part">Laser + modulator</span><span class="nm">Write bits onto light</span><span class="ds">A steady laser beam is modulated with the data</span></div></li>
+        <li><div class="node"><span class="part">WDM multiplexer</span><span class="nm">Combine the colors</span><span class="ds">Several wavelengths share one fiber</span></div></li>
+        <li><div class="node"><span class="part">Photodiode + TIA</span><span class="nm">Back to a voltage</span><span class="ds">Light becomes current, then an amplified signal</span></div></li>
+        <li><div class="node end"><span class="part">SerDes + ASIC</span><span class="nm">Where the bits land</span><span class="ds">The receiving chip unpacks the lanes</span></div></li>
+      </ol>
+    </div>
+    <p class="diagram-note" style="margin-top:0.75rem">SerDes is short for serializer/deserializer. It exists because the edge of a chip only has room for so many pins and fibers. A TIA is a transimpedance amplifier, which turns the photodiode's small current into a usable voltage.</p>
+  </div>
+</section>
+
+<section class="pj-section" id="encoding">
+  <div class="wrap">
+    <h2><span class="no">3</span>How data gets onto light</h2>
+    <div class="prose" style="margin-bottom:1.25rem">
+      <p>A light wave has a few properties a modulator can change, and each one is a way to carry data. Short-reach CPO mostly changes the <strong>brightness</strong>, because a plain photodiode can read it. Changing the <strong>phase</strong> carries more data but needs a reference laser at the receiver, so it is used on long links.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="spec">
+        <thead><tr><th>Encoding</th><th>What changes</th><th>Bits per symbol</th><th>Receiver</th><th>Typical use</th></tr></thead>
+        <tbody>
+          <tr><td>NRZ</td><td>Brightness, 2 levels</td><td>1</td><td>Photodiode</td><td>Short reach</td></tr>
+          <tr><td>PAM4</td><td>Brightness, 4 levels</td><td>2</td><td>Photodiode</td><td>Short-reach CPO, the most common today</td></tr>
+          <tr><td>BPSK / QPSK</td><td>Phase, 2 or 4 states</td><td>1 or 2</td><td>Coherent: mixes the signal with a reference laser</td><td>Long reach</td></tr>
+          <tr><td>16-QAM</td><td>Brightness and phase together</td><td>4</td><td>Coherent</td><td>Long reach</td></tr>
+          <tr><td>Polarization multiplexing</td><td>Two polarizations, each with its own data</td><td>Doubles the above</td><td>Coherent, with signal processing to untangle the two</td><td>Long reach</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="callout" style="margin-top:1.25rem"><strong>Wavelength-division multiplexing (WDM)</strong> is how CPO scales. Several colors of light travel down one fiber without interfering, and each color is modulated separately. Four colors at 200 Gb/s each put 800 Gb/s on a single fiber.</p>
+    <div class="pj-sub">
+      <h3>Worked example: PAM4 from a Mach-Zehnder modulator</h3>
+      <div class="cols-2">
+        <div class="prose">
+          <p>A Mach-Zehnder modulator splits the light into two waveguide arms, shifts the phase in one or both, and joins them again. When the arms are in step the light adds up. When they are half a cycle apart it cancels. The output power is</p>
+          <p style="font-family:var(--f-mono);color:var(--ink)">P<sub>out</sub> = P<sub>in</sub> · cos²(Δφ / 2)</p>
+          <p>PAM4 needs four evenly spaced brightness levels. Because the curve is not a straight line, the four phase shifts that produce them are not evenly spaced, so the drive voltages have to be chosen to correct for the curve.</p>
+        </div>
+        <div class="diagram">
+          <div class="diagram-title"><span><b>FIG 3-1</b> Mach-Zehnder transfer curve</span><span>Four PAM4 levels</span></div>
+          <svg class="plot" viewBox="0 0 640 300" role="img" aria-labelledby="mzm-title mzm-desc">
+          <title id="mzm-title">Output power of a Mach-Zehnder modulator against the phase difference between its arms</title>
+          <desc id="mzm-desc">The curve falls from full power at zero phase difference to zero power at a phase difference of pi, following cosine squared of half the phase difference. Four evenly spaced power levels for PAM4 sit at phase differences of 0, 0.39 pi, 0.61 pi and pi, so the phase steps are not evenly spaced.</desc>
+          <path class="p-axis" d="M70 30 V250 H610"/>
+          <path class="p-lvl" d="M70.0 30.0 H70.0 V250.0"/><circle class="p-dot" cx="70.0" cy="30.0" r="5"/><text x="60.0" y="34.0" text-anchor="end">11</text><path class="p-lvl" d="M70.0 103.3 H281.6 V250.0"/><circle class="p-dot" cx="281.6" cy="103.3" r="5"/><text x="60.0" y="107.3" text-anchor="end">10</text><text x="281.6" y="268.0" text-anchor="middle">0.39π</text><path class="p-lvl" d="M70.0 176.7 H398.4 V250.0"/><circle class="p-dot" cx="398.4" cy="176.7" r="5"/><text x="60.0" y="180.7" text-anchor="end">01</text><text x="398.4" y="268.0" text-anchor="middle">0.61π</text><path class="p-lvl" d="M70.0 250.0 H610.0 V250.0"/><circle class="p-dot" cx="610.0" cy="250.0" r="5"/><text x="60.0" y="254.0" text-anchor="end">00</text>
+          <polyline class="p-curve" points="70.0,30.0 74.5,30.0 79.0,30.2 83.5,30.3 88.0,30.6 92.5,30.9 97.0,31.4 101.5,31.8 106.0,32.4 110.5,33.0 115.0,33.7 119.5,34.5 124.0,35.4 128.5,36.3 133.0,37.3 137.5,38.4 142.0,39.5 146.5,40.7 151.0,42.0 155.5,43.3 160.0,44.7 164.5,46.2 169.0,47.7 173.5,49.3 178.0,51.0 182.5,52.7 187.0,54.5 191.5,56.4 196.0,58.3 200.5,60.2 205.0,62.2 209.5,64.3 214.0,66.4 218.5,68.6 223.0,70.8 227.5,73.0 232.0,75.3 236.5,77.7 241.0,80.1 245.5,82.5 250.0,85.0 254.5,87.5 259.0,90.1 263.5,92.6 268.0,95.3 272.5,97.9 277.0,100.6 281.5,103.3 286.0,106.0 290.5,108.8 295.0,111.5 299.5,114.3 304.0,117.1 308.5,120.0 313.0,122.8 317.5,125.6 322.0,128.5 326.5,131.4 331.0,134.2 335.5,137.1 340.0,140.0 344.5,142.9 349.0,145.8 353.5,148.6 358.0,151.5 362.5,154.4 367.0,157.2 371.5,160.0 376.0,162.9 380.5,165.7 385.0,168.5 389.5,171.2 394.0,174.0 398.5,176.7 403.0,179.4 407.5,182.1 412.0,184.7 416.5,187.4 421.0,189.9 425.5,192.5 430.0,195.0 434.5,197.5 439.0,199.9 443.5,202.3 448.0,204.7 452.5,207.0 457.0,209.2 461.5,211.4 466.0,213.6 470.5,215.7 475.0,217.8 479.5,219.8 484.0,221.7 488.5,223.6 493.0,225.5 497.5,227.3 502.0,229.0 506.5,230.7 511.0,232.3 515.5,233.8 520.0,235.3 524.5,236.7 529.0,238.0 533.5,239.3 538.0,240.5 542.5,241.6 547.0,242.7 551.5,243.7 556.0,244.6 560.5,245.5 565.0,246.3 569.5,247.0 574.0,247.6 578.5,248.2 583.0,248.6 587.5,249.1 592.0,249.4 596.5,249.7 601.0,249.8 605.5,250.0 610.0,250.0"/>
+          <text x="70" y="268" text-anchor="middle">0</text>
+          <text x="610" y="268" text-anchor="middle">π</text>
+          <text x="340" y="290" text-anchor="middle">Phase difference between the two arms, Δφ</text>
+          <text class="p-strong" x="74" y="20">Light out (PAM4 bits)</text>
+        </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">4</span>The modulators compared</h2>
+    <div class="table-wrap">
+      <table class="spec">
+        <thead><tr><th>Modulator</th><th>How it works</th><th>Strength</th><th>Weakness</th></tr></thead>
+        <tbody>
+          <tr><td>Mach-Zehnder</td><td>A phase shift between two arms sets the brightness by interference</td><td>Works over a wide range of wavelengths, linear enough for clean PAM4, tolerant of temperature</td><td>Larger, and needs more drive power</td></tr>
+          <tr><td>Microring</td><td>A ring that resonates at one color. The data voltage nudges the resonance toward or away from the laser, which dims or passes the light</td><td>Tiny and efficient, and each ring only touches its own color, so a row of them suits dense WDM</td><td>Drifts with temperature, so each ring needs a heater and a control loop</td></tr>
+          <tr><td>Electro-absorption</td><td>A voltage changes how strongly the material absorbs light</td><td>Compact and fast</td><td>Works over a narrow range of wavelengths</td></tr>
+          <tr><td>VCSEL</td><td>No separate modulator: the laser's drive current is changed directly</td><td>Cheapest and lowest power</td><td>Reach of about 100 m, and poor wavelength control for WDM</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="diagram-note" style="margin-top:0.75rem">The same ring structure does a second job at the receiver. As a fixed filter it pulls one color off the fiber and sends it to its own photodiode.</p>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">5</span>Packaging: bringing the optics to the chip</h2>
+    <div class="table-wrap" style="margin-bottom:1.25rem">
+      <table class="spec">
+        <thead><tr><th>Approach</th><th>How the photonic and electronic chips connect</th><th>Trade-off</th></tr></thead>
+        <tbody>
+          <tr><td>2D</td><td>Side by side, joined by wire bonds</td><td rowspan="2">Mature and cheap, with the longest connections</td></tr>
+          <tr><td>2.5D</td><td>Side by side on an interposer, joined by micro-bumps</td></tr>
+          <tr><td>3D</td><td>Stacked, joined by vias through the silicon or by direct copper bonds</td><td>More bandwidth in less area, but harder to cool</td></tr>
+          <tr><td>Monolithic</td><td>Transistors and photonics built on one chip</td><td>Best performance on paper, least mature</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cols-2">
+      <div class="box"><span class="k">Why an interposer</span><p>An interposer is a thin layer of silicon or glass with wiring far finer than a circuit board. Chips mounted side by side on it connect over short, dense wires.</p></div>
+      <div class="box"><span class="k">Why all the bumps</span><p>Bumps are tiny solder connections that carry signals and power between the layers of a package. They get smaller the closer they are to the chip.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">6</span>What is still holding CPO back</h2>
+    <div class="cols-3">
+      <div class="box"><span class="k">Heat</span><p>Lasers and microrings drift with temperature, and the chip beside them runs hot. Approaches: better cooling, rings designed to drift less, and circuits that keep re-tuning them.</p></div>
+      <div class="box"><span class="k">Power</span><p>Signal processing and error correction can eat the energy CPO saves. Approach: keep links short and clean enough to skip them.</p></div>
+      <div class="box"><span class="k">Lasers</span><p>Silicon emits light poorly. Approaches: bond or print laser material onto the chip, or keep the laser outside the package where it runs cooler and can be replaced.</p></div>
+      <div class="box"><span class="k">Alignment</span><p>Each fiber has to line up with its waveguide to within a micrometer, at production volume. Edge couplers lose the least light but are the hardest to align. Grating couplers are easier but lose more.</p></div>
+      <div class="box"><span class="k">Reliability</span><p>The materials in a package expand at different rates as they heat up, which stresses the joints. Approach: glass matched to silicon, and long-term testing.</p></div>
+      <div class="box"><span class="k">Standards</span><p>Every photonic foundry works differently, so designs do not move easily from one to another. This one is still open.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section" id="did">
+  <div class="wrap">
+    <h2><span class="no">7</span>What I did</h2>
+    <div class="cols-2">
+      <div class="box"><span class="k">Architecture</span><p>Researched CPO architectures for AI and high-performance computing, focusing on how moving photonics into the same package as the ASIC gets past the bandwidth and energy limits of copper and pluggable transceivers.</p></div>
+      <div class="box"><span class="k">The full link</span><p>Examined the electrical-to-optical link, including SerDes, external and integrated lasers, wavelength-division multiplexing, germanium photodetectors and transimpedance amplifiers, to understand how data moves between chips.</p></div>
+      <div class="box"><span class="k">Modulators and encoding</span><p>Compared Mach-Zehnder, microring, electro-absorption and VCSEL designs, and how each encodes data through intensity (NRZ and PAM4), phase (BPSK and QPSK), QAM and polarization multiplexing.</p></div>
+      <div class="box"><span class="k">Packaging</span><p>Evaluated 2D, 2.5D interposer, 3D-stacked and monolithic integration of photonics and electronics, looking at micro-bump and through-silicon-via connections, fiber coupling losses, thermal drift and energy per bit.</p></div>
+    </div>
+    <p class="callout" style="margin-top:1.25rem"><strong>Presentation.</strong> I built a 33-slide technical presentation, "How Co-Packaged Optics Encode Data in Light", covering the components of a link, encoding and modulators, packaging, the open problems, and where the field is heading.</p>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">8</span>Key terms</h2>
+    <ul class="chips">
+      <li>Co-packaged optics</li><li>Silicon photonics</li><li>SerDes</li><li>Mach-Zehnder modulator</li><li>Microring resonator</li><li>Electro-absorption modulator</li><li>VCSEL</li><li>NRZ / PAM4</li><li>BPSK / QPSK / QAM</li><li>Wavelength-division multiplexing</li><li>Photodiode + TIA</li><li>Interposer</li><li>Through-silicon vias</li><li>Edge and grating couplers</li>
+    </ul>
+    <p class="diagram-note" style="margin-top:1rem">Main source: Kim, B. et al., <em>Nature Electronics</em> 9, 853–867 (2026). <a href="https://doi.org/10.1038/s41928-026-01681-6" target="_blank" rel="noopener">doi.org/10.1038/s41928-026-01681-6</a></p>
+  </div>
+</section>
+
+<nav class="wrap pager" aria-label="More work">
+  <a href="quantum-photonics.html"><span class="k">← Earlier research</span><b>Integrated Quantum Photonics</b></a>
+  <a class="next" href="../index.html#research"><span class="k">Back to →</span><b>All research</b></a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <span>© 2026 Krish Patel · Electrical Engineering, UC Irvine</span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Resume</a></span>
+  </div>
+</footer>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

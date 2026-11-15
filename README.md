@@ -15,6 +15,7 @@ projects/oscilloscope.html       Includes "The math behind it": a short tour of 
 projects/chess.html              Includes a playable version of the modified chess game
 research/quantum-photonics.html  Integrated quantum photonics research (Shcherbakov Nanophotonics Lab),
                                  and the move into co-packaged optics
+research/co-packaged-optics.html Co-packaged optics research: the link, encoding, modulators, packaging
 research/high-school.html        The two high school research projects, with photos, posters and papers
 assets/css/style.css             All styles (light + dark theme)
 assets/js/main.js                Theme toggle, menu, lightbox, oscilloscope simulations

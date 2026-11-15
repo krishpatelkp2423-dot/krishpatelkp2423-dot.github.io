@@ -130,7 +130,7 @@
       <ul class="minis">
         <li><a class="mini" href="projects/medsync.html">
           <img width="519" height="421" src="assets/img/medsync-prototype.jpg" alt="MedSync dispenser prototype next to the caregiver iPhone app" loading="lazy">
-          <span class="mini-body"><span class="card-meta">LIFETank 2026 · Team of 5</span><span class="mini-name">MedSync Smart Medication Dispenser</span><span class="mini-sum">I wrote the ESP32-S3 firmware for a pill dispenser with a camera check and a caregiver app. Working prototype for under $55 in parts.</span></span>
+          <span class="mini-body"><span class="card-meta">LIFETank 2026 · Team of 5</span><span class="mini-name">MedSync Smart Medication Dispenser</span><span class="mini-sum">I wrote the ESP32-S3 firmware for a pill dispenser with a camera check and a caregiver app. 95% accurate over 100 test trials, for under $55 in parts.</span></span>
         </a></li>
         <li><a class="mini" href="projects/temperature.html">
           <img width="422" height="316" src="assets/img/temp-breadboard.jpg" alt="Arduino temperature monitor on a breadboard" loading="lazy">
@@ -170,14 +170,15 @@
     </div>
     <div class="research">
       <article class="rs rs-now">
-        <div class="rs-year"><b>Now</b>New direction</div>
+        <div class="rs-year"><b>Now</b>Nov 2026 – present</div>
         <div>
           <h3>Co-packaged optics (CPO) for AI datacenters</h3>
           <p class="org"><a href="https://shcherbakov.eng.uci.edu/" target="_blank" rel="noopener">Shcherbakov Nanophotonics Lab</a> · UC Irvine</p>
           <ul>
-            <li>In a datacenter switch today, data leaves the chip as an electrical signal and crosses the circuit board to a pluggable optical module at the front panel. Co-packaged optics puts the photonic chip inside the same package as the switch or processor, so the data becomes light a few millimeters from where it was made.</li>
-            <li>AI clusters move so much data that those copper traces now cost real power and limit speed. A shorter electrical path means less power per bit and room for more bandwidth.</li>
-            <li>It builds directly on my trapped-ion work. A CPO optical engine uses the same parts (waveguides, grating couplers, and modulators) and is judged on the same numbers, such as coupling efficiency and mode overlap. The light now couples into an optical fiber instead of up to an ion.</li>
+            <li>Researching how co-packaged optics gets past the limits of copper in AI datacenters: the photonic chip sits in the same package as the switch or processor, so data becomes light a few millimeters from where it is made.</li>
+            <li>Examined the full link, from the SerDes through lasers, modulators, and wavelength-division multiplexing to germanium photodetectors and transimpedance amplifiers.</li>
+            <li>Compared Mach-Zehnder, microring, electro-absorption, and VCSEL modulators, and how each encodes data through intensity (NRZ and PAM4), phase (BPSK and QPSK), QAM, and polarization multiplexing.</li>
+            <li>Evaluated 2D, 2.5D interposer, 3D-stacked, and monolithic integration, weighing fiber coupling losses, thermal drift, and energy per bit.</li>
           </ul>
           <div class="diagram" style="margin-top:1rem">
             <div class="diagram-title"><span><b>FIG R-0</b> Co-packaged optics, transmit side</span><span>Same building blocks, new destination</span></div>
@@ -189,8 +190,9 @@
               <li><div class="node end"><span class="part">Optical fiber</span><span class="nm">To the next rack</span><span class="ds">Low loss over distance</span></div></li>
             </ol>
           </div>
-          <p class="rs-next"><strong>Where I am:</strong> early in this work, getting up to speed on the CPO literature with the lab.</p>
+          <p class="rs-next"><strong>So far:</strong> a literature review built on a 2026 <em>Nature Electronics</em> review paper, and a 33-slide technical presentation on how CPO links encode data in light. It builds on my trapped-ion work: the same waveguides, couplers, and modulators, now sending light into a fiber instead of up to an ion.</p>
           <div class="btn-row" style="margin-top:1rem">
+            <a class="btn btn-sm btn-wire" href="research/co-packaged-optics.html">Read the CPO page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             <a class="btn btn-sm btn-ghost" href="https://shcherbakov.eng.uci.edu/" target="_blank" rel="noopener">Lab website</a>
           </div>
         </div>
@@ -264,7 +266,7 @@
       </div>
       <div class="skill-group">
         <h3>Systems &amp; methods</h3>
-        <ul><li class="proof"><a href="projects/cubesat.html">System integration</a></li><li class="proof"><a href="projects/cubesat.html">V-model</a></li><li class="proof"><a href="projects/cubesat.html">FMEA</a></li><li class="proof"><a href="projects/cubesat.html">ICDs &amp; CONOPS</a></li><li class="proof"><a href="research/quantum-photonics.html">Integrated photonics</a></li><li class="proof"><a href="projects/chess.html#results">Game-tree search</a></li><li class="proof"><a href="research/high-school.html">Statistics &amp; data analysis</a></li></ul>
+        <ul><li class="proof"><a href="projects/cubesat.html">System integration</a></li><li class="proof"><a href="projects/cubesat.html">V-model</a></li><li class="proof"><a href="projects/cubesat.html">FMEA</a></li><li class="proof"><a href="projects/cubesat.html">ICDs &amp; CONOPS</a></li><li class="proof"><a href="research/co-packaged-optics.html">Integrated photonics</a></li><li class="proof"><a href="projects/chess.html#results">Game-tree search</a></li><li class="proof"><a href="research/high-school.html">Statistics &amp; data analysis</a></li></ul>
       </div>
     </div>
   </div>
