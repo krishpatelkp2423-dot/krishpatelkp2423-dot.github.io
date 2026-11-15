@@ -303,12 +303,35 @@
       function yb(v) { return 12 + (3.45 - v) / 3.6 * (h - 24); }
       axes(ctx, w, h, yb, [[3.3, "3.3"], [1.65, "1.65"], [0, "0 V"]], col);
       var pb = ptsB.map(function (p) { var x = 44 + ((p.x - 44) / (a.w - 50)) * (w - 50); return { x: x, y: yb(adcOut(p.v, p.c)), c: p.c }; });
-      // draw with breaks where band changes (gain switching jumps)
+      // One continuous trace. Where the signal crosses into another band the gain stage
+      // switches, so the ADC input jumps: each coloured segment runs right up to the
+      // crossing, and a thin vertical line joins it to the next one.
+      var EDGES = [0, W2[0], W1[0], W1[1], W2[1], FS];
+      ctx.lineJoin = "round"; ctx.lineCap = "round";
       var cur = null;
       for (var k = 0; k < pb.length; k++) {
         var p = pb[k];
-        if (p.c !== cur) { if (cur) ctx.stroke(); cur = p.c; ctx.strokeStyle = col[cur]; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(p.x, p.y); }
-        else ctx.lineTo(p.x, p.y);
+        if (p.c === cur) { ctx.lineTo(p.x, p.y); continue; }
+        var q = pb[k - 1], startX = p.x, startY = p.y;
+        if (cur) {
+          // the band edge the signal crossed between these two samples
+          var v0 = ptsB[k - 1].v, v1 = ptsB[k].v, edge = null;
+          for (var e = 0; e < EDGES.length; e++) {
+            if ((EDGES[e] - v0) * (EDGES[e] - v1) <= 0) { edge = EDGES[e]; break; }
+          }
+          if (edge !== null && v1 !== v0) {
+            startX = q.x + (edge - v0) / (v1 - v0) * (p.x - q.x);
+            var endY = yb(adcOut(edge, cur));
+            startY = yb(adcOut(edge, p.c));
+            ctx.lineTo(startX, endY); ctx.stroke();
+            ctx.strokeStyle = col.ink; ctx.lineWidth = 1.2;
+            ctx.beginPath(); ctx.moveTo(startX, endY); ctx.lineTo(startX, startY); ctx.stroke();
+          } else {
+            ctx.stroke();
+          }
+        }
+        cur = p.c; ctx.strokeStyle = col[cur]; ctx.lineWidth = 2.2;
+        ctx.beginPath(); ctx.moveTo(startX, startY); ctx.lineTo(p.x, p.y);
       }
       if (cur) ctx.stroke();
       ctx.fillStyle = col.ink; ctx.textAlign = "right"; ctx.textBaseline = "alphabetic"; ctx.font = "500 10px " + css("--f-mono");
