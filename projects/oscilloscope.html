@@ -6,6 +6,16 @@
 <title>General-Purpose Digital Oscilloscope | Krish Patel</title>
 <meta name="description" content="A from-scratch microcontroller oscilloscope comparing hardware auto-ranging, direct ESP32 ADC sampling, and an external 16-bit ADC, with flowcharts, an interactive auto-range simulation, and the math behind it: Laplace transforms, sampling theory and noise.">
 <meta name="author" content="Krish Patel">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Krish Patel 路 Engineering Portfolio">
+<meta property="og:title" content="General-Purpose Digital Oscilloscope | Krish Patel">
+<meta property="og:description" content="A from-scratch microcontroller oscilloscope comparing hardware auto-ranging, direct ESP32 ADC sampling, and an external 16-bit ADC, with flowcharts, an interactive auto-range simulation, and the math behind it: Laplace transforms, sampling theory and noise.">
+<meta property="og:url" content="https://krishpatelkp2423-dot.github.io/projects/oscilloscope.html">
+<meta property="og:image" content="https://krishpatelkp2423-dot.github.io/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://krishpatelkp2423-dot.github.io/projects/oscilloscope.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,6 +53,7 @@
       <div><dt>My role</dt><dd>Analog design, PCB, assembly, firmware, software</dd></div>
       <div><dt>Board</dt><dd>2-layer KiCad PCB, hand-soldered</dd></div>
       <div><dt>Controller</dt><dd>Seeed Studio XIAO ESP32</dd></div>
+      <div><dt>Result</dt><dd>The external 16-bit ADC read most accurately; auto-ranging lost to its own gain-switching delays</dd></div>
     </dl>
     <div class="btn-row">
       <a class="btn btn-wire" href="https://github.com/krishpatelkp2423-dot/Oscilloscope" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>GitHub repository</a>
@@ -351,7 +362,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">鈥
   </div>
 </section>
 
-<section class="pj-section">
+<section class="pj-section" id="board">
   <div class="wrap">
     <h2><span class="no">7</span>Schematic, layout &amp; board</h2>
     <div class="gallery">
@@ -394,7 +405,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">鈥
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <span>漏 2026 Krish Patel 路 Electrical Engineering, UC Irvine</span>
-    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> 路 <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> 路 <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Resume</a></span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> 路 <a href="https://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> 路 <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Resume</a></span>
   </div>
 </footer>
 <dialog class="lightbox" id="lightbox" aria-label="Image viewer">

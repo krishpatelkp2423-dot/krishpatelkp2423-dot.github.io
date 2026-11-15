@@ -338,7 +338,8 @@
     return colorToMove.charAt(0) + board.map(function (p) { return p || "."; }).join("");
   }
 
-  /* Pick a move for `color`. Returns {from, to, depth, score} or null if it has no move.
+  /* Pick a move for `color`. Returns {from, to, depth, score, nodes} or null if it has no
+     move (`nodes` is how many positions the search looked at).
      `level` is "easy", "medium", "hard" or an options object; `seen` (optional) maps
      positionKey() strings to how many times that position has occurred this game. */
   function chooseMove(board, color, whitePoints, blackPoints, level, seen) {
@@ -374,7 +375,7 @@
       var close = results.filter(function (r) { return r.value >= pick.value - slack; });
       pick = close[Math.floor(Math.random() * close.length)];
     }
-    return { from: pick.move[0], to: pick.move[1], depth: depthDone, score: pick.value };
+    return { from: pick.move[0], to: pick.move[1], depth: depthDone, score: pick.value, nodes: search.nodes };
   }
 
   global.ChessEngine = {

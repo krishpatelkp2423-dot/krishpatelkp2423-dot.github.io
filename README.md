@@ -7,25 +7,30 @@ Static portfolio site (plain HTML, CSS and JavaScript, no build step). GitHub Pa
 ## Structure
 
 ```
-index.html                       Home: hero, projects, GitHub repos, research, skills, about, contact
+index.html                       Home: hero, three featured projects, more projects, GitHub repos,
+                                 research, skills, about, contact
 projects/*.html                  One page per project (flowcharts, video, photos)
 projects/oscilloscope.html       Includes "The math behind it": a short tour of the Laplace transforms,
                                  sampling, noise and firmware math, with equations pre-rendered as HTML
 projects/chess.html              Includes a playable version of the modified chess game
-research/quantum-photonics.html  Integrated quantum photonics research (Shcherbakov Nanophotonics Lab)
+research/quantum-photonics.html  Integrated quantum photonics research (Shcherbakov Nanophotonics Lab),
+                                 and the move into co-packaged optics
+research/high-school.html        The two high school research projects, with photos, posters and papers
 assets/css/style.css             All styles (light + dark theme)
 assets/js/main.js                Theme toggle, menu, lightbox, oscilloscope simulations
 assets/js/chess-engine.js        Chess rules and AI (no DOM; also runs inside the worker)
 assets/js/chess-worker.js        Web Worker that runs the chess AI off the main thread
 assets/js/chess.js               The chess board, panel and controls on projects/chess.html
-assets/img/                      Project images, research photos and posters, and headshot
+assets/img/                      Project images, research photos and posters, headshot, and
+                                 og-card.png (the picture shown when a link to the site is shared)
 assets/research/                 High school research papers (PDF) linked from the Research section
 assets/video/                    Demo videos (H.264 MP4) and poster frames
 assets/vendor/katex/             KaTeX 0.16.11 stylesheet and fonts for the math (MIT license)
 assets/vendor/dejavu/LICENSE     License for the DejaVu chess glyphs used as the chess pieces
 assets/Krish_Patel_Resume.pdf    Resume linked across the site
 tools/math/                      Text and optional build script for the oscilloscope math section
-tools/chess/                     Optional script that regenerates the chess piece shapes
+tools/chess/                     Optional scripts: regenerate the chess piece shapes, and run the
+                                 self-play experiments behind the numbers on the chess page
 .nojekyll                        Tells GitHub Pages to serve the files as-is
 ```
 
@@ -65,3 +70,17 @@ python3 tools/chess/build_pieces.py ../Chess_/DejaVuSans-Bold.ttf
 ```
 
 The script replaces everything between the `PIECES:START` and `PIECES:END` comments in `assets/js/chess.js`.
+
+### The self-play numbers
+
+The "What the engine shows" section of `projects/chess.html` reports results from the AI playing itself. To reproduce them (needs Node.js, takes about 20 minutes):
+
+```bash
+node tools/chess/selfplay.js --games 200 --seed 1
+```
+
+The searches are limited by depth, not time, and the openings come from a seeded random generator, so the same command always prints the same numbers. If the engine changes, run it again and update the numbers on the page.
+
+## Link previews
+
+Every page has Open Graph tags, so a link pasted into LinkedIn, an email, or a message shows a title, a description, and `assets/img/og-card.png`. The tags use the full site address (`https://krishpatelkp2423-dot.github.io/`), so update them if the site moves to a custom domain.
