@@ -6,6 +6,16 @@
 <title>UCI CubeSat | Krish Patel</title>
 <meta name="description" content="Systems and power work on UC Irvine's 2U CubeSat: FlatSat test bench lead, power integration across subteams, an in-house aerospace-grade battery, CONOPS, ICDs and STK orbit analysis.">
 <meta name="author" content="Krish Patel">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Krish Patel · Engineering Portfolio">
+<meta property="og:title" content="UCI CubeSat | Krish Patel">
+<meta property="og:description" content="Systems and power work on UC Irvine's 2U CubeSat: FlatSat test bench lead, power integration across subteams, an in-house aerospace-grade battery, CONOPS, ICDs and STK orbit analysis.">
+<meta property="og:url" content="https://krishpatelkp2423-dot.github.io/projects/cubesat.html">
+<meta property="og:image" content="https://krishpatelkp2423-dot.github.io/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://krishpatelkp2423-dot.github.io/projects/cubesat.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -187,9 +197,34 @@
   </div>
 </section>
 
+<section class="pj-section" id="block-diagram">
+  <div class="wrap">
+    <h2><span class="no">6</span>System block diagram</h2>
+    <div class="prose" style="margin-bottom:1.25rem">
+      <p>To integrate hardware on the FlatSat I need to know where every wire goes. I put together this block diagram of the whole satellite from each subteam's signal list. It shows <strong>75 connections, one line per wire</strong>: the four solar panels and the battery into the power board, the power rails out to every load, and the signals that cross between the three boards in the stack.</p>
+    </div>
+    <figure class="media wide"><button type="button" data-full="../assets/img/cubesat-block-diagram.png" data-caption="System block diagram: every wire between the solar panels, battery, power board, avionics board and comms board." style="all:unset;cursor:zoom-in;display:block;width:100%"><img width="2044" height="1154" style="--ar: 2044 / 1154; width:100%; height:auto; background:#ffffff" src="../assets/img/cubesat-block-diagram.png" alt="Block diagram of the satellite. Left: four solar panels, a battery and two switches feed the power board, which powers three loads labelled BW Solar 1, BW Solar 2 and BW Antenna. Right: the avionics board connects to the magnetorquer driver, the thermocouples and the comms board, which connects to the antenna. Power rails, sun sensor signals, UART and I2C run from the power board to the avionics board, and two SPI buses run between the avionics and comms boards." loading="lazy"></button><figcaption><b>SYS</b>Orange lines are power rails, green are power-to-avionics signals, blue are SPI and solar array outputs, and gray is ground. Click to enlarge.</figcaption></figure>
+    <div class="pj-sub">
+      <h3>What crosses between the three stacked boards</h3>
+      <div class="table-wrap">
+        <table class="spec">
+          <thead><tr><th>Between</th><th>Direction</th><th>Signals</th><th>What they are</th></tr></thead>
+          <tbody>
+            <tr><td>Power → Avionics</td><td>One way</td><td class="num" style="text-align:left;white-space:normal">5V_CFC, 3.3V_CFC, SA_CSS1 to SA_CSS4</td><td>Two power rails and four sun sensor signals</td></tr>
+            <tr><td>Power ↔ Avionics</td><td>Both ways</td><td class="num" style="text-align:left;white-space:normal">UART_TX, UART_RX, SDA, SCL</td><td>A UART link and an I2C bus</td></tr>
+            <tr><td>Power → Comms</td><td>One way</td><td class="num" style="text-align:left;white-space:normal">5V_COM, 3.3V_COM</td><td>Two power rails</td></tr>
+            <tr><td>Avionics ↔ Comms</td><td>Both ways</td><td class="num" style="text-align:left;white-space:normal">SCK, MISO, MOSI, CS (A and B)</td><td>Two SPI buses</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="diagram-note" style="margin-top:0.75rem">Every board also shares a common ground through the stack connector. I wrote these up as a board-to-board connection document with one page per connection and a signal table for each.</p>
+    </div>
+  </div>
+</section>
+
 <section class="pj-section">
   <div class="wrap">
-    <h2><span class="no">6</span>From the project</h2>
+    <h2><span class="no">7</span>From the project</h2>
     <div class="gallery fit">
       <figure class="media wide"><button type="button" data-full="../assets/img/cubesat-stk.jpg" data-caption="Orbit simulation in Systems Tool Kit (STK)."><img width="1160" height="510" style="--ar: 1160 / 510" src="../assets/img/cubesat-stk.jpg" alt="STK 3D globe and 2D ground-track views of the satellite's orbit" loading="lazy"></button><figcaption><b>STK</b>Orbit simulation in Systems Tool Kit: 3D view and ground track, used to validate orbital paths and communication windows.</figcaption></figure>
       <figure class="media wide"><button type="button" data-full="../assets/img/cubesat-power-3v3.png" data-caption="Power board: 3.3 V regulation sheet."><img width="1800" height="1000" style="--ar: 1800 / 1000" src="../assets/img/cubesat-power-3v3.png" alt="Schematic of the 3.3 V switching buck regulator, rail current monitor, and output decoupling" loading="lazy"></button><figcaption><b>PWR</b>Power board, 3.3 V regulation sheet: a TPS54531 buck regulator fed from the e-fuse output, an INA180 current-sense amplifier on the 3.3 V rail reporting to the STM32, and output decoupling with a status LED.</figcaption></figure>
@@ -201,7 +236,7 @@
 
 <section class="pj-section">
   <div class="wrap">
-    <h2><span class="no">7</span>Methods &amp; tools</h2>
+    <h2><span class="no">8</span>Methods &amp; tools</h2>
     <ul class="chips">
       <li>Systems-engineering V-model</li><li>FlatSat test bench</li><li>Systems Tool Kit (STK)</li><li>FMEA</li><li>Interface Control Documents</li><li>CONOPS</li><li>Mass / power / link budgets</li><li>Requirements V&amp;V</li><li>Power wiring &amp; current measurement</li>
     </ul>
@@ -210,13 +245,13 @@
 
 <nav class="wrap pager" aria-label="More projects">
   <a href="oscilloscope.html"><span class="k">← Previous project</span><b>General-Purpose Digital Oscilloscope</b></a>
-  <a class="next" href="medsync.html"><span class="k">Next project →</span><b>MedSync Smart Medication Dispenser</b></a>
+  <a class="next" href="chess.html"><span class="k">Next project →</span><b>Points-Race Chess &amp; Its Search AI</b></a>
 </nav>
 </main>
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <span>© 2026 Krish Patel · Electrical Engineering, UC Irvine</span>
-    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Resume</a></span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Resume</a></span>
   </div>
 </footer>
 <dialog class="lightbox" id="lightbox" aria-label="Image viewer">

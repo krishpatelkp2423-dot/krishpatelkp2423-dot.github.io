@@ -6,6 +6,16 @@
 <title>MedSync Smart Medication Dispenser | Krish Patel</title>
 <meta name="description" content="MedSync, a smart medication dispenser built for LIFETank 2026: ESP32-S3 firmware, stepper-driven pill carousel, camera-based dose checking with OpenCV, and a caregiver iOS app over BLE.">
 <meta name="author" content="Krish Patel">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Krish Patel · Engineering Portfolio">
+<meta property="og:title" content="MedSync Smart Medication Dispenser | Krish Patel">
+<meta property="og:description" content="MedSync, a smart medication dispenser built for LIFETank 2026: ESP32-S3 firmware, stepper-driven pill carousel, camera-based dose checking with OpenCV, and a caregiver iOS app over BLE.">
+<meta property="og:url" content="https://krishpatelkp2423-dot.github.io/projects/medsync.html">
+<meta property="og:image" content="https://krishpatelkp2423-dot.github.io/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://krishpatelkp2423-dot.github.io/projects/medsync.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,6 +53,7 @@
       <div><dt>My role</dt><dd>ESP32-S3 firmware &amp; system integration</dd></div>
       <div><dt>Hardware cost</dt><dd>Under $55 BOM</dd></div>
       <div><dt>Status</dt><dd>Working prototype</dd></div>
+      <div><dt>Result</dt><dd>95% accuracy over 100 test trials, with no motor or other hardware malfunctions</dd></div>
     </dl>
     <div class="btn-row">
       <a class="btn btn-wire" href="https://github.com/am0ghh/MedSync" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>Team GitHub repository</a>
@@ -136,7 +147,18 @@
 
 <section class="pj-section">
   <div class="wrap">
-    <h2><span class="no">5</span>Design &amp; prototype</h2>
+    <h2><span class="no">5</span>Results</h2>
+    <div class="stats">
+      <div class="stat"><span class="n">95%</span><span class="l">accuracy over 100 test trials</span><span class="d">Measured on the working prototype.</span></div>
+      <div class="stat"><span class="n">0</span><span class="l">hardware malfunctions</span><span class="d">The stepper motor and the rest of the hardware ran all 100 trials without a fault.</span></div>
+      <div class="stat"><span class="n">Under $55</span><span class="l">in parts</span><span class="d">Against $150–$450 for the clinical dispensers on the market.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-section">
+  <div class="wrap">
+    <h2><span class="no">6</span>Design &amp; prototype</h2>
     <div class="gallery fit">
       <figure class="media photo"><button type="button" data-full="../assets/img/medsync-cad.jpg" data-caption="Fusion 360 CAD of the dispenser."><img width="519" height="501" style="--ar: 519 / 501" src="../assets/img/medsync-cad.jpg" alt="CAD render of the octagonal day carousel on top of the dispenser base with a collection cup" loading="lazy"></button><figcaption><b>CAD</b>Fusion 360 model: octagonal day carousel with a LOAD position, base with screen, and collection cup.</figcaption></figure>
       <figure class="media photo"><button type="button" data-full="../assets/img/medsync-prototype.jpg" data-caption="3D-printed prototype with the caregiver app."><img width="519" height="421" style="--ar: 519 / 421" src="../assets/img/medsync-prototype.jpg" alt="3D-printed MedSync prototype beside an iPhone showing the dose log" loading="lazy"></button><figcaption><b>BUILD</b>3D-printed prototype next to the caregiver app's dose log.</figcaption></figure>
@@ -146,7 +168,7 @@
 
 <section class="pj-section">
   <div class="wrap">
-    <h2><span class="no">6</span>Technologies</h2>
+    <h2><span class="no">7</span>Technologies</h2>
     <ul class="chips">
       <li>ESP32-S3</li><li>28BYJ-48 stepper</li><li>OV2640 camera</li><li>BLE / CoreBluetooth</li><li>Swift / iOS</li><li>OpenCV (Python)</li><li>Supabase</li><li>NTP timekeeping</li><li>KiCad</li><li>Fusion 360</li><li>FDM 3D printing</li>
     </ul>
@@ -154,14 +176,14 @@
 </section>
 
 <nav class="wrap pager" aria-label="More projects">
-  <a href="cubesat.html"><span class="k">← Previous project</span><b>UCI CubeSat</b></a>
-  <a class="next" href="chess.html"><span class="k">Next project →</span><b>Modified Chess with Reinforcement Learning</b></a>
+  <a href="chess.html"><span class="k">← Previous project</span><b>Points-Race Chess &amp; Its Search AI</b></a>
+  <a class="next" href="temperature.html"><span class="k">Next project →</span><b>Temperature Sensing &amp; Visualization</b></a>
 </nav>
 </main>
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <span>© 2026 Krish Patel · Electrical Engineering, UC Irvine</span>
-    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Resume</a></span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="../assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Resume</a></span>
   </div>
 </footer>
 <dialog class="lightbox" id="lightbox" aria-label="Image viewer">

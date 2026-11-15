@@ -4,8 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Krish Patel Engineering Portfolio</title>
-<meta name="description" content="Engineering portfolio of Krish Patel, electrical engineering junior at UC Irvine (Class of 2028): oscilloscope design, CubeSat systems, embedded systems, robotics, and integrated quantum photonics research.">
+<meta name="description" content="Krish Patel, electrical engineering junior at UC Irvine (Class of 2028), seeking a Summer 2027 hardware internship. Projects: a from-scratch oscilloscope, UCI CubeSat systems and power, and a chess engine. Research: integrated photonics.">
 <meta name="author" content="Krish Patel">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Krish Patel · Engineering Portfolio">
+<meta property="og:title" content="Krish Patel Engineering Portfolio">
+<meta property="og:description" content="Krish Patel, electrical engineering junior at UC Irvine (Class of 2028), seeking a Summer 2027 hardware internship. Projects: a from-scratch oscilloscope, UCI CubeSat systems and power, and a chess engine. Research: integrated photonics.">
+<meta property="og:url" content="https://krishpatelkp2423-dot.github.io/">
+<meta property="og:image" content="https://krishpatelkp2423-dot.github.io/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://krishpatelkp2423-dot.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='7' width='24' height='18' rx='2' fill='%23131c2e'/%3E%3Ctext x='16' y='20' font-family='monospace' font-size='10' font-weight='700' fill='%23f4cd4f' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,30 +49,31 @@
         <div class="hero-copy">
           <span class="net rise">Electrical Engineering · UC Irvine<span class="net-extra">· Class of 2028</span></span>
           <h1 class="rise d1"><span class="thin">Engineering portfolio</span>Krish Patel</h1>
-          <p class="hero-lede rise d2">I build <strong>mixed-signal hardware</strong> and the firmware that reads it: a from-scratch oscilloscope front end, hand-soldered PCBs, embedded controllers, and power integration for <strong>UCI CubeSat</strong>. In the lab, I research <strong>integrated photonics</strong> for trapped-ion quantum computers.</p>
+          <p class="hero-lede rise d2">I build <strong>mixed-signal hardware</strong> and the firmware that reads it: a from-scratch oscilloscope front end, hand-soldered PCBs, embedded controllers, and power integration for <strong>UCI CubeSat</strong>. In the lab, I research <strong>integrated photonics</strong>: first for trapped-ion quantum computers, now co-packaged optics.</p>
+          <p class="hero-seek rise d2"><span class="status live">Seeking a Summer 2027 internship</span><span>Hardware roles: analog and mixed-signal circuits, embedded systems, PCB design, or photonics.</span></p>
           <div class="btn-row rise d3">
             <a class="btn btn-wire" href="#projects">View projects <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             <a class="btn btn-ghost" href="assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Resume (PDF)</a>
           </div>
           <div class="socials rise d3">
             <a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>GitHub</a>
-            <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>LinkedIn</a>
+            <a href="https://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>LinkedIn</a>
             <a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>krishhp@uci.edu</a>
           </div>
         </div>
         <figure class="scope rise d2" style="margin:0">
           <div class="scope-top"><span class="ch ch1">CH1 input · 1 V/div</span><span class="ch ch2">CH2 level-shifted · 1 V/div</span></div>
-          <canvas id="scope-canvas" role="img" aria-label="Oscilloscope simulation: a sine wave swinging between minus and plus 1.65 volts, and the same wave shifted up to swing between 0 and 3.3 volts around a 1.65 volt axis."></canvas>
-          <div class="scope-bottom"><span>OFFSET +1.65 V</span><span>RANGE 0–3.3 V</span><span>SIMULATED</span></div>
-          <figcaption>My oscilloscope's level shifter, simulated: a ±1.65 V input (CH1) is lifted by 1.65 V so it swings across the 0–3.3 V range the ESP32's ADC can read (CH2).</figcaption>
+          <canvas id="scope-canvas" role="img" aria-label="Animated oscilloscope display: a sine wave swinging between minus and plus 1.65 volts, and the same wave shifted up to swing between 0 and 3.3 volts around a 1.65 volt axis."></canvas>
+          <div class="scope-bottom"><span>OFFSET +1.65 V</span><span>RANGE 0–3.3 V</span><span>DC-COUPLED</span></div>
+          <figcaption>How my oscilloscope's level shifter works: a ±1.65 V input (CH1) is lifted by 1.65 V so it swings across the 0–3.3 V range the ESP32's ADC can read (CH2).</figcaption>
         </figure>
       </div>
       <dl class="title-block" aria-label="Sheet title block">
         <div class="tb-wide"><dt class="k">Title</dt><dd class="v" style="margin:0">Krish Patel · Engineering Portfolio</dd></div>
         <div><dt class="k">Drawn by</dt><dd class="v" style="margin:0">K. Patel</dd></div>
         <div class="tb-mid"><dt class="k">School</dt><dd class="v" style="margin:0">UC Irvine EE ’28</dd></div>
-        <div><dt class="k">Projects</dt><dd class="v" style="margin:0">6</dd></div>
-        <div class="tb-end tb-mid"><dt class="k">Rev</dt><dd class="v" style="margin:0">Oct 2026</dd></div>
+        <div><dt class="k">Open to</dt><dd class="v" style="margin:0">Summer ’27 internship</dd></div>
+        <div class="tb-end tb-mid"><dt class="k">Rev</dt><dd class="v" style="margin:0">Nov 2026</dd></div>
       </dl>
     </div>
   </div>
@@ -72,8 +83,8 @@
   <div class="wrap">
     <div class="section-head">
       <span class="net">Projects</span>
-      <h2>Selected projects</h2>
-      <p>Each project page walks through how the system works, with flowcharts, schematics, photos, and demo video where I have it.</p>
+      <h2>Featured projects</h2>
+      <p>Three projects that show how I work. Each page covers how the system works, what I did, and what came out of it.</p>
     </div>
     <div class="cards">
       <a class="card" href="projects/oscilloscope.html">
@@ -84,6 +95,7 @@
           <h3>General-Purpose Digital Oscilloscope</h3>
           <p class="sum">A from-scratch oscilloscope that compares three ways to read one signal: hardware auto-ranging, the ESP32's own ADC, and an external 16-bit ADC.</p>
           <ul class="pins"><li>Analog front end</li><li>KiCad PCB</li><li>SPI driver</li><li>Python</li></ul>
+          <p class="card-result"><b>Result</b>The external 16-bit ADC read most accurately. Auto-ranging looked best on paper but lost on the bench to its own gain-switching delays.</p>
         </div>
         <span class="card-file">oscilloscope.html <b>View project →</b></span>
       </a>
@@ -95,70 +107,55 @@
           <h3>UCI CubeSat: Systems &amp; Power</h3>
           <p class="sum">I run the FlatSat test bench, make sure every subteam gets the power it needs, and work in the lab with the power team on an in-house battery.</p>
           <ul class="pins"><li>FlatSat</li><li>Power integration</li><li>STK</li><li>ICDs &amp; CONOPS</li></ul>
+          <p class="card-result"><b>My role</b>FlatSat lead on a 2U satellite team: I integrate each subteam's hardware and check its current draw against the power budget.</p>
         </div>
         <span class="card-file">cubesat.html <b>View project →</b></span>
       </a>
-      <a class="card" href="projects/medsync.html">
-        <span class="card-sheet">Sheet: /medsync/</span>
-        <div class="card-media"><img width="519" height="421" style="--ar: 519 / 421" src="assets/img/medsync-prototype.jpg" alt="MedSync dispenser prototype next to the caregiver iPhone app" loading="lazy"></div>
-        <div class="card-body">
-          <p class="card-meta">LIFETank 2026 · Team of 5 · Jan – May 2026</p>
-          <h3>MedSync Smart Medication Dispenser</h3>
-          <p class="sum">An ESP32-S3 turns a 7-day pill carousel, a camera checks the cup, and caregivers control it and get alerts from an iOS app.</p>
-          <ul class="pins"><li>ESP32-S3</li><li>BLE</li><li>OpenCV</li><li>Demo video</li></ul>
-        </div>
-        <span class="card-file">medsync.html <b>View project →</b></span>
-      </a>
       <a class="card" href="projects/chess.html">
-        <span class="card-sheet">Sheet: /chess-rl/</span>
+        <span class="card-sheet">Sheet: /chess/</span>
         <div class="card-media"><img width="1200" height="750" style="--ar: 1200 / 750" src="assets/img/chess-web.jpg" alt="The playable browser version of the modified chess game: the board and the live points scoreboard" loading="lazy"></div>
         <div class="card-body">
           <p class="card-meta">Personal project · Mar – Apr 2026</p>
-          <h3>Modified Chess with an RL Agent</h3>
-          <p class="sum">Chess without checkmate: first to 15 points wins. Play it against the AI right on the project page. I'm also training a reinforcement-learning agent on the new rules to compare how it adapts against human players.</p>
-          <ul class="pins"><li>Python</li><li>Pygame</li><li>JavaScript</li><li>Q-learning</li><li>Play in browser</li></ul>
+          <h3>Points-Race Chess &amp; Its Search AI</h3>
+          <p class="sum">Chess without checkmate: first to 15 points wins. I built the game in Python, wrote the AI that plays it, and ported both to the browser. Play it on the project page.</p>
+          <ul class="pins"><li>Python</li><li>JavaScript</li><li>Alpha-beta search</li><li>Unit tests</li><li>Play in browser</li></ul>
+          <p class="card-result"><b>Result</b>I ran the AI against itself 800 times. Looking 4 moves ahead beat 2 moves ahead in 187 of 200 games.</p>
         </div>
         <span class="card-file">chess.html <b>View project →</b></span>
       </a>
-      <a class="card" href="projects/temperature.html">
-        <span class="card-sheet">Sheet: /temperature/</span>
-        <div class="card-media"><img width="422" height="316" style="--ar: 422 / 316" src="assets/img/temp-breadboard.jpg" alt="Arduino temperature monitor on a breadboard" loading="lazy"></div>
-        <div class="card-body">
-          <p class="card-meta">Personal project · Nov 2025 – Jan 2026</p>
-          <h3>Temperature Sensing &amp; Visualization</h3>
-          <p class="sum">An Arduino thermistor monitor with an LCD, buzzer alerts, three operating modes, and a Python live plot that logs to CSV.</p>
-          <ul class="pins"><li>Arduino</li><li>Thermistor</li><li>Matplotlib</li><li>Demo video</li></ul>
-        </div>
-        <span class="card-file">temperature.html <b>View project →</b></span>
-      </a>
-      <a class="card" href="projects/rover.html">
-        <span class="card-sheet">Sheet: /rover/</span>
-        <div class="card-media contain"><img width="1800" height="1382" style="--ar: 1800 / 1382" src="assets/img/rover-wiring.png" alt="Wiring diagram of the rover's Arduino, motor shield, servos and sensors" loading="lazy"></div>
-        <div class="card-body">
-          <p class="card-meta">SEDS UC Irvine · Aug 2025 – May 2026</p>
-          <h3>Autonomous Mobile Rover</h3>
-          <p class="sum">A rover that crosses mock planetary terrain, finds a target rock, and collects it without a driver. I designed its control electronics.</p>
-          <ul class="pins"><li>Arduino</li><li>Motor shield</li><li>Pixy2</li><li>Servos</li></ul>
-        </div>
-        <span class="card-file">rover.html <b>View project →</b></span>
-      </a>
+    </div>
+
+    <div class="more">
+      <h3>More projects</h3>
+      <ul class="minis">
+        <li><a class="mini" href="projects/medsync.html">
+          <img width="519" height="421" src="assets/img/medsync-prototype.jpg" alt="MedSync dispenser prototype next to the caregiver iPhone app" loading="lazy">
+          <span class="mini-body"><span class="card-meta">LIFETank 2026 · Team of 5</span><span class="mini-name">MedSync Smart Medication Dispenser</span><span class="mini-sum">I wrote the ESP32-S3 firmware for a pill dispenser with a camera check and a caregiver app. 95% accurate over 100 test trials, for under $55 in parts.</span></span>
+        </a></li>
+        <li><a class="mini" href="projects/temperature.html">
+          <img width="422" height="316" src="assets/img/temp-breadboard.jpg" alt="Arduino temperature monitor on a breadboard" loading="lazy">
+          <span class="mini-body"><span class="card-meta">Personal · Nov 2025 – Jan 2026</span><span class="mini-name">Temperature Sensing &amp; Visualization</span><span class="mini-sum">An Arduino thermistor monitor with an LCD, buzzer alerts, and a Python live plot that logs to CSV.</span></span>
+        </a></li>
+        <li><a class="mini" href="projects/rover.html">
+          <img class="contain" width="1800" height="1382" src="assets/img/rover-wiring.png" alt="Wiring diagram of the rover's Arduino, motor shield, servos and sensors" loading="lazy">
+          <span class="mini-body"><span class="card-meta">SEDS UC Irvine · Aug 2025 – May 2026</span><span class="mini-name">Autonomous Mobile Rover</span><span class="mini-sum">I designed the control electronics for a rover that finds and collects a target rock without a driver.</span></span>
+        </a></li>
+      </ul>
     </div>
 
     <div class="code-shelf" id="github">
       <div class="code-head">
         <div>
           <h3>Code on GitHub</h3>
-          <p>Source code for my projects and coursework.</p>
+          <p>Source code and design files for my projects.</p>
         </div>
         <a class="btn btn-sm btn-ghost" href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 2 12l6 6M16 6l6 6-6 6"/></svg>github.com/krishpatelkp2423-dot</a>
       </div>
       <ul class="repos">
         <li><a class="repo" href="https://github.com/krishpatelkp2423-dot/Oscilloscope" target="_blank" rel="noopener"><span class="repo-name">Oscilloscope</span><span class="repo-desc">Design notes and parts list for my from-scratch oscilloscope: auto-ranging, direct ADC, and an external 16-bit ADC on one KiCad board.</span><span class="repo-meta">ESP32 · KiCad · Python</span></a></li>
+        <li><a class="repo" href="https://github.com/krishpatelkp2423-dot/Chess_" target="_blank" rel="noopener"><span class="repo-name">Chess_</span><span class="repo-desc">Points-race chess in Python and Pygame, with an alpha-beta search AI and unit tests for the rules and the AI.</span><span class="repo-meta">Python · Pygame</span></a></li>
         <li><a class="repo" href="https://github.com/am0ghh/MedSync" target="_blank" rel="noopener"><span class="repo-name">MedSync <span class="repo-tag">Team repo</span></span><span class="repo-desc">The smart medication dispenser our team of five built for LIFETank 2026.</span><span class="repo-meta">ESP32-S3 · Swift · OpenCV</span></a></li>
-        <li><a class="repo" href="https://github.com/krishpatelkp2423-dot/Chess_" target="_blank" rel="noopener"><span class="repo-name">Chess_</span><span class="repo-desc">Modified chess in Python and Pygame with point-based scoring: the first player to 15 points wins.</span><span class="repo-meta">Python · Pygame</span></a></li>
         <li><a class="repo" href="https://github.com/krishpatelkp2423-dot/Temperature-Sensing-System" target="_blank" rel="noopener"><span class="repo-name">Temperature-Sensing-System</span><span class="repo-desc">Arduino thermistor monitor with an LCD, buzzer alerts, and three modes, plus a Python script that graphs the logged data.</span><span class="repo-meta">Arduino · Python</span></a></li>
-        <li><a class="repo" href="https://github.com/krishpatelkp2423-dot/MCU_trafficLight" target="_blank" rel="noopener"><span class="repo-name">MCU_trafficLight</span><span class="repo-desc">An Arduino traffic light that cycles red, yellow, and green LEDs from digital pins on fixed timings.</span><span class="repo-meta">Arduino</span></a></li>
-        <li><a class="repo" href="https://github.com/krishpatelkp2423-dot/EECSLab3" target="_blank" rel="noopener"><span class="repo-name">EECSLab3</span><span class="repo-desc">An EECS lab in C that finds every perfect number up to 2000 and prints its divisors.</span><span class="repo-meta">C · Coursework</span></a></li>
       </ul>
     </div>
   </div>
@@ -169,22 +166,48 @@
     <div class="section-head">
       <span class="net">Research</span>
       <h2>Research</h2>
-      <p>Undergraduate research in integrated quantum photonics at UC Irvine, and before that, two years of microbiology and environmental science research in the Discovery magnet program at Spring Valley High School, presented at state and regional science conferences.</p>
+      <p>Undergraduate research in integrated photonics at UC Irvine: first on-chip light delivery for trapped-ion quantum computers, and now co-packaged optics for AI datacenters. Before UCI, two years of research in a high school magnet program.</p>
     </div>
     <div class="research">
       <article class="rs rs-now">
-        <div class="rs-year"><b>Now</b>Current project</div>
+        <div class="rs-year"><b>Now</b>Nov 2026 – present</div>
+        <div>
+          <h3>Co-packaged optics (CPO) for AI datacenters</h3>
+          <p class="org"><a href="https://shcherbakov.eng.uci.edu/" target="_blank" rel="noopener">Shcherbakov Nanophotonics Lab</a> · UC Irvine</p>
+          <ul>
+            <li>Researching how co-packaged optics gets past the limits of copper in AI datacenters: the photonic chip sits in the same package as the switch or processor, so data becomes light a few millimeters from where it is made.</li>
+            <li>Examined the full link, from the SerDes through lasers, modulators, and wavelength-division multiplexing to germanium photodetectors and transimpedance amplifiers.</li>
+            <li>Compared Mach-Zehnder, microring, electro-absorption, and VCSEL modulators, and how each encodes data through intensity (NRZ and PAM4), phase (BPSK and QPSK), QAM, and polarization multiplexing.</li>
+            <li>Evaluated 2D, 2.5D interposer, 3D-stacked, and monolithic integration, weighing fiber coupling losses, thermal drift, and energy per bit.</li>
+          </ul>
+          <div class="diagram" style="margin-top:1rem">
+            <div class="diagram-title"><span><b>FIG R-0</b> Co-packaged optics, transmit side</span><span>Same building blocks, new destination</span></div>
+            <ol class="flow">
+              <li><div class="node io"><span class="part">Switch or processor</span><span class="nm">Electrical data</span><span class="ds">A few millimeters of copper</span></div></li>
+              <li><div class="node"><span class="part">Modulator</span><span class="nm">Data onto light</span><span class="ds">Laser light usually comes from outside the package</span></div></li>
+              <li><div class="node"><span class="part">Waveguide</span><span class="nm">Route light</span><span class="ds">Across the photonic chip</span></div></li>
+              <li><div class="node"><span class="part">Grating or edge coupler</span><span class="nm">Couple out</span><span class="ds">From the chip into a fiber</span></div></li>
+              <li><div class="node end"><span class="part">Optical fiber</span><span class="nm">To the next rack</span><span class="ds">Low loss over distance</span></div></li>
+            </ol>
+          </div>
+          <p class="rs-next"><strong>So far:</strong> a literature review built on a 2026 <em>Nature Electronics</em> review paper, and a 33-slide technical presentation on how CPO links encode data in light. It builds on my trapped-ion work: the same waveguides, couplers, and modulators, now sending light into a fiber instead of up to an ion.</p>
+          <div class="btn-row" style="margin-top:1rem">
+            <a class="btn btn-sm btn-wire" href="research/co-packaged-optics.html">Read the CPO page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn-sm btn-ghost" href="https://shcherbakov.eng.uci.edu/" target="_blank" rel="noopener">Lab website</a>
+          </div>
+        </div>
+      </article>
+      <article class="rs">
+        <div class="rs-year"><b>2026</b>From Sep 2026 · wrapping up</div>
         <div>
           <h3>Integrated quantum photonics for trapped-ion qubits</h3>
           <p class="org"><a href="https://shcherbakov.eng.uci.edu/" target="_blank" rel="noopener">Shcherbakov Nanophotonics Lab</a> · UC Irvine</p>
           <ul>
-            <li>Explored how photonic hardware can be integrated into quantum computing architectures, focusing on on-chip optical components as a scalable alternative to the free-space laser setups used in trapped-ion systems.</li>
-            <li>Studied how bulky free-space optics can be replaced with chip-scale photonic platforms: microfabricated ion traps paired with integrated photonic circuits for more compact, stable qubit control.</li>
-            <li>Worked with integrated photonic components (on-chip waveguides, grating couplers, and electro-optic modulators) designed to route laser light and deliver it directly to trapped ions with high precision.</li>
-            <li>Analyzed the performance of grating couplers and waveguide structures for delivering photons to trapped-ion qubits, focusing on coupling efficiency, mode overlap, and compatibility with ion-trap fabrication.</li>
+            <li>Studied how the table of free-space optics that steers lasers onto trapped-ion qubits can be replaced by photonic circuits built into the trap chip: on-chip waveguides, grating couplers, and electro-optic modulators.</li>
+            <li>Analyzed grating couplers and waveguide structures for delivering light to the ions, judged on coupling efficiency, mode overlap, and compatibility with ion-trap fabrication.</li>
           </ul>
           <div class="diagram" style="margin-top:1rem">
-            <div class="diagram-title"><span><b>FIG R-0</b> Light delivery on a chip</span><span>Replaces free-space optics</span></div>
+            <div class="diagram-title"><span><b>FIG R-1</b> Light delivery on a chip</span><span>Replaces free-space optics</span></div>
             <ol class="flow">
               <li><div class="node io"><span class="nm">Laser in</span><span class="ds">Coupled onto the chip</span></div></li>
               <li><div class="node"><span class="part">Waveguide</span><span class="nm">Route light</span><span class="ds">Across the trap chip</span></div></li>
@@ -193,79 +216,27 @@
               <li><div class="node end"><span class="part">Qubit</span><span class="nm">Trapped ion</span><span class="ds">Held above the surface</span></div></li>
             </ol>
           </div>
-          <p class="rs-next"><strong>What's next:</strong> this project is wrapping up, so I'm reading papers and scouting new directions with the lab, from photonic chips for neutral-atom and photonic quantum computers to co-packaged optics for AI datacenters.</p>
           <div class="btn-row" style="margin-top:1rem">
             <a class="btn btn-sm btn-wire" href="research/quantum-photonics.html">Read the research page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            <a class="btn btn-sm btn-ghost" href="https://shcherbakov.eng.uci.edu/" target="_blank" rel="noopener">Lab website</a>
           </div>
         </div>
       </article>
       <article class="rs">
-        <div class="rs-year"><b>2023–24</b>Aug 2023 – May 2024</div>
+        <div class="rs-year"><b>2022–24</b>High school research</div>
         <div>
-          <h3>Using bacteria to control a root-rot fungus</h3>
+          <h3>Two years of microbiology research</h3>
           <p class="org">Discovery Magnet Program · Spring Valley High School · Columbia, SC</p>
           <ul>
-            <li>Tested whether the soil bacterium <em>Pseudomonas fluorescens</em> can act as a biocontrol agent against <em>Armillaria mellea</em>, a fungus that causes root rot in trees, shrubs, and grapevines.</li>
-            <li>Grew the fungus on 90 agar plates and treated them with 0 µL (control), 100 µL, or 200 µL of bacterial solution, with 30 plates per group.</li>
-            <li>Built a MATLAB image-analysis pipeline that measured fungal coverage in before-and-after photos of every plate, taken with a fixed camera setup to avoid glare.</li>
-            <li>Found that only the 200 µL group shrank significantly at every image threshold (Kruskal–Wallis and Wilcoxon signed-rank tests), which supported my hypothesis. However, the untreated control plates also shrank, by even more on average, and the final colony sizes of the three groups were not significantly different, so more trials are needed to confirm the effect.</li>
-            <li>Presented at the 2024 South Carolina Junior Academy of Science conference and the 2024 University of South Carolina Region II Science Fair.</li>
+            <li><strong>2023–24:</strong> tested a soil bacterium as a biocontrol against a root-rot fungus across 90 plates, measured with a MATLAB image-analysis pipeline I wrote.</li>
+            <li><strong>2022–23:</strong> showed that oyster-mushroom mycelium grown on coffee grounds or sawdust cut <em>E. coli</em> in water by about 39% and 33% (120 trials, one-way ANOVA, p &lt; 0.0001).</li>
           </ul>
-          <div class="diagram" style="margin-top:1rem">
-            <div class="diagram-title"><span><b>FIG R-1</b> MATLAB analysis pipeline</span><span>90 plates · 180 photos</span></div>
-            <ol class="flow">
-              <li><div class="node io"><span class="nm">Plate photos</span><span class="ds">Before and after treatment</span></div></li>
-              <li><div class="node"><span class="nm">8-bit grayscale</span><span class="ds">Gray values scaled 0 to 1</span></div></li>
-              <li><div class="node"><span class="nm">5 thresholds</span><span class="ds">0.30 to 0.50, count pixels above each</span></div></li>
-              <li><div class="node"><span class="nm">Fungal area</span><span class="ds">Pixel count, before vs. after</span></div></li>
-              <li><div class="node end"><span class="nm">Statistics</span><span class="ds">Kruskal–Wallis, Wilcoxon</span></div></li>
-            </ol>
-          </div>
-          <div class="gallery rs-gallery">
-            <figure class="media photo"><button type="button" data-full="assets/img/rs24-streaking.jpg" data-caption="Streaking the bacterial solution onto the fungal plates."><img width="1400" height="1046" src="assets/img/rs24-streaking.jpg" alt="Gloved hands streaking bacterial solution onto agar plates next to a Bunsen burner" loading="lazy"></button><figcaption><b>LAB</b>Streaking the bacterial solution onto the plates.</figcaption></figure>
-            <figure class="media photo"><button type="button" data-full="assets/img/rs24-plates.jpg" data-caption="Fungal plates on the day the bacterial solution was added."><img width="1400" height="1050" src="assets/img/rs24-plates.jpg" alt="Labeled petri dishes with fungal growth and freshly added bacterial solution on a lab bench" loading="lazy"></button><figcaption><b>PLATES</b>Plates on the day the bacteria were added.</figcaption></figure>
-            <figure class="media"><button type="button" data-full="assets/img/rs24-matlab-threshold.jpg" data-caption="MATLAB output: each plate photo next to its thresholded image at T = 0.30."><img width="1167" height="875" src="assets/img/rs24-matlab-threshold.jpg" alt="Grid of plate photos with black-and-white thresholded versions produced by MATLAB" loading="lazy"></button><figcaption><b>MATLAB</b>Plate photos and their thresholded images.</figcaption></figure>
-            <figure class="media"><button type="button" data-full="assets/img/rs24-poster.jpg" data-caption="Science fair poster, 2024."><img width="2400" height="1800" src="assets/img/rs24-poster.jpg" alt="Science fair poster: The Effects of Pseudomonas fluorescens, a Biocontrol Agent, on a Pathogenic Fungus" loading="lazy"></button><figcaption><b>POSTER</b>Science fair poster. Click to enlarge.</figcaption></figure>
-          </div>
-          <div class="awards"><span class="award"><b>Honorable Mention</b> 2024 USC Region II Science Fair</span></div>
-          <div class="btn-row" style="margin-top:1rem">
-            <a class="btn btn-sm btn-wire" href="assets/research/patel-2024-pseudomonas-armillaria.pdf" target="_blank" rel="noopener">Read the paper (PDF) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></a>
-          </div>
-        </div>
-      </article>
-      <article class="rs">
-        <div class="rs-year"><b>2022–23</b>Aug 2022 – May 2023</div>
-        <div>
-          <h3>Cleaning <em>E. coli</em> from water with oyster mushrooms</h3>
-          <p class="org">Discovery Magnet Program · Spring Valley High School · Columbia, SC</p>
-          <ul>
-            <li>Tested how well oyster mushroom (<em>Pleurotus ostreatus</em>) mycelium removes <em>E. coli</em> from contaminated water when the fungus is grown on coffee grounds, pine sawdust, or wheat straw.</li>
-            <li>Ran 120 trials (30 per substrate plus a control group): the mycelium grew for three weeks, then sat in <em>E. coli</em> broth for 15 days before I measured the surviving bacteria with serial dilutions and colony counts.</li>
-            <li>Found that coffee grounds and sawdust cut <em>E. coli</em> colonies by about 39% and 33% compared with the control, while wheat straw made no significant difference (one-way ANOVA, F(3, 116) = 45.28, p &lt; 0.0001, with a Tukey post hoc test). This contradicted my hypothesis that wheat straw would work best.</li>
-            <li>Wrote a full research paper and presented it at the 2023 South Carolina Junior Academy of Science conference and the 2023 University of South Carolina Region II Science Fair.</li>
-          </ul>
-          <div class="diagram" style="margin-top:1rem">
-            <div class="diagram-title"><span><b>FIG R-2</b> Average <em style="text-transform:none">E. coli</em> colonies by substrate</span><span>30 trials each · lower is better</span></div>
-            <ol class="bars">
-              <li><span class="lbl">Coffee grounds</span><span class="bar"><span style="--w: 60.1%"></span></span><span class="val">722</span></li>
-              <li><span class="lbl">Pine sawdust</span><span class="bar"><span style="--w: 65.2%"></span></span><span class="val">782</span></li>
-              <li><span class="lbl">Wheat straw</span><span class="bar"><span style="--w: 95.8%"></span></span><span class="val">1,150</span></li>
-              <li class="base"><span class="lbl">Control (no substrate)</span><span class="bar"><span style="--w: 97.9%"></span></span><span class="val">1,175</span></li>
-            </ol>
-            <p class="diagram-note">Mean colony count after 15 days. Coffee and sawdust were both significantly lower than wheat straw and the control, and were not significantly different from each other.</p>
-          </div>
-          <div class="gallery rs-gallery">
-            <figure class="media photo"><button type="button" data-full="assets/img/rs23-cups.jpg" data-caption="Prepared trial cups of wheat straw (left) and pine sawdust (right)."><img width="1085" height="770" src="assets/img/rs23-cups.jpg" alt="Stacks of lidded deli cups, some filled with wheat straw and some with pine sawdust" loading="lazy"></button><figcaption><b>CUPS</b>Trial cups of wheat straw (left) and pine sawdust (right).</figcaption></figure>
-            <figure class="media photo"><button type="button" data-full="assets/img/rs23-bench.jpg" data-caption="Substrate cups, the E. coli solution, and graduated cylinders for measuring it into each cup."><img width="1275" height="666" style="object-position: 72% 50%" src="assets/img/rs23-bench.jpg" alt="Lab bench with substrate cups, a flask of E. coli solution and graduated cylinders" loading="lazy"></button><figcaption><b>LAB</b>Substrate cups and the <em>E. coli</em> broth on the bench.</figcaption></figure>
-            <figure class="media"><button type="button" data-full="assets/img/rs23-poster.jpg" data-caption="Science fair poster, 2023."><img width="2400" height="1801" src="assets/img/rs23-poster.jpg" alt="Science fair poster: The Effect of Pleurotus ostreatus in Bioremediation of Escherichia coli Contaminated Water Grown on Various Substrates" loading="lazy"></button><figcaption><b>POSTER</b>Science fair poster. Click to enlarge.</figcaption></figure>
-          </div>
           <div class="awards">
             <span class="award"><b>2023 Stockholm Junior Water Prize</b> Water Environment Federation</span>
             <span class="award"><b>Third Place</b> 2023 USC Region II Science Fair</span>
+            <span class="award"><b>Honorable Mention</b> 2024 USC Region II Science Fair</span>
           </div>
           <div class="btn-row" style="margin-top:1rem">
-            <a class="btn btn-sm btn-wire" href="assets/research/patel-2023-pleurotus-ecoli.pdf" target="_blank" rel="noopener">Read the paper (PDF) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></a>
+            <a class="btn btn-sm btn-ghost" href="research/high-school.html">Methods, photos, posters and papers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </div>
       </article>
@@ -278,23 +249,24 @@
     <div class="section-head">
       <span class="net">Skills</span>
       <h2>Skills &amp; tools</h2>
+      <p>Underlined skills link to the project where I used them.</p>
     </div>
     <div class="skills">
       <div class="skill-group">
         <h3>Hardware &amp; circuits</h3>
-        <ul><li>Analog / mixed-signal design</li><li>Embedded systems</li><li>PCB design</li><li>Fine-pitch hand soldering</li><li>Arduino</li><li>ESP32</li><li>SPI · BLE · serial</li></ul>
+        <ul><li class="proof"><a href="projects/oscilloscope.html">Analog / mixed-signal design</a></li><li class="proof"><a href="projects/medsync.html">Embedded systems</a></li><li class="proof"><a href="projects/oscilloscope.html#board">PCB design</a></li><li class="proof"><a href="projects/oscilloscope.html#board">Fine-pitch hand soldering</a></li><li class="proof"><a href="projects/rover.html">Arduino</a></li><li class="proof"><a href="projects/oscilloscope.html">ESP32</a></li><li class="proof"><a href="projects/oscilloscope.html">SPI · BLE · serial</a></li></ul>
       </div>
       <div class="skill-group">
         <h3>Programming</h3>
-        <ul><li>C / C++</li><li>Python</li><li>Java</li><li>Verilog</li><li>MATLAB</li></ul>
+        <ul><li class="proof"><a href="projects/medsync.html">C / C++</a></li><li class="proof"><a href="projects/chess.html">Python</a></li><li class="proof"><a href="projects/chess.html#play">JavaScript</a></li><li>Java</li><li>Verilog</li><li class="proof"><a href="research/high-school.html">MATLAB</a></li></ul>
       </div>
       <div class="skill-group">
         <h3>Design &amp; analysis tools</h3>
-        <ul><li>KiCad</li><li>Altium</li><li>Autodesk Fusion</li><li>Systems Tool Kit (STK)</li><li>Matplotlib</li><li>ImageJ</li><li>OpenCV</li></ul>
+        <ul><li class="proof"><a href="projects/oscilloscope.html#board">KiCad</a></li><li>Altium</li><li>Autodesk Fusion</li><li class="proof"><a href="projects/cubesat.html">Systems Tool Kit (STK)</a></li><li class="proof"><a href="projects/temperature.html">Matplotlib</a></li><li>ImageJ</li><li class="proof"><a href="projects/medsync.html">OpenCV</a></li></ul>
       </div>
       <div class="skill-group">
         <h3>Systems &amp; methods</h3>
-        <ul><li>System integration</li><li>V-model</li><li>FMEA</li><li>ICDs &amp; CONOPS</li><li>Integrated photonics</li><li>Literature review</li><li>Reinforcement learning</li><li>Data analysis</li><li>Microbiology</li></ul>
+        <ul><li class="proof"><a href="projects/cubesat.html">System integration</a></li><li class="proof"><a href="projects/cubesat.html">V-model</a></li><li class="proof"><a href="projects/cubesat.html">FMEA</a></li><li class="proof"><a href="projects/cubesat.html">ICDs &amp; CONOPS</a></li><li class="proof"><a href="research/co-packaged-optics.html">Integrated photonics</a></li><li class="proof"><a href="projects/chess.html#results">Game-tree search</a></li><li class="proof"><a href="research/high-school.html">Statistics &amp; data analysis</a></li></ul>
       </div>
     </div>
   </div>
@@ -313,20 +285,20 @@
       </div>
       <div class="prose">
         <p>I'm a <strong>junior</strong> studying electrical engineering in UC Irvine's <strong>Henry Samueli School of Engineering</strong>, graduating in <strong>June 2028</strong>. My projects sit where analog circuits meet firmware: level-shifting front ends, PCBs I lay out in KiCad and solder by hand, ESP32 and Arduino firmware, and Python tools that plot what the hardware measures.</p>
-        <p>On <strong>UCI CubeSat</strong> I work on systems integration and power, and I'm in charge of the FlatSat test bench. In the <strong>Shcherbakov Nanophotonics Lab</strong> I research integrated photonics for trapped-ion quantum computing. Before UCI, I spent two years doing microbiology and environmental science research in the Discovery magnet program at Spring Valley High School in Columbia, South Carolina.</p>
+        <p>On <strong>UCI CubeSat</strong> I work on systems integration and power, and I'm in charge of the FlatSat test bench. In the <strong>Shcherbakov Nanophotonics Lab</strong> I research integrated photonics: I started with on-chip light delivery for trapped-ion quantum computing and am now moving into co-packaged optics for AI datacenters. Before UCI, I spent two years doing microbiology and environmental science research in the Discovery magnet program at Spring Valley High School in Columbia, South Carolina.</p>
       </div>
       <div class="goals">
         <span class="k">What I'm working toward</span>
         <p>I want to do something innovative: build technology that creates meaningful change. I love creating things out of nothing and watching them develop and get better over time, and I'm always looking for the next project to help build.</p>
         <p>My interests run wide, which is why electrical engineering fits me. It's versatile enough to take me from analog circuits and embedded firmware to spacecraft power, photonics, and quantum hardware, and I want to experience as many of those fields as I can and see how much engineering has to offer.</p>
-        <p class="goals-open">I'm open to <strong>internships, research positions, and project teams</strong> where I can help build something new.</p>
+        <p class="goals-open">I'm looking for a <strong>Summer 2027 internship</strong> in hardware, and I'm open to research positions and project teams where I can help build something new.</p>
       </div>
       <ol class="timeline">
         <li><span class="when">Aug 2026 – present</span><h3>UCI CubeSat, Systems subteam</h3><p>FlatSat lead, power integration, systems documentation.</p></li>
-        <li><span class="when">Current</span><h3>Shcherbakov Nanophotonics Lab, UC Irvine</h3><p>Undergraduate research in integrated quantum photonics for trapped-ion qubits.</p></li>
+        <li><span class="when">Sep 2026 – present</span><h3>Shcherbakov Nanophotonics Lab, UC Irvine</h3><p>Undergraduate research in integrated photonics: trapped-ion light delivery, now co-packaged optics.</p></li>
         <li><span class="when">Sep 2025 – Jun 2028 (expected)</span><h3>University of California, Irvine</h3><p>B.S. Electrical Engineering, Henry Samueli School of Engineering · Junior, Class of 2028.</p></li>
         <li><span class="when">Aug 2025 – May 2026</span><h3>SEDS UC Irvine</h3><p>Electrical design for the autonomous mobile rover.</p></li>
-        <li><span class="when">Aug 2021 – Jun 2025</span><h3>Spring Valley High School</h3><p>Discovery research magnet program · GPA 3.91 / 4.0.</p></li>
+        <li><span class="when">Aug 2021 – Jun 2025</span><h3>Spring Valley High School</h3><p>Discovery research magnet program · two years of science-fair research.</p></li>
       </ol>
     </div>
   </div>
@@ -346,7 +318,7 @@
       </div>
       <div class="contact-row">
         <div><span class="k">LinkedIn</span><span class="v">in/krish-patel-krishhpa</span></div>
-        <a class="btn btn-sm btn-ghost" href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">Open</a>
+        <a class="btn btn-sm btn-ghost" href="https://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">Open</a>
       </div>
       <div class="contact-row">
         <div><span class="k">GitHub</span><span class="v">krishpatelkp2423-dot</span></div>
@@ -364,7 +336,7 @@
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <span>© 2026 Krish Patel · Electrical Engineering, UC Irvine</span>
-    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="http://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Resume</a></span>
+    <span><a href="https://github.com/krishpatelkp2423-dot" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/krish-patel-krishhpa" target="_blank" rel="noopener">LinkedIn</a> · <a href="assets/Krish_Patel_Resume.pdf" target="_blank" rel="noopener">Resume</a></span>
   </div>
 </footer>
 <dialog class="lightbox" id="lightbox" aria-label="Image viewer">
