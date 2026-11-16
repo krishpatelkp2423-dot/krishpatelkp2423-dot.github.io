@@ -303,16 +303,27 @@
       function yb(v) { return 12 + (3.45 - v) / 3.6 * (h - 24); }
       axes(ctx, w, h, yb, [[3.3, "3.3"], [1.65, "1.65"], [0, "0 V"]], col);
       var pb = ptsB.map(function (p) { var x = 44 + ((p.x - 44) / (a.w - 50)) * (w - 50); return { x: x, y: yb(adcOut(p.v, p.c)), c: p.c }; });
-      // The signal itself, before any gain: one smooth wave, drawn dashed for reference.
-      // Outside both windows the gain is 1, so the ADC trace lies right on top of it.
+      // Thin lines: what each gain stage would put out if it stayed connected the whole
+      // time. Each is one continuous wave that crosses 1.65 V and is only cut off where it
+      // hits 0 V or 3.3 V. The ×1 line is the signal itself. The thick trace drawn after
+      // this is the one stage the mux has selected at each instant.
+      function clampFS(x) { return Math.max(0, Math.min(FS, x)); }
+      var stages = [
+        { c: "full", f: function (v) { return clampFS(v); } },
+        { c: "w2", f: function (v) { return clampFS((v - W2[0]) * G2); } },
+        { c: "w1", f: function (v) { return clampFS((v - W1[0]) * G1); } }
+      ];
       ctx.save();
-      ctx.setLineDash([5, 5]); ctx.strokeStyle = col.ink; ctx.globalAlpha = 0.6; ctx.lineWidth = 1.4;
-      ctx.beginPath();
-      for (var d = 0; d < pb.length; d++) {
-        var ys = yb(Math.max(0, Math.min(FS, ptsB[d].v)));
-        if (d === 0) ctx.moveTo(pb[d].x, ys); else ctx.lineTo(pb[d].x, ys);
-      }
-      ctx.stroke();
+      ctx.globalAlpha = 0.45; ctx.lineWidth = 1.2; ctx.lineJoin = "round";
+      stages.forEach(function (st) {
+        ctx.strokeStyle = col[st.c];
+        ctx.beginPath();
+        for (var d = 0; d < pb.length; d++) {
+          var ys = yb(st.f(ptsB[d].v));
+          if (d === 0) ctx.moveTo(pb[d].x, ys); else ctx.lineTo(pb[d].x, ys);
+        }
+        ctx.stroke();
+      });
       ctx.restore();
       // One continuous trace. Where the signal crosses into another band the gain stage
       // switches, so the ADC input jumps: each coloured segment runs right up to the
