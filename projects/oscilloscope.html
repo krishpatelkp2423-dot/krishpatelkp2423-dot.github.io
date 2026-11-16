@@ -178,7 +178,7 @@
 
     <div class="pj-sub" id="lab">
       <h3>Try it · drag the input amplitude</h3>
-      <p>This simulation runs the window logic above on a sine wave. The left plot is the level-shifted signal over the two windows, colored by which path each instant takes. The right plot is what the ADC actually receives after the gain stage: each window's slice is stretched to fill the full range, which is why the trace jumps when the window changes. The white dots are samples rebuilt in firmware with <code>Vin = Vout / gain + Vlo</code>, and they land back on the original wave.</p>
+      <p>This simulation runs the window logic above on a sine wave. The left plot is the level-shifted signal over the two windows, colored by which path each instant takes. The right plot is what the ADC actually receives after the gain stage. The signal itself is one smooth wave, shown as the dashed line. The ADC does not see it that way: each window's slice is stretched to fill the full range, so the solid trace jumps every time the signal crosses into another window and the gain switches. Those jumps are how the design is meant to work, not gaps in the signal. The white dots on the left are samples rebuilt in firmware with <code>Vin = Vout / gain + Vlo</code>, and they land back on the smooth wave.</p>
       <div class="diagram lab">
         <div class="lab-controls">
           <label for="amp">Input amplitude (peak)</label>
@@ -199,7 +199,7 @@
         </div>
         <div class="plots">
           <figure class="plot"><canvas id="plot-in" role="img" aria-label="Level-shifted signal plotted over the two comparator windows"></canvas><figcaption><b>After level shift</b> · shaded bands are the two windows</figcaption></figure>
-          <figure class="plot"><canvas id="plot-adc" role="img" aria-label="Signal after the selected gain stage, as seen by the ADC"></canvas><figcaption><b>What the ADC sees</b> · after the selected gain stage; the thin vertical lines are the jumps when the gain switches</figcaption></figure>
+          <figure class="plot"><canvas id="plot-adc" role="img" aria-label="Signal after the selected gain stage, as seen by the ADC, drawn over a dashed line showing the smooth signal before gain"></canvas><figcaption><b>What the ADC sees</b> · dashed line: the signal itself, one smooth wave · solid line: the same signal after each window's gain, which jumps when the gain switches</figcaption></figure>
         </div>
         <div class="readouts" aria-live="polite">
           <div class="readout" style="--c: var(--scr-w1)"><span class="k">Time in window 1</span><span class="v" id="ro-w1">—</span><span class="s">step ≈ 0.15 mV</span></div>
